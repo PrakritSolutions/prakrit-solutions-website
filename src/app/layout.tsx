@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { DraftBanner } from "@/components/layout/draft-banner";
-import { siteConfig, isDraftEnvironment } from "@/lib/site-config";
+import { siteConfig, isDraftEnvironment, isComingSoon } from "@/lib/site-config";
 import "./globals.css";
 
 const inter = Inter({
@@ -70,12 +70,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        {isDraftEnvironment ? <DraftBanner /> : null}
-        <Navbar />
+        {isComingSoon ? null : isDraftEnvironment ? <DraftBanner /> : null}
+        {isComingSoon ? null : <Navbar />}
         <main id="main-content" className="flex-1">
           {children}
         </main>
-        <Footer />
+        {isComingSoon ? null : <Footer />}
       </body>
     </html>
   );

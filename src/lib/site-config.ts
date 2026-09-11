@@ -24,6 +24,12 @@ export const isDraftEnvironment = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL !== PRODUCTION_URL
   : false;
 
+// Server-only switch (not NEXT_PUBLIC — no need to ship it to the client).
+// Set COMING_SOON=true on the Production environment in Vercel to take the
+// real site down and show a placeholder page instead, without a code
+// change or losing the deployment underneath it.
+export const isComingSoon = process.env.COMING_SOON === "true";
+
 export const primaryNav = [
   { label: "Services", href: "/services" },
   { label: "Solutions", href: "/solutions" },
