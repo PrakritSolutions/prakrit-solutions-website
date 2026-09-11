@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { siteConfig } from "@/lib/site-config";
+import { DraftBanner } from "@/components/layout/draft-banner";
+import { siteConfig, isDraftEnvironment } from "@/lib/site-config";
 import "./globals.css";
 
 const inter = Inter({
@@ -51,6 +52,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  ...(isDraftEnvironment
+    ? { robots: { index: false, follow: false } }
+    : {}),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -66,6 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        {isDraftEnvironment ? <DraftBanner /> : null}
         <Navbar />
         <main id="main-content" className="flex-1">
           {children}
