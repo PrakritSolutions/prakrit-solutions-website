@@ -74,11 +74,14 @@ export default function AboutPage() {
           <Reveal delay={80} className="max-w-2xl">
             <p className="text-pretty text-lg leading-relaxed text-muted">
               <em className="text-ink not-italic font-medium">Prakrit</em>{" "}
-              is a word rooted in the idea of what is natural — the
-              essential, original state beneath something built. It&apos;s the
-              standard we hold our own work to: software that feels like an
-              obvious, natural extension of how a business already thinks
-              and operates, not a system people have to work around.
+              names a family of ancient Indian languages — the vernacular
+              alternative to Sanskrit, which was reserved for scholars and
+              priests. Jain scripture was composed in Prakrit specifically so
+              its teachings could reach people directly, not just a small
+              circle of specialists. That&apos;s the standard we hold our own
+              work to: technology explained in plain language and built for
+              the people who&apos;ll actually use it — not gatekept behind
+              jargon only a specialist can follow.
             </p>
           </Reveal>
         </Container>
