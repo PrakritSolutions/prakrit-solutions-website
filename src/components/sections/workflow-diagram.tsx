@@ -10,7 +10,7 @@ export function WorkflowDiagram({
     <div className="relative">
       <div className="grid gap-3 md:grid-cols-[repeat(14,minmax(0,1fr))] md:items-stretch md:gap-0">
         {stages.map((item, i) => (
-          <div key={item.stage} className="contents md:flex md:items-stretch">
+          <div key={item.stage} className="contents">
             <Reveal
               delay={i * 90}
               className="col-span-1 flex flex-col rounded-[var(--radius-lg)] border border-line-inverse bg-ink-soft p-5 md:col-span-2 md:rounded-[var(--radius-md)]"
