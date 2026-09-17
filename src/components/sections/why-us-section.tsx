@@ -23,7 +23,9 @@ export function WhyUsSection() {
             <Reveal
               key={item.title}
               delay={i * 70}
-              className="bg-paper p-7"
+              className={`bg-paper p-7${
+                i === differentiators.length - 1 ? " sm:col-span-2" : ""
+              }`}
             >
               <h3 className="text-lg font-medium text-ink">{item.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">
