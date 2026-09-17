@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { DraftBanner } from "@/components/layout/draft-banner";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { siteConfig, isDraftEnvironment, isComingSoon } from "@/lib/site-config";
 import "./globals.css";
 
@@ -76,6 +78,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         {isComingSoon ? null : <Footer />}
+        {isComingSoon ? null : (
+          <>
+            <Analytics />
+            <GoogleAnalytics />
+          </>
+        )}
       </body>
     </html>
   );
