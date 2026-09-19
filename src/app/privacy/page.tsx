@@ -52,16 +52,19 @@ export default function PrivacyPage() {
 
       <LegalSection heading="2. Who We Are">
         <p>
-          Prakrit Solutions is a software development agency based in Surat, Gujarat,
-          India. For the purposes of India’s Digital Personal Data Protection Act,
-          2023 (the “<Strong>DPDP Act</Strong>”), Prakrit Solutions is the{" "}
+          Prakrit Solutions is a software development business based in Surat,
+          Gujarat, India. It is a trade name under which {legalConfig.operatorName},
+          an individual, carries on business; it is not a registered company or
+          other separate legal entity. For the purposes of India’s Digital Personal
+          Data Protection Act, 2023 (the “<Strong>DPDP Act</Strong>”),{" "}
+          {legalConfig.operatorName}, trading as Prakrit Solutions, is the{" "}
           <Strong>Data Fiduciary</Strong> for the personal data described in this
           Policy, and you are the <Strong>Data Principal</Strong>.
         </p>
         <p>
-          Legal entity: {legalConfig.entityName}
+          Operated by: {legalConfig.operatorName}, trading as Prakrit Solutions
           <br />
-          Registered address: {legalConfig.registeredAddress}, Surat, Gujarat, India
+          Location: {siteConfig.location}
           <br />
           General enquiries: {mail(siteConfig.email)}
           <br />
@@ -280,7 +283,7 @@ export default function PrivacyPage() {
           <br />
           Email: {mail(siteConfig.privacyEmail)}
           <br />
-          Address: {legalConfig.registeredAddress}, Surat, Gujarat, India
+          Location: {siteConfig.location}
         </p>
         <p>
           We aim to acknowledge grievances promptly and resolve them within the period
@@ -327,9 +330,9 @@ export default function PrivacyPage() {
 
       <LegalSection heading="16. Contact Us">
         <p>
-          Prakrit Solutions
+          {legalConfig.operatorName}, trading as Prakrit Solutions
           <br />
-          {legalConfig.registeredAddress}, Surat, Gujarat, India
+          {siteConfig.location}
           <br />
           {mail(siteConfig.privacyEmail)} · {mail(siteConfig.email)}
           <br />

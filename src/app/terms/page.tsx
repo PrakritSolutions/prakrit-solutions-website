@@ -31,9 +31,9 @@ export default function TermsPage() {
           <ExternalLink href="https://www.prakritsolutions.in">
             https://www.prakritsolutions.in
           </ExternalLink>{" "}
-          (the “<Strong>Site</Strong>”), operated by Prakrit Solutions (“
-          <Strong>Prakrit Solutions</Strong>,” “<Strong>we</Strong>,” “
-          <Strong>us</Strong>,” or “<Strong>our</Strong>”). By accessing or using the
+          (the “<Strong>Site</Strong>”), operated by {legalConfig.operatorName},
+          trading as Prakrit Solutions (“<Strong>Prakrit Solutions</Strong>,” “
+          <Strong>we</Strong>,” “<Strong>us</Strong>,” or “<Strong>our</Strong>”). By accessing or using the
           Site, you agree to be bound by these Terms. If you do not agree, please do
           not use the Site.
         </p>
@@ -50,14 +50,16 @@ export default function TermsPage() {
 
       <LegalSection heading="2. Who We Are">
         <p>
-          Prakrit Solutions is a software development agency based in Surat, Gujarat,
-          India. We design and build mobile applications, web applications, AI-powered
-          products, and business automation for clients.
+          Prakrit Solutions is a software development business based in Surat,
+          Gujarat, India. It is a trade name under which {legalConfig.operatorName},
+          an individual, carries on business; it is not a registered company or other
+          separate legal entity. We design and build mobile applications, web
+          applications, AI-powered products, and business automation for clients.
         </p>
         <p>
-          Legal entity: {legalConfig.entityName}
+          Operated by: {legalConfig.operatorName}, trading as Prakrit Solutions
           <br />
-          Registered address: {legalConfig.registeredAddress}, Surat, Gujarat, India
+          Location: {siteConfig.location}
           <br />
           Email: {mail(siteConfig.email)}
           <br />
@@ -125,8 +127,8 @@ export default function TermsPage() {
           without our prior written consent, except as permitted by applicable law.
         </p>
         <p>
-          The Prakrit Solutions name and logo are trademarks of {legalConfig.entityName}.
-          Nothing in these Terms grants you any right to use our name, logo, or
+          The Prakrit Solutions name and logo are used by {legalConfig.operatorName} as
+          a trade name and brand. Nothing in these Terms grants you any right to use our name, logo, or
           trademarks without our prior written consent.
         </p>
       </LegalSection>
@@ -226,9 +228,9 @@ export default function TermsPage() {
 
       <LegalSection heading="15. Contact Us">
         <p>
-          Prakrit Solutions
+          {legalConfig.operatorName}, trading as Prakrit Solutions
           <br />
-          {legalConfig.registeredAddress}, Surat, Gujarat, India
+          {siteConfig.location}
           <br />
           {mail(siteConfig.email)}
           <br />
