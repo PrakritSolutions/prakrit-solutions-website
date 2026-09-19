@@ -8,6 +8,6 @@ export const legalConfig = {
   operatorTitle: "Proprietor",
   effectiveDate: "1 October 2026",
   retentionPeriod: "24 months",
-  analyticsRetention: "[Analytics Retention Setting]",
-  liabilityCap: "[Liability Cap]",
+  analyticsRetention: "14 months",
+  liabilityCap: "INR 5,000",
 } as const;
