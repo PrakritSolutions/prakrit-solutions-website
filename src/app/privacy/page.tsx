@@ -35,8 +35,8 @@ export default function PrivacyPage() {
             </p>
             <p>
               Questions about this placeholder policy can be sent to{" "}
-              <a href={`mailto:${siteConfig.email}`} className="text-accent">
-                {siteConfig.email}
+              <a href={`mailto:${siteConfig.privacyEmail}`} className="text-accent">
+                {siteConfig.privacyEmail}
               </a>
               .
             </p>

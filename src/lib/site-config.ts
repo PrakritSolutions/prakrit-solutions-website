@@ -8,6 +8,7 @@ export const siteConfig = {
     "Prakrit Solutions is a software development agency building mobile apps, web applications, AI-powered products and business automation for growing companies.",
   url: process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_URL,
   email: "hello@prakritsolutions.in",
+  privacyEmail: "privacy@prakritsolutions.in",
   phone: "+91-9409262935",
   location: "Surat, Gujarat, India",
   social: {
