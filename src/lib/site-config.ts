@@ -11,12 +11,14 @@ export const siteConfig = {
   privacyEmail: "privacy@prakritsolutions.in",
   phone: "+91-9409262935",
   location: "Surat, Gujarat, India",
-  social: {
-    linkedin: "[LinkedIn URL]",
-    twitter: "[Twitter / X URL]",
-    github: "[GitHub URL]",
-  },
 } as const;
+
+// Leave href empty until the profile exists — links with no URL are not rendered.
+export const socialLinks: { label: string; href: string }[] = [
+  { label: "LinkedIn", href: "" },
+  { label: "X (Twitter)", href: "" },
+  { label: "GitHub", href: "https://github.com/PrakritSolutions" },
+];
 
 // True on any deployment that isn't the final production domain — the
 // draft/staging subdomain used for feedback before this goes live.

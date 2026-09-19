@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { footerNav, siteConfig } from "@/lib/site-config";
+import { footerNav, siteConfig, socialLinks } from "@/lib/site-config";
 import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 
 function FooterColumn({
@@ -76,8 +76,19 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <span>{siteConfig.social.linkedin}</span>
-            <span>{siteConfig.social.twitter}</span>
+            {socialLinks
+              .filter((link) => link.href)
+              .map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-paper"
+                >
+                  {link.label}
+                </a>
+              ))}
           </div>
         </div>
       </Container>
