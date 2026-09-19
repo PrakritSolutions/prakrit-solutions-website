@@ -28,8 +28,8 @@ export default function PrivacyPage() {
         <p>
           Prakrit Solutions (“<Strong>Prakrit Solutions</Strong>,” “<Strong>we</Strong>,” “
           <Strong>us</Strong>,” or “<Strong>our</Strong>”) operates the website at{" "}
-          <ExternalLink href="https://www.prakritsolutions.in">
-            https://www.prakritsolutions.in
+          <ExternalLink href="https://prakritsolutions.in">
+            https://prakritsolutions.in
           </ExternalLink>{" "}
           (the “<Strong>Site</Strong>”). This Privacy Policy explains what personal
           data we collect through the Site, why we collect it, how we use and protect

@@ -28,8 +28,8 @@ export default function TermsPage() {
         <p>
           These Terms of Service (“<Strong>Terms</Strong>”) govern your access to and
           use of the website at{" "}
-          <ExternalLink href="https://www.prakritsolutions.in">
-            https://www.prakritsolutions.in
+          <ExternalLink href="https://prakritsolutions.in">
+            https://prakritsolutions.in
           </ExternalLink>{" "}
           (the “<Strong>Site</Strong>”), operated by {legalConfig.operatorName},
           trading as Prakrit Solutions (“<Strong>Prakrit Solutions</Strong>,” “

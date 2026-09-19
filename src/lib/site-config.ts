@@ -1,4 +1,4 @@
-const PRODUCTION_URL = "https://www.prakritsolutions.in";
+const PRODUCTION_URL = "https://prakritsolutions.in";
 
 export const siteConfig = {
   name: "Prakrit Solutions",
