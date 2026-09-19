@@ -22,8 +22,6 @@ const mail = (address: string) => (
 );
 
 export default function PrivacyPage() {
-  const { grievanceOfficer } = legalConfig;
-
   return (
     <LegalPage title="Privacy Policy" updated={legalConfig.effectiveDate}>
       <LegalSection heading="1. Introduction">
@@ -277,9 +275,9 @@ export default function PrivacyPage() {
           personal data is:
         </p>
         <p>
-          Name: {grievanceOfficer.name}
+          Name: {legalConfig.operatorName}
           <br />
-          Designation: {grievanceOfficer.designation}
+          Designation: {legalConfig.operatorTitle}
           <br />
           Email: {mail(siteConfig.privacyEmail)}
           <br />

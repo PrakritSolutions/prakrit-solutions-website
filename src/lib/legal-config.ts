@@ -2,14 +2,12 @@
 // /privacy and /terms.
 export const legalConfig = {
   // Prakrit Solutions is an unregistered trade name; this is the individual
-  // who operates it and acts as Data Fiduciary / contracting party.
+  // who operates it, acts as Data Fiduciary / contracting party, and is also
+  // the Grievance Officer.
   operatorName: "Vaibhav Jhaveri",
+  operatorTitle: "Proprietor",
   effectiveDate: "1 October 2026",
-  retentionPeriod: "[Retention Period]",
+  retentionPeriod: "24 months",
   analyticsRetention: "[Analytics Retention Setting]",
   liabilityCap: "[Liability Cap]",
-  grievanceOfficer: {
-    name: "[Grievance Officer Name]",
-    designation: "[Designation]",
-  },
 } as const;
