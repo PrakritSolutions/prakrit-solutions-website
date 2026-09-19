@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { footerNav, siteConfig, socialLinks } from "@/lib/site-config";
 import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import { CookieSettingsButton } from "@/components/analytics/cookie-settings-button";
 
 function FooterColumn({
   title,
@@ -76,6 +77,7 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex gap-6">
+            <CookieSettingsButton className="hover:text-paper" />
             {socialLinks
               .filter((link) => link.href)
               .map((link) => (

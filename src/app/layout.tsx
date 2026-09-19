@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { DraftBanner } from "@/components/layout/draft-banner";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { CookieBanner } from "@/components/analytics/cookie-banner";
 import { siteConfig, isDraftEnvironment, isComingSoon } from "@/lib/site-config";
 import "./globals.css";
 
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Analytics />
             <SpeedInsights />
             <GoogleAnalytics />
+            <CookieBanner />
           </>
         )}
       </body>
