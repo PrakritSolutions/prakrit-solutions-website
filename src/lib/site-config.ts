@@ -11,6 +11,7 @@ export const siteConfig = {
   privacyEmail: "privacy@prakritsolutions.in",
   whatsapp: "+91-9033519764",
   whatsappUrl: "https://wa.me/919033519764",
+  hours: "Monday to Friday, 10 AM to 6 PM IST",
   location: "Surat, Gujarat, India",
 } as const;
 

@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
 import { ContactForm } from "@/components/forms/contact-form";
-import { ChatIcon, MailIcon, PinIcon } from "@/components/icons";
+import { ChatIcon, ClockIcon, MailIcon, PinIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
 import { contactFaq } from "@/lib/content/faq";
 
@@ -64,6 +64,10 @@ export default function ContactPage() {
                   </span>
                   <span className="sr-only"> (opens WhatsApp in a new tab)</span>
                 </a>
+              </li>
+              <li className="flex items-center gap-2.5 text-[0.9375rem] text-ink">
+                <ClockIcon className="h-4 w-4 shrink-0 text-accent" />
+                {siteConfig.hours}
               </li>
               <li className="flex items-center gap-2.5 text-[0.9375rem] text-ink">
                 <PinIcon className="h-4 w-4 shrink-0 text-accent" />
