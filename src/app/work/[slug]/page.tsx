@@ -37,7 +37,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
   if (!study) notFound();
 
   const story = [
-    { term: "The problem", detail: study.problem },
+    { term: study.problemHeading ?? "The problem", detail: study.problem },
     { term: "Our approach", detail: study.approach },
     { term: "What we built", detail: study.solution },
   ];
@@ -107,7 +107,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
       {study.components?.length ? (
         <section className="border-b border-line-soft bg-paper-dim/50 py-20 md:py-24">
           <Container>
-            <Eyebrow className="mb-5">The platform</Eyebrow>
+            <Eyebrow className="mb-5">The product</Eyebrow>
             <h2 className="text-balance max-w-2xl text-3xl font-medium leading-[1.15] tracking-[-0.02em] text-ink md:text-4xl">
               {study.componentsHeading ?? "How the pieces fit together."}
             </h2>
@@ -170,6 +170,23 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
               <p className="text-pretty max-w-3xl text-lg leading-relaxed text-ink/85">
                 {study.outcome}
               </p>
+              {study.storeLinks?.length ? (
+                <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+                  {study.storeLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                    >
+                      {link.label}
+                      <ArrowRightIcon className="h-4 w-4 -rotate-45" />
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ))}
+                </div>
+              ) : null}
               <div className="mt-8 flex flex-wrap gap-2">
                 {study.technology.map((tech) => (
                   <span

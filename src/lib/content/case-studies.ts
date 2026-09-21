@@ -13,6 +13,7 @@ export type CaseStudy = {
   status?: string;
   title: string;
   summary?: string;
+  problemHeading?: string;
   problem: string;
   approach: string;
   solution: string;
@@ -21,6 +22,7 @@ export type CaseStudy = {
   components?: CaseStudyComponent[];
   technology: string[];
   outcome: string;
+  storeLinks?: { label: string; href: string }[];
   placeholder?: boolean;
 };
 
@@ -151,19 +153,88 @@ export const caseStudies: CaseStudy[] = [
       "This is an ongoing engagement. The new version is still in development and has not been released yet.",
   },
   {
-    slug: "project-three",
-    client: "[Client Name]",
-    category: "Business Automation",
-    title: "[Project Name]",
+    slug: "myo",
+    client: "Restaurant-technology client",
+    category: "Mobile Application",
+    title: "MyO (formerly nuBottle)",
+    summary:
+      "A native iOS dining app built around NFC: diners tap a table tag to open the menu, order, call the waiter and pay, all from their phone.",
+    problemHeading: "The brief",
     problem:
-      "[Placeholder: describe the business problem the client came to us with.]",
+      "The client wanted a dining app built around NFC technology. Tap a table tag, and the menu, ordering, service requests and payment are all in the diner's hand, with no waiting for staff at any step of the meal.",
     approach:
-      "[Placeholder: describe how we approached discovery, scoping and architecture.]",
+      "We owned the iOS app end to end, from development and payments integration through to App Store releases, working directly against the client's requirements over roughly a year and a half. NFC table tags sit at the centre of the experience.",
     solution:
-      "[Placeholder: describe what was built and the key product decisions made.]",
-    technology: ["Python", "n8n", "REST APIs"],
+      "A native app that covers a whole meal: tap the table tag to open the menu and order, send requests to the server, then settle the bill, add a tip and split it between friends. Around that core sit restaurant discovery, table reservations, reviews and offers.",
+    scope: "iOS app development, end to end.",
+    componentsHeading: "What it does",
+    components: [
+      {
+        name: "Order from the table",
+        audience: "Dining in",
+        description:
+          "Tap a table tag to open the restaurant's menu and order without waiting for service.",
+        highlights: [
+          "NFC table-tag scanning",
+          "Menus with item detail, photos and options",
+          "Basket, checkout and live order tracking",
+          "A call-the-waiter request for anything extra",
+        ],
+      },
+      {
+        name: "Pay and split the bill",
+        audience: "Paying",
+        description:
+          "Settle the tab from the phone, tip the staff and split the bill with the people at the table.",
+        highlights: [
+          "Card payments with Stripe and Apple Pay",
+          "Card scanning to add a card quickly",
+          "Tips and taxes handled in the app",
+          "Split a bill between people",
+          "Coupons and discounts",
+        ],
+      },
+      {
+        name: "Find and book restaurants",
+        audience: "Discovering",
+        description:
+          "Browse participating restaurants on a map or in a list, and reserve a table.",
+        highlights: [
+          "Restaurant list and map",
+          "Search and favourites",
+          "Restaurant profiles",
+          "Table reservations and reservation history",
+        ],
+      },
+      {
+        name: "Reviews, offers and updates",
+        audience: "Staying engaged",
+        description:
+          "Keep diners coming back with feedback, news and easy sign-in.",
+        highlights: [
+          "Ratings and reviews",
+          "A news feed from restaurants",
+          "Push notifications",
+          "Sign in with email, Google, Facebook or Apple",
+          "Phone number verification",
+        ],
+      },
+    ],
+    technology: [
+      "Swift",
+      "NFC",
+      "Stripe & Apple Pay",
+      "Mapbox",
+      "Firebase",
+      "Push notifications",
+    ],
     outcome:
-      "[Placeholder: describe the measurable or qualitative outcome once real data is available.]",
-    placeholder: true,
+      "MyO reached the App Store as \"MyO - My Order\", after many releases and a full UI redesign.",
+    storeLinks: [
+      {
+        label: "View MyO on the App Store",
+        href: "https://apps.apple.com/in/app/myo-my-order/id1586936260",
+      },
+    ],
   },
 ];
