@@ -18,7 +18,7 @@ export default function WorkPage() {
       <PageHeader
         eyebrow="Work"
         title="A closer look at how we build."
-        description="The projects below are shown as structured placeholders until real case studies are published — the format is designed to make that swap straightforward."
+        description="Selected projects and how we approached them. Entries marked as placeholders show the format and will be replaced as more case studies are published."
       />
       <section className="pb-24 md:pb-32">
         <Container>
