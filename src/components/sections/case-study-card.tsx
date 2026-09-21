@@ -23,10 +23,12 @@ export function CaseStudyCard({
     >
       {isPlaceholder ? (
         <Pill className="w-fit border-dashed">Placeholder project</Pill>
+      ) : study.status ? (
+        <Pill className="w-fit border-accent/40 text-accent">{study.status}</Pill>
       ) : null}
       <p
         className={`font-mono text-xs uppercase tracking-[0.14em] text-accent ${
-          isPlaceholder ? "mt-5" : ""
+          isPlaceholder || study.status ? "mt-5" : ""
         }`}
       >
         {study.category}

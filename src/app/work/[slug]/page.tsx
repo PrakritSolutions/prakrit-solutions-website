@@ -62,6 +62,14 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
             </dt>
             <dd className="mt-1.5 text-sm text-ink">{study.category}</dd>
           </div>
+          {study.status ? (
+            <div>
+              <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                Status
+              </dt>
+              <dd className="mt-1.5 text-sm text-ink">{study.status}</dd>
+            </div>
+          ) : null}
           {study.scope ? (
             <div className="sm:col-span-3">
               <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
@@ -101,9 +109,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
           <Container>
             <Eyebrow className="mb-5">The platform</Eyebrow>
             <h2 className="text-balance max-w-2xl text-3xl font-medium leading-[1.15] tracking-[-0.02em] text-ink md:text-4xl">
-              {study.components.length === 2
-                ? "Two apps, one trip."
-                : "How the pieces fit together."}
+              {study.componentsHeading ?? "How the pieces fit together."}
             </h2>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {study.components.map((component, i) => (
@@ -135,14 +141,14 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
                       </li>
                     ))}
                   </ul>
-                  {component.appStoreUrl ? (
+                  {component.storeLink ? (
                     <a
-                      href={component.appStoreUrl}
+                      href={component.storeLink.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
                     >
-                      View on the App Store
+                      {component.storeLink.label}
                       <ArrowRightIcon className="h-4 w-4 -rotate-45" />
                       <span className="sr-only"> (opens in a new tab)</span>
                     </a>
