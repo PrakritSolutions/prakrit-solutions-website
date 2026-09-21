@@ -12,6 +12,7 @@ export const siteConfig = {
   whatsapp: "+91-9033519764",
   whatsappUrl: "https://wa.me/919033519764",
   hours: "Monday to Friday, 10 AM to 6 PM IST",
+  bookingUrl: "https://calendly.com/mail-prakritsolutions/30min",
   location: "Surat, Gujarat, India",
 } as const;
 

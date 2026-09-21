@@ -99,6 +99,12 @@ export default function PrivacyPage() {
           Messages sent on WhatsApp are also processed by WhatsApp under its own
           privacy policy.
         </p>
+        <p>
+          If you book a call through our scheduling page, we collect the name and
+          email address you enter and the time you choose, along with anything you add
+          to the booking form. Bookings are handled by Calendly under its own privacy
+          policy.
+        </p>
 
         <LegalSubheading>3.2 Information collected automatically</LegalSubheading>
         <p>
@@ -189,8 +195,9 @@ export default function PrivacyPage() {
           <li>
             <Strong>Service providers.</Strong> We use third-party providers to operate
             the Site and handle enquiries, including website hosting and performance
-            measurement (Vercel Inc.), web analytics (Google LLC), and, where
-            configured, transactional email delivery (such as Resend). These providers
+            measurement (Vercel Inc.), web analytics (Google LLC), meeting
+            scheduling (Calendly), and, where configured, transactional email
+            delivery (such as Resend). These providers
             process data only to the extent needed to provide their service to us and
             under their own contractual and legal obligations.
           </li>
@@ -210,7 +217,7 @@ export default function PrivacyPage() {
 
       <LegalSection heading="7. Where Your Information Is Stored">
         <p>
-          Our hosting, analytics, and email providers may store and process data on
+          Our hosting, analytics, scheduling, and email providers may store and process data on
           servers outside India, including in the United States. Where personal data
           is transferred outside India, we take reasonable steps to ensure it continues
           to receive appropriate protection, consistent with the DPDP Act and its

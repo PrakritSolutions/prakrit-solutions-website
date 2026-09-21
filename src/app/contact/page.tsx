@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
+import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/forms/contact-form";
-import { ChatIcon, ClockIcon, MailIcon, PinIcon } from "@/components/icons";
+import { ArrowRightIcon, ChatIcon, ClockIcon, MailIcon, PinIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
 import { contactFaq } from "@/lib/content/faq";
 
@@ -74,6 +75,18 @@ export default function ContactPage() {
                 {siteConfig.location}
               </li>
             </ul>
+            <Button
+              href={siteConfig.bookingUrl}
+              variant="secondary"
+              className="mt-6"
+              icon={<ArrowRightIcon className="h-4 w-4 -rotate-45" />}
+            >
+              Book a 30-minute call
+              <span className="sr-only"> (opens in a new tab)</span>
+            </Button>
+            <p className="mt-2.5 text-sm text-muted">
+              A video call, during the hours above.
+            </p>
           </Reveal>
 
           <Reveal delay={140}>
