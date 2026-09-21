@@ -1,6 +1,12 @@
 "use client";
 
-import { useId, useState, type FormEvent, type ReactNode } from "react";
+import {
+  useId,
+  useState,
+  useSyncExternalStore,
+  type FormEvent,
+  type ReactNode,
+} from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, CheckIcon } from "@/components/icons";
 
@@ -14,13 +20,45 @@ const serviceOptions = [
   "Not sure yet",
 ];
 
-const budgetOptions = [
-  "Under $10,000",
-  "$10,000 – $25,000",
-  "$25,000 – $75,000",
-  "$75,000+",
-  "Not sure yet",
+type Currency = "INR" | "USD";
+
+const currencyOptions: { code: Currency; label: string }[] = [
+  { code: "INR", label: "₹ INR" },
+  { code: "USD", label: "$ USD" },
 ];
+
+function detectCurrency(): Currency {
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  return timeZone === "Asia/Kolkata" || timeZone === "Asia/Calcutta" ? "INR" : "USD";
+}
+
+const noopSubscribe = () => () => {};
+
+const budgetOptions: Record<Currency, string[]> = {
+  INR: [
+    "Under ₹50,000",
+    "₹50,000 – ₹1 lakh",
+    "₹1 – ₹2.5 lakh",
+    "₹2.5 – ₹5 lakh",
+    "₹5 – ₹10 lakh",
+    "₹10 – ₹25 lakh",
+    "₹25 – ₹50 lakh",
+    "₹50 lakh – ₹1 crore",
+    "₹1 crore+",
+    "Not sure yet",
+  ],
+  USD: [
+    "Under $1,000",
+    "$1,000 – $2,500",
+    "$2,500 – $5,000",
+    "$5,000 – $10,000",
+    "$10,000 – $25,000",
+    "$25,000 – $50,000",
+    "$50,000 – $100,000",
+    "$100,000+",
+    "Not sure yet",
+  ],
+};
 
 const timelineOptions = ["ASAP", "1–3 months", "3–6 months", "6+ months", "Flexible"];
 
@@ -32,8 +70,18 @@ const inputClasses =
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [services, setServices] = useState<string[]>([]);
+  const detectedCurrency = useSyncExternalStore(noopSubscribe, detectCurrency, () => "INR" as Currency);
+  const [chosenCurrency, setChosenCurrency] = useState<Currency | null>(null);
+  const currency = chosenCurrency ?? detectedCurrency;
+  const [budget, setBudget] = useState("");
   const [error, setError] = useState<string | null>(null);
   const formId = useId();
+
+  function changeCurrency(next: Currency) {
+    if (next === currency) return;
+    setChosenCurrency(next);
+    setBudget("");
+  }
 
   function toggleService(service: string) {
     setServices((prev) =>
@@ -54,7 +102,7 @@ export function ContactForm() {
       phone: String(data.get("phone") || "").trim(),
       project: String(data.get("project") || "").trim(),
       services,
-      budget: String(data.get("budget") || ""),
+      budget,
       timeline: String(data.get("timeline") || ""),
       message: String(data.get("message") || "").trim(),
     };
@@ -78,6 +126,7 @@ export function ContactForm() {
       setStatus("success");
       form.reset();
       setServices([]);
+      setBudget("");
     } catch {
       setStatus("error");
     }
@@ -182,12 +231,43 @@ export function ContactForm() {
       </fieldset>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="Budget" htmlFor={`${formId}-budget`}>
-          <select id={`${formId}-budget`} name="budget" className={inputClasses} defaultValue="">
+        <Field
+          label="Budget"
+          htmlFor={`${formId}-budget`}
+          aside={
+            <div role="group" aria-label="Budget currency" className="flex gap-1.5">
+              {currencyOptions.map((option) => {
+                const active = currency === option.code;
+                return (
+                  <button
+                    type="button"
+                    key={option.code}
+                    aria-pressed={active}
+                    onClick={() => changeCurrency(option.code)}
+                    className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
+                      active
+                        ? "border-accent bg-accent-soft text-accent"
+                        : "border-line text-muted hover:border-ink hover:text-ink"
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
+          }
+        >
+          <select
+            id={`${formId}-budget`}
+            name="budget"
+            className={inputClasses}
+            value={budget}
+            onChange={(event) => setBudget(event.target.value)}
+          >
             <option value="" disabled>
               Select a range
             </option>
-            {budgetOptions.map((option) => (
+            {budgetOptions[currency].map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -247,19 +327,24 @@ function Field({
   label,
   htmlFor,
   required,
+  aside,
   children,
 }: {
   label: string;
   htmlFor: string;
   required?: boolean;
+  aside?: ReactNode;
   children: ReactNode;
 }) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="mb-2 block text-sm font-medium text-ink">
-        {label}
-        {required ? <span className="text-accent"> *</span> : null}
-      </label>
+      <div className="mb-2 flex h-6 items-center justify-between gap-3">
+        <label htmlFor={htmlFor} className="block text-sm font-medium text-ink">
+          {label}
+          {required ? <span className="text-accent"> *</span> : null}
+        </label>
+        {aside}
+      </div>
       {children}
     </div>
   );
