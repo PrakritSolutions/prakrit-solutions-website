@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { footerNav, siteConfig, socialLinks } from "@/lib/site-config";
-import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import { ChatIcon, MailIcon, PinIcon } from "@/components/icons";
 import { CookieSettingsButton } from "@/components/analytics/cookie-settings-button";
 
 function FooterColumn({
@@ -55,9 +55,17 @@ export function Footer() {
                   {siteConfig.email}
                 </a>
               </li>
-              <li className="flex items-center gap-2 text-sm text-paper/80">
-                <PhoneIcon className="h-4 w-4 shrink-0" />
-                {siteConfig.phone}
+              <li>
+                <a
+                  href={siteConfig.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-paper/80 hover:text-paper"
+                >
+                  <ChatIcon className="h-4 w-4 shrink-0" />
+                  WhatsApp {siteConfig.whatsapp}
+                  <span className="sr-only"> (opens WhatsApp in a new tab)</span>
+                </a>
               </li>
               <li className="flex items-center gap-2 text-sm text-paper/80">
                 <PinIcon className="h-4 w-4 shrink-0" />

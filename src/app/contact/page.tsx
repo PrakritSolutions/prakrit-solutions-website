@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
 import { ContactForm } from "@/components/forms/contact-form";
-import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import { ChatIcon, MailIcon, PinIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
 import { contactFaq } from "@/lib/content/faq";
 
@@ -50,9 +50,20 @@ export default function ContactPage() {
                   {siteConfig.email}
                 </a>
               </li>
-              <li className="flex items-center gap-2.5 text-[0.9375rem] text-ink">
-                <PhoneIcon className="h-4 w-4 shrink-0 text-accent" />
-                {siteConfig.phone}
+              <li>
+                <a
+                  href={siteConfig.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 text-[0.9375rem] text-ink hover:text-accent"
+                >
+                  <ChatIcon className="h-4 w-4 shrink-0 text-accent" />
+                  <span>
+                    WhatsApp {siteConfig.whatsapp}
+                    <span className="text-muted"> · messages only</span>
+                  </span>
+                  <span className="sr-only"> (opens WhatsApp in a new tab)</span>
+                </a>
               </li>
               <li className="flex items-center gap-2.5 text-[0.9375rem] text-ink">
                 <PinIcon className="h-4 w-4 shrink-0 text-accent" />

@@ -9,7 +9,8 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_URL,
   email: "hello@prakritsolutions.in",
   privacyEmail: "privacy@prakritsolutions.in",
-  phone: "+91-9409262935",
+  whatsapp: "+91-9033519764",
+  whatsappUrl: "https://wa.me/919033519764",
   location: "Surat, Gujarat, India",
 } as const;
 

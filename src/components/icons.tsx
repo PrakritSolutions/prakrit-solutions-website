@@ -118,10 +118,11 @@ export function MailIcon(props: IconProps) {
   );
 }
 
-export function PhoneIcon(props: IconProps) {
+export function ChatIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
-      <path d="M6.5 3.5h2.3l1.4 4.2-2 1.6a11.6 11.6 0 0 0 5.5 5.5l1.6-2 4.2 1.4v2.3c0 1.1-.9 2-2 2C10.9 18.5 5.5 13.1 4.5 6.5c0-1.1.9-2 2-2Z" />
+      <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4H5.5A1.5 1.5 0 0 1 4 14.5Z" />
+      <path d="M8 8.5h8M8 11.5h5" />
     </svg>
   );
 }

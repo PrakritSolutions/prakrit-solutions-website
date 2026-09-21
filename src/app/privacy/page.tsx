@@ -21,6 +21,10 @@ const mail = (address: string) => (
   <ExternalLink href={`mailto:${address}`}>{address}</ExternalLink>
 );
 
+const whatsapp = (label: string, href: string) => (
+  <ExternalLink href={href}>{label}</ExternalLink>
+);
+
 export default function PrivacyPage() {
   return (
     <LegalPage title="Privacy Policy" updated={legalConfig.effectiveDate}>
@@ -68,7 +72,7 @@ export default function PrivacyPage() {
           <br />
           Privacy enquiries: {mail(siteConfig.privacyEmail)}
           <br />
-          Phone: {siteConfig.phone}
+          WhatsApp (messages only): {whatsapp(siteConfig.whatsapp, siteConfig.whatsappUrl)}
         </p>
       </LegalSection>
 
@@ -90,8 +94,10 @@ export default function PrivacyPage() {
           <li>Any additional information you choose to include</li>
         </LegalList>
         <p>
-          If you email or call us directly instead of using the form, we collect
-          whatever information you share with us in that communication.
+          If you email or message us on WhatsApp directly instead of using the form,
+          we collect whatever information you share with us in that communication.
+          Messages sent on WhatsApp are also processed by WhatsApp under its own
+          privacy policy.
         </p>
 
         <LegalSubheading>3.2 Information collected automatically</LegalSubheading>
@@ -334,7 +340,7 @@ export default function PrivacyPage() {
           <br />
           {mail(siteConfig.privacyEmail)} · {mail(siteConfig.email)}
           <br />
-          {siteConfig.phone}
+          WhatsApp (messages only): {whatsapp(siteConfig.whatsapp, siteConfig.whatsappUrl)}
         </p>
       </LegalSection>
     </LegalPage>

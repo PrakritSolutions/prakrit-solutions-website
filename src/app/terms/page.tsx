@@ -21,6 +21,10 @@ const mail = (address: string) => (
   <ExternalLink href={`mailto:${address}`}>{address}</ExternalLink>
 );
 
+const whatsapp = (label: string, href: string) => (
+  <ExternalLink href={href}>{label}</ExternalLink>
+);
+
 export default function TermsPage() {
   return (
     <LegalPage title="Terms of Service" updated={legalConfig.effectiveDate}>
@@ -63,7 +67,7 @@ export default function TermsPage() {
           <br />
           Email: {mail(siteConfig.email)}
           <br />
-          Phone: {siteConfig.phone}
+          WhatsApp (messages only): {whatsapp(siteConfig.whatsapp, siteConfig.whatsappUrl)}
         </p>
       </LegalSection>
 
@@ -234,7 +238,7 @@ export default function TermsPage() {
           <br />
           {mail(siteConfig.email)}
           <br />
-          {siteConfig.phone}
+          WhatsApp (messages only): {whatsapp(siteConfig.whatsapp, siteConfig.whatsappUrl)}
         </p>
       </LegalSection>
     </LegalPage>
