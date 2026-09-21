@@ -3,6 +3,7 @@ export type CaseStudyComponent = {
   audience: string;
   description: string;
   highlights: string[];
+  appStoreUrl?: string;
 };
 
 export type CaseStudy = {
@@ -28,9 +29,9 @@ export const caseStudies: CaseStudy[] = [
     category: "Mobile Application",
     title: "Two native iOS apps for an on-demand goods transport platform",
     summary:
-      "An unfinished Objective-C app, rebuilt in SwiftUI as a customer app and a driver app and taken to the App Store.",
+      "An unfinished Objective-C rewrite, rebuilt in SwiftUI as a customer app and a driver app on the App Store.",
     problem:
-      "BookCargo is an on-demand service for moving goods, couriering parcels and shifting house. Its iOS app was written in Objective-C, had never been published, and had been left partway through development. To launch, it needed to become a modern, maintainable product with the payments and in-app chat the business required.",
+      "BookCargo is an on-demand service for moving goods, couriering parcels and shifting house. An Objective-C rewrite of its iOS app had been left partway through development and was never released. To move forward, it needed to become a modern, maintainable product with the payments and in-app chat the business required.",
     approach:
       "We rebuilt the apps in SwiftUI instead of patching the old Objective-C code, working against BookCargo's existing backend. Delivery ran in milestones, with TestFlight builds and rounds of client feedback, and the driver app was built as the second half of the same trip lifecycle.",
     solution:
@@ -41,6 +42,8 @@ export const caseStudies: CaseStudy[] = [
       {
         name: "BookCargo, the customer app",
         audience: "For people and businesses booking a vehicle",
+        appStoreUrl:
+          "https://apps.apple.com/in/app/bookcargo-to-transport-goods/id1532396613",
         description:
           "Book a vehicle to move goods, send a courier package or shift house in a few taps.",
         highlights: [
@@ -55,6 +58,8 @@ export const caseStudies: CaseStudy[] = [
       {
         name: "BookCargo Pilot, the driver app",
         audience: "For registered BookCargo drivers",
+        appStoreUrl:
+          "https://apps.apple.com/in/app/bookcargo-pilot-for-drivers/id1532396673",
         description:
           "Receive bookings from nearby locations and run each trip without having to search for customers.",
         highlights: [
@@ -77,7 +82,7 @@ export const caseStudies: CaseStudy[] = [
       "Push notifications",
     ],
     outcome:
-      "Both apps are live on the App Store, as BookCargo and BookCargo Pilot. The product went from an unreleased, half-finished codebase to a live service.",
+      "The half-finished Objective-C rewrite became two complete SwiftUI apps, with payments and chat added. Both are on the App Store as BookCargo and BookCargo Pilot.",
   },
   {
     slug: "project-two",

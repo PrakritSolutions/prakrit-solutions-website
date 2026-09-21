@@ -135,6 +135,18 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
                       </li>
                     ))}
                   </ul>
+                  {component.appStoreUrl ? (
+                    <a
+                      href={component.appStoreUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                    >
+                      View on the App Store
+                      <ArrowRightIcon className="h-4 w-4 -rotate-45" />
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : null}
                 </Reveal>
               ))}
             </div>
