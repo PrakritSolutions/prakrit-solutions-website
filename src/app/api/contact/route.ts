@@ -1,15 +1,6 @@
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/lib/site-config";
 
-// TEMPORARY diagnostic — remove after confirming RESEND_API_KEY is visible
-// in the right Vercel environments. Reports presence only, never the value.
-export async function GET() {
-  return NextResponse.json({
-    hasResendKey: Boolean(process.env.RESEND_API_KEY),
-    vercelEnv: process.env.VERCEL_ENV ?? null,
-  });
-}
-
 type ContactPayload = {
   name: string;
   company: string;
