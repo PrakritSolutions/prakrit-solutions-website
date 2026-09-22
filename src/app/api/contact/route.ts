@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { siteConfig } from "@/lib/site-config";
 
 type ContactPayload = {
   name: string;
@@ -13,6 +14,62 @@ type ContactPayload = {
 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function buildEmail(payload: ContactPayload) {
+  const rows: [string, string][] = [
+    ["Name", payload.name],
+    ["Company", payload.company || "—"],
+    ["Email", payload.email],
+    ["Phone", payload.phone || "—"],
+    ["Services", payload.services.length ? payload.services.join(", ") : "—"],
+    ["Budget", payload.budget || "—"],
+    ["Timeline", payload.timeline || "—"],
+  ];
+
+  const text = [
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "Project:",
+    payload.project,
+    ...(payload.message ? ["", "Additional information:", payload.message] : []),
+  ].join("\n");
+
+  const html = `
+    <div style="font-family: -apple-system, sans-serif; max-width: 560px; margin: 0 auto;">
+      <h2 style="margin-bottom: 4px;">New project enquiry</h2>
+      <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
+        ${rows
+          .map(
+            ([label, value]) => `
+          <tr>
+            <td style="padding: 4px 12px 4px 0; color: #5d5f68; white-space: nowrap; vertical-align: top;">${escapeHtml(label)}</td>
+            <td style="padding: 4px 0;">${escapeHtml(value)}</td>
+          </tr>`
+          )
+          .join("")}
+      </table>
+      <p style="color: #5d5f68; margin-bottom: 4px;">Project</p>
+      <p style="white-space: pre-wrap;">${escapeHtml(payload.project)}</p>
+      ${
+        payload.message
+          ? `<p style="color: #5d5f68; margin-bottom: 4px;">Additional information</p>
+             <p style="white-space: pre-wrap;">${escapeHtml(payload.message)}</p>`
+          : ""
+      }
+    </div>
+  `;
+
+  return { text, html };
+}
 
 export async function POST(request: Request) {
   let payload: Partial<ContactPayload>;
@@ -34,23 +91,53 @@ export async function POST(request: Request) {
     );
   }
 
-  // Wire up an email/CRM provider here (e.g. Resend, Postmark) using an
-  // API key from the environment. Without one configured, enquiries are
-  // logged server-side so the form remains usable end to end.
-  if (process.env.RESEND_API_KEY) {
-    // Intentionally left as a placeholder: add the provider call once
-    // RESEND_API_KEY (or an equivalent) is configured for this environment.
-  }
+  const full: ContactPayload = {
+    name,
+    company: payload.company?.trim() ?? "",
+    email,
+    phone: payload.phone?.trim() ?? "",
+    project,
+    services: payload.services ?? [],
+    budget: payload.budget ?? "",
+    timeline: payload.timeline ?? "",
+    message: payload.message?.trim() ?? "",
+  };
 
   console.info("[contact] new enquiry", {
-    name,
-    email,
-    company: payload.company,
-    project,
-    services: payload.services,
-    budget: payload.budget,
-    timeline: payload.timeline,
+    name: full.name,
+    email: full.email,
+    company: full.company,
+    services: full.services,
+    budget: full.budget,
+    timeline: full.timeline,
   });
+
+  if (process.env.RESEND_API_KEY) {
+    const { text, html } = buildEmail(full);
+    const subject = `New project enquiry from ${full.name}${full.company ? ` (${full.company})` : ""}`;
+
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: `Prakrit Solutions <${siteConfig.noreplyEmail}>`,
+        to: [siteConfig.email],
+        reply_to: full.email,
+        subject,
+        text,
+        html,
+      }),
+    });
+
+    if (!resendResponse.ok) {
+      const errorBody = await resendResponse.text().catch(() => "");
+      console.error("[contact] Resend send failed", resendResponse.status, errorBody);
+      return NextResponse.json({ error: "Failed to send enquiry." }, { status: 502 });
+    }
+  }
 
   return NextResponse.json({ ok: true });
 }
