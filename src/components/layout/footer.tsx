@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { footerNav, siteConfig, socialLinks } from "@/lib/site-config";
@@ -38,7 +39,14 @@ export function Footer() {
       <Container className="py-16 md:py-20">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-6">
           <div className="col-span-2 md:col-span-2">
-            <span className="font-mono text-[0.9375rem] font-medium text-paper">
+            <span className="flex items-center gap-2.5 font-mono text-[0.9375rem] font-medium text-paper">
+              <Image
+                src="/brand/logo-mark.svg"
+                alt=""
+                width={24}
+                height={24}
+                className="h-6 w-6"
+              />
               {siteConfig.name}
             </span>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/70">
