@@ -15,7 +15,7 @@ export function WorkflowDiagram({
               delay={i * 90}
               className="col-span-1 flex flex-col rounded-[var(--radius-lg)] border border-line-inverse bg-ink-soft p-5 md:col-span-2 md:rounded-[var(--radius-md)]"
             >
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-accent-soft">
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-accent-2">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-2 text-lg font-medium text-paper">
@@ -31,7 +31,7 @@ export function WorkflowDiagram({
                 className="col-span-1 hidden items-center justify-center md:flex"
                 aria-hidden="true"
               >
-                <ArrowRightIcon className="h-4 w-4 shrink-0 text-accent-soft" />
+                <ArrowRightIcon className="h-4 w-4 shrink-0 text-accent-2" />
               </div>
             ) : null}
           </div>

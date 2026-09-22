@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink: #0b0d12;
-  --color-ink-soft: #14161d;
+  --color-ink: #091127;
+  --color-ink-soft: #111930;
   --color-paper: #fafaf8;
   --color-paper-dim: #f2f1ec;
-  --color-line: rgba(11, 13, 18, 0.1);
-  --color-line-soft: rgba(11, 13, 18, 0.06);
+  --color-line: rgba(9, 17, 39, 0.1);
+  --color-line-soft: rgba(9, 17, 39, 0.06);
   --color-line-inverse: rgba(250, 250, 248, 0.14);
   --color-line-inverse-soft: rgba(250, 250, 248, 0.08);
   --color-muted: #5d5f68;
@@ -16,6 +16,7 @@
   --color-accent-hover: #002a9f;
   --color-accent-soft: #e6eaf7;
   --color-accent-contrast: #fafaf8;
+  --color-accent-2: #18fafd;
 
   --color-signal: #1fa97e;
   --color-signal-soft: #e7f6f0;
@@ -47,6 +48,7 @@
   --color-accent-hover: var(--color-accent-hover);
   --color-accent-soft: var(--color-accent-soft);
   --color-accent-contrast: var(--color-accent-contrast);
+  --color-accent-2: var(--color-accent-2);
 
   --color-signal: var(--color-signal);
   --color-signal-soft: var(--color-signal-soft);

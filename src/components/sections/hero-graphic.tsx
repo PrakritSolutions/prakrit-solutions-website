@@ -68,7 +68,7 @@ export function HeroGraphic() {
         <div className="h-1.5 w-8 rounded-full bg-paper/30" />
         <div className="mt-3 h-14 rounded-[var(--radius-sm)] bg-paper/10" />
         <div className="mt-3 space-y-1.5">
-          <div className="h-1.5 w-full rounded-full bg-paper/20" />
+          <div className="h-1.5 w-full rounded-full bg-accent-2/70" />
           <div className="h-1.5 w-1/2 rounded-full bg-paper/20" />
         </div>
       </div>
