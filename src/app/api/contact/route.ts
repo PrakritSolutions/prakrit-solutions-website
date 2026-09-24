@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/lib/site-config";
+import { logEnquiryToSheet } from "@/lib/enquiry-log";
 import {
   buildConfirmationEmail,
   escapeHtml,
@@ -28,7 +29,7 @@ function isRateLimited(ip: string): boolean {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function buildEmail(payload: ContactPayload) {
+function buildEmail(payload: ContactPayload, trackerUrl?: string) {
   const rows: [string, string][] = [
     ["Name", payload.name],
     ["Company", payload.company || "—"],
@@ -45,6 +46,7 @@ function buildEmail(payload: ContactPayload) {
     "Project:",
     payload.project,
     ...(payload.message ? ["", "Additional information:", payload.message] : []),
+    ...(trackerUrl ? ["", `Open enquiry tracker: ${trackerUrl}`] : []),
   ].join("\n");
 
   const html = `
@@ -67,6 +69,11 @@ function buildEmail(payload: ContactPayload) {
         payload.message
           ? `<p style="color: #5d5f68; margin-bottom: 4px;">Additional information</p>
              <p style="white-space: pre-wrap;">${escapeHtml(payload.message)}</p>`
+          : ""
+      }
+      ${
+        trackerUrl
+          ? `<p style="margin-top: 20px;"><a href="${escapeHtml(trackerUrl)}">Open enquiry tracker</a></p>`
           : ""
       }
     </div>
@@ -130,8 +137,11 @@ export async function POST(request: Request) {
     timeline: full.timeline,
   });
 
+  // Runs alongside the emails; never throws.
+  const sheetLog = logEnquiryToSheet(full);
+
   if (process.env.RESEND_API_KEY) {
-    const { text, html } = buildEmail(full);
+    const { text, html } = buildEmail(full, process.env.SHEETS_URL);
     const subject = `New project enquiry from ${full.name}${full.company ? ` (${full.company})` : ""}`;
 
     const resendResponse = await fetch("https://api.resend.com/emails", {
@@ -153,6 +163,7 @@ export async function POST(request: Request) {
     if (!resendResponse.ok) {
       const errorBody = await resendResponse.text().catch(() => "");
       console.error("[contact] Resend send failed", resendResponse.status, errorBody);
+      await sheetLog;
       return NextResponse.json({ error: "Failed to send enquiry." }, { status: 502 });
     }
 
@@ -184,6 +195,8 @@ export async function POST(request: Request) {
       console.error("[contact] confirmation send threw", error);
     }
   }
+
+  await sheetLog;
 
   return NextResponse.json({ ok: true });
 }
