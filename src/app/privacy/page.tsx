@@ -161,6 +161,10 @@ export default function PrivacyPage() {
             ongoing engagement
           </li>
           <li>
+            Email a confirmation of your enquiry to the address you provided, which
+            repeats the details you submitted
+          </li>
+          <li>
             Understand the scope of the work you’re asking about so we can give you an
             accurate and useful response
           </li>

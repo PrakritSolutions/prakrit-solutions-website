@@ -105,6 +105,7 @@ export function ContactForm() {
       budget,
       timeline: String(data.get("timeline") || ""),
       message: String(data.get("message") || "").trim(),
+      website: String(data.get("website") || ""),
     };
 
     if (!payload.name || !payload.email || !payload.project) {
@@ -152,6 +153,12 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label>
+          Leave this field empty
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
       <div className="grid gap-6 sm:grid-cols-2">
         <Field label="Name" htmlFor={`${formId}-name`} required>
           <input
