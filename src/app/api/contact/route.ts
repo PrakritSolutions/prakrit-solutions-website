@@ -1,17 +1,10 @@
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/lib/site-config";
-
-type ContactPayload = {
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-  project: string;
-  services: string[];
-  budget: string;
-  timeline: string;
-  message: string;
-};
+import {
+  buildConfirmationEmail,
+  escapeHtml,
+  type ContactPayload,
+} from "@/lib/contact-email";
 
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
@@ -34,15 +27,6 @@ function isRateLimited(ip: string): boolean {
 }
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
 
 function buildEmail(payload: ContactPayload) {
   const rows: [string, string][] = [
@@ -85,76 +69,6 @@ function buildEmail(payload: ContactPayload) {
              <p style="white-space: pre-wrap;">${escapeHtml(payload.message)}</p>`
           : ""
       }
-    </div>
-  `;
-
-  return { text, html };
-}
-
-function buildConfirmationEmail(payload: ContactPayload) {
-  const rows: [string, string][] = [
-    ["Name", payload.name],
-    ["Company", payload.company || "—"],
-    ["Email", payload.email],
-    ["Phone", payload.phone || "—"],
-    ["Services", payload.services.length ? payload.services.join(", ") : "—"],
-    ["Budget", payload.budget || "—"],
-    ["Timeline", payload.timeline || "—"],
-  ];
-
-  const intro = `Dear ${payload.name},`;
-  const body = `Thank you for contacting ${siteConfig.name}. We have received your enquiry and will respond within one to two business days (${siteConfig.hours}).`;
-  const followUp = "If you would like to add anything, simply reply to this email.";
-  const booking = `If you would prefer to speak directly, you may book a 30-minute call here: ${siteConfig.bookingUrl}`;
-  const summaryNote = "For your reference, this is what you submitted:";
-  const signOff = `Kind regards,\n${siteConfig.name}`;
-
-  const text = [
-    intro,
-    "",
-    body,
-    "",
-    followUp,
-    booking,
-    "",
-    summaryNote,
-    "",
-    ...rows.map(([label, value]) => `${label}: ${value}`),
-    "",
-    "Project:",
-    payload.project,
-    ...(payload.message ? ["", "Additional information:", payload.message] : []),
-    "",
-    signOff,
-  ].join("\n");
-
-  const html = `
-    <div style="font-family: -apple-system, sans-serif; max-width: 560px; margin: 0 auto; color: #0b0d12; line-height: 1.55;">
-      <p>${escapeHtml(intro)}</p>
-      <p>${escapeHtml(body)}</p>
-      <p>${escapeHtml(followUp)}</p>
-      <p>If you would prefer to speak directly, you may <a href="${escapeHtml(siteConfig.bookingUrl)}">book a 30-minute call</a>.</p>
-      <p style="color: #5d5f68; margin: 24px 0 4px;">${escapeHtml(summaryNote)}</p>
-      <table style="width: 100%; border-collapse: collapse; margin: 8px 0 16px;">
-        ${rows
-          .map(
-            ([label, value]) => `
-          <tr>
-            <td style="padding: 4px 12px 4px 0; color: #5d5f68; white-space: nowrap; vertical-align: top;">${escapeHtml(label)}</td>
-            <td style="padding: 4px 0;">${escapeHtml(value)}</td>
-          </tr>`
-          )
-          .join("")}
-      </table>
-      <p style="color: #5d5f68; margin-bottom: 4px;">Project</p>
-      <p style="white-space: pre-wrap; margin-top: 0;">${escapeHtml(payload.project)}</p>
-      ${
-        payload.message
-          ? `<p style="color: #5d5f68; margin-bottom: 4px;">Additional information</p>
-             <p style="white-space: pre-wrap; margin-top: 0;">${escapeHtml(payload.message)}</p>`
-          : ""
-      }
-      <p style="margin-top: 24px;">Kind regards,<br />${escapeHtml(siteConfig.name)}</p>
     </div>
   `;
 
@@ -245,7 +159,7 @@ export async function POST(request: Request) {
     // Courtesy confirmation to the visitor. The enquiry has already reached us,
     // so a failure here is logged and never surfaced as a form error.
     try {
-      const confirmation = buildConfirmationEmail(full);
+      const confirmation = buildConfirmationEmail(full, siteConfig);
       const confirmationResponse = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
