@@ -30,8 +30,9 @@ function setup() {
   sheet.setFrozenRows(1);
   sheet.setFrozenColumns(2);
 
-  // Plain text for the data columns so nothing a visitor types is ever
-  // interpreted as a formula, and phone numbers like +91... stay intact.
+  // Plain text for the data columns so values like "1-3 months" are not
+  // turned into dates. This does NOT stop setValues from evaluating text that
+  // starts with "=": see safeCell() for the formula-injection guard.
   sheet.getRange(FIRST_DATA_ROW, 2, MAX_ROWS, 9).setNumberFormat("@");
   sheet.getRange(FIRST_DATA_ROW, 1, MAX_ROWS, 1).setNumberFormat("dd mmm yyyy hh:mm");
   sheet.getRange(FIRST_DATA_ROW, 12, MAX_ROWS, 1).setNumberFormat("ddd, dd mmm");
@@ -78,7 +79,7 @@ function doPost(e) {
       sheet.getRange(row, 2, 1, 9).setValues([[
         q.name, q.company, q.email, q.phone, q.services,
         q.budget, q.timeline, q.project, q.message,
-      ].map(function (v) { return String(v == null ? "" : v).slice(0, 5000); })]);
+      ].map(safeCell)]);
       sheet.getRange(row, STATUS_COL).setValue("New");
       sheet.getRange(row, 12).setFormula("=WORKDAY(INT(A" + row + ")," + REPLY_DUE_BUSINESS_DAYS + ")");
     } finally {
@@ -88,6 +89,16 @@ function doPost(e) {
   } catch (err) {
     return respond({ ok: false, error: String(err) });
   }
+}
+
+/**
+ * Visitor input goes straight into cells. Text beginning with = + - @ (or a
+ * control character) would otherwise be evaluated as a formula, so it gets a
+ * leading space, which keeps it as literal text.
+ */
+function safeCell(value) {
+  const text = String(value == null ? "" : value).slice(0, 5000);
+  return /^[=+\-@\t\r]/.test(text) ? " " + text : text;
 }
 
 function respond(obj) {

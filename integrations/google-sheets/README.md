@@ -40,6 +40,11 @@ Create a filter: subject contains `New project enquiry from` → apply label
 **Status** in the Sheet the same day. Rows still marked **New** after their
 **Reply due** date turn amber.
 
+## Formula injection
+Visitor text starting with `=`, `+`, `-` or `@` is stored with a leading space
+(`safeCell` in `Code.gs`) so it stays literal text. After any change to that
+function, test with project text `=1+1`: the cell must show `=1+1`, not `2`.
+
 ## Retention
 The Privacy Policy states enquiry records are kept for 24 months. Delete rows
 older than that from the Sheet.
