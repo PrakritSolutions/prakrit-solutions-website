@@ -62,6 +62,17 @@ const budgetOptions: Record<Currency, string[]> = {
 
 const timelineOptions = ["ASAP", "1–3 months", "3–6 months", "6+ months", "Flexible"];
 
+import { ATTRIBUTION_KEY } from "@/components/analytics/attribution";
+
+function readAttribution(): Record<string, string> | null {
+  try {
+    const raw = window.sessionStorage.getItem(ATTRIBUTION_KEY);
+    return raw ? (JSON.parse(raw) as Record<string, string>) : null;
+  } catch {
+    return null;
+  }
+}
+
 type Status = "idle" | "submitting" | "success" | "error";
 
 const inputClasses =
@@ -106,6 +117,7 @@ export function ContactForm() {
       timeline: String(data.get("timeline") || ""),
       message: String(data.get("message") || "").trim(),
       website: String(data.get("website") || ""),
+      source: readAttribution(),
     };
 
     if (!payload.name || !payload.email || !payload.project) {

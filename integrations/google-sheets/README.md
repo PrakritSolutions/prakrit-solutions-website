@@ -29,6 +29,15 @@ the primary record and the failure is only logged.
      tracker" in the notification email
 7. Redeploy so the variables take effect.
 
+## Upgrading a Sheet that already has enquiries
+This version adds **Source** (where the enquiry came from) and **Fit** (A, B or C)
+columns, and a read-only "list" action used for reporting.
+1. Paste the new `Code.gs` over the old one and save.
+2. Pick the **`upgrade`** function and click **Run**. It adds the two columns and
+   leaves every existing row alone. **Never run `setup()` on a Sheet that has
+   enquiries: it clears the sheet.**
+3. **Deploy → Manage deployments → edit → New version → Deploy.**
+
 ## Changing the script later
 Editing `Code.gs` does not update a live deployment. Use **Deploy → Manage
 deployments → edit (pencil) → Version: New version → Deploy**. The URL stays

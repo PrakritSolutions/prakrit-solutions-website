@@ -135,6 +135,13 @@ export default function PrivacyPage() {
           without setting cookies or tracking you across other websites.
         </p>
         <p>
+          <Strong>Where you came from.</Strong> If you arrive through a link that
+          carries a campaign tag, or from another website, your browser remembers that
+          for the current visit only. If you then send us an enquiry, we record it with
+          the enquiry so we know which channel is working. Nothing is stored in a
+          cookie or sent anywhere until you submit the form.
+        </p>
+        <p>
           <Strong>Hosting logs.</Strong> Our hosting provider automatically records
           standard technical information — such as IP address, request time, and
           requested URL — for security, reliability, and abuse-prevention purposes.

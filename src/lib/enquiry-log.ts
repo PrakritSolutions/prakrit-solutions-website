@@ -26,6 +26,7 @@ export async function logEnquiryToSheet(payload: ContactPayload): Promise<void> 
           timeline: payload.timeline,
           project: payload.project,
           message: payload.message,
+          source: payload.source,
         },
       }),
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),

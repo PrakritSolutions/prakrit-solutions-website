@@ -27,6 +27,19 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
+// Turns the browser's stored campaign tags into one short readable label such as
+// "linkedin / post / launch", or the referring site, or "direct".
+function describeSource(input: unknown): string {
+  if (!input || typeof input !== "object") return "direct";
+  const raw = input as Record<string, unknown>;
+  const clean = (value: unknown) =>
+    typeof value === "string" ? value.replace(/[^\w .:/@+-]/g, "").trim().slice(0, 60) : "";
+  const parts = [clean(raw.utm_source), clean(raw.utm_medium), clean(raw.utm_campaign)].filter(Boolean);
+  if (parts.length > 0) return parts.join(" / ");
+  const ref = clean(raw.ref);
+  return ref ? `referral: ${ref}` : "direct";
+}
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function buildEmail(payload: ContactPayload, trackerUrl?: string) {
@@ -38,6 +51,7 @@ function buildEmail(payload: ContactPayload, trackerUrl?: string) {
     ["Services", payload.services.length ? payload.services.join(", ") : "—"],
     ["Budget", payload.budget || "—"],
     ["Timeline", payload.timeline || "—"],
+    ["Source", payload.source || "direct"],
   ];
 
   const text = [
@@ -83,7 +97,7 @@ function buildEmail(payload: ContactPayload, trackerUrl?: string) {
 }
 
 export async function POST(request: Request) {
-  let payload: Partial<ContactPayload> & { website?: string };
+  let payload: Partial<Omit<ContactPayload, "source">> & { website?: string; source?: unknown };
 
   try {
     payload = await request.json();
@@ -126,6 +140,7 @@ export async function POST(request: Request) {
     budget: payload.budget ?? "",
     timeline: payload.timeline ?? "",
     message: payload.message?.trim() ?? "",
+    source: describeSource(payload.source),
   };
 
   console.info("[contact] new enquiry", {
@@ -135,6 +150,7 @@ export async function POST(request: Request) {
     services: full.services,
     budget: full.budget,
     timeline: full.timeline,
+    source: full.source,
   });
 
   // Runs alongside the emails; never throws.

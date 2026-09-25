@@ -8,10 +8,12 @@ const SHEET_NAME = "Enquiries";
 const HEADERS = [
   "Received (IST)", "Name", "Company", "Email", "Phone", "Services",
   "Budget", "Timeline", "Project", "Additional information",
-  "Status", "Reply due", "Next step", "Notes",
+  "Status", "Reply due", "Next step", "Notes", "Source", "Fit",
 ];
 const STATUSES = ["New", "Contacted", "Call booked", "Proposal sent", "Won", "Lost"];
 const STATUS_COL = 11; // K
+const SOURCE_COL = 15; // O
+const FIT_COL = 16; // P
 const REPLY_DUE_BUSINESS_DAYS = 2;
 const FIRST_DATA_ROW = 2;
 const MAX_ROWS = 2000;
@@ -67,9 +69,12 @@ function doPost(e) {
     const secret = PropertiesService.getScriptProperties().getProperty("WEBHOOK_SECRET");
     if (!secret || body.secret !== secret) return respond({ ok: false, error: "unauthorized" });
 
-    const q = body.enquiry || {};
     const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
     if (!sheet) return respond({ ok: false, error: "sheet not found: run setup()" });
+
+    if (body.action === "list") return respond(listRows(sheet, body.limit));
+
+    const q = body.enquiry || {};
 
     const lock = LockService.getScriptLock();
     lock.waitLock(10000);
@@ -81,6 +86,7 @@ function doPost(e) {
         q.budget, q.timeline, q.project, q.message,
       ].map(safeCell)]);
       sheet.getRange(row, STATUS_COL).setValue("New");
+      sheet.getRange(row, SOURCE_COL).setValue(safeCell(q.source));
       sheet.getRange(row, 12).setFormula("=WORKDAY(INT(A" + row + ")," + REPLY_DUE_BUSINESS_DAYS + ")");
     } finally {
       lock.releaseLock();
@@ -99,6 +105,50 @@ function doPost(e) {
 function safeCell(value) {
   const text = String(value == null ? "" : value).slice(0, 5000);
   return /^[=+\-@\t\r]/.test(text) ? " " + text : text;
+}
+
+/** Read-only: the most recent rows as objects. Used for reporting; never changes data. */
+function listRows(sheet, limit) {
+  const n = Math.max(1, Math.min(200, Number(limit) || 50));
+  const last = sheet.getLastRow();
+  if (last < FIRST_DATA_ROW) return { ok: true, rows: [] };
+  const width = Math.max(sheet.getLastColumn(), FIT_COL);
+  const start = Math.max(FIRST_DATA_ROW, last - n + 1);
+  const headers = sheet.getRange(1, 1, 1, width).getValues()[0];
+  const values = sheet.getRange(start, 1, last - start + 1, width).getValues();
+  const rows = values.map(function (r) {
+    const o = {};
+    headers.forEach(function (h, i) {
+      const v = r[i];
+      o[String(h)] = v instanceof Date ? v.toISOString() : v;
+    });
+    return o;
+  });
+  return { ok: true, rows: rows };
+}
+
+/**
+ * Run ONCE, after pasting this version, on a Sheet that already holds enquiries.
+ * Adds the Source and Fit columns without touching existing rows. Do not run
+ * setup() on a live Sheet: it clears everything.
+ */
+function upgrade() {
+  const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+  if (!sheet) throw new Error("Enquiries sheet not found");
+
+  sheet.getRange(1, SOURCE_COL, 1, 2).setValues([["Source", "Fit"]])
+    .setFontWeight("bold").setBackground("#091127").setFontColor("#ffffff");
+  sheet.getRange(FIRST_DATA_ROW, SOURCE_COL, MAX_ROWS, 1).setNumberFormat("@");
+  sheet.getRange(FIRST_DATA_ROW, FIT_COL, MAX_ROWS, 1).setDataValidation(
+    SpreadsheetApp.newDataValidation().requireValueInList(["A", "B", "C"], true).setAllowInvalid(false).build()
+  );
+  sheet.setColumnWidth(SOURCE_COL, 170);
+  sheet.setColumnWidth(FIT_COL, 60);
+
+  // The filter created by setup() stops at column N; extend it to include the new columns.
+  const existing = sheet.getFilter();
+  if (existing) existing.remove();
+  sheet.getRange(1, 1, MAX_ROWS + 1, FIT_COL).createFilter();
 }
 
 function respond(obj) {
