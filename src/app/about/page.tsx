@@ -1,9 +1,12 @@
 import { PageHeader } from "@/components/sections/page-header";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
+import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { CtaSection } from "@/components/sections/cta-section";
 import { pageMetadata } from "@/lib/metadata";
+import { founder, siteConfig } from "@/lib/site-config";
 
 export const metadata = pageMetadata({
   title: "About",
@@ -34,6 +37,11 @@ const beliefs = [
       "Products change because businesses change. We build engagements that can keep pace with that, not just the first release.",
   },
 ];
+
+const initials = founder.name
+  .split(" ")
+  .map((part) => part[0])
+  .join("");
 
 export default function AboutPage() {
   return (
@@ -68,6 +76,66 @@ export default function AboutPage() {
         <Container className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16 lg:items-start">
           <Reveal>
             <h2 className="text-2xl font-medium tracking-[-0.01em] text-ink md:text-3xl">
+              Who you&apos;ll work with
+            </h2>
+          </Reveal>
+          <Reveal
+            delay={80}
+            className="grid max-w-2xl gap-6 sm:grid-cols-[7rem_1fr] sm:gap-8"
+          >
+            {founder.photo ? (
+              <Image
+                src={founder.photo}
+                alt={`Portrait of ${founder.name}`}
+                width={224}
+                height={224}
+                className="h-28 w-28 rounded-[var(--radius-lg)] object-cover"
+              />
+            ) : (
+              <div
+                aria-hidden="true"
+                className="flex h-28 w-28 items-center justify-center rounded-[var(--radius-lg)] border border-line bg-paper font-mono text-2xl text-ink"
+              >
+                {initials}
+              </div>
+            )}
+            <div>
+              <p className="text-xl font-medium text-ink">{founder.name}</p>
+              <p className="mt-1 font-mono text-xs uppercase tracking-[0.14em] text-muted">
+                {founder.title} · {siteConfig.location}
+              </p>
+              {founder.bio.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="text-pretty mt-4 text-base leading-relaxed text-muted"
+                >
+                  {paragraph}
+                </p>
+              ))}
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <Button href={siteConfig.bookingUrl} variant="secondary">
+                  Book a 30-minute call
+                </Button>
+                {founder.linkedin ? (
+                  <a
+                    href={founder.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium text-ink underline underline-offset-2 hover:text-accent"
+                  >
+                    {founder.name} on LinkedIn
+                  </a>
+                ) : null}
+              </div>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="border-b border-line-soft py-14 md:py-20">
+        <Container className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16 lg:items-start">
+          <Reveal>
+            <h2 className="text-2xl font-medium tracking-[-0.01em] text-ink md:text-3xl">
               Where the name comes from
             </h2>
           </Reveal>
@@ -87,7 +155,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="py-14 md:py-20">
+      <section className="bg-paper-dim py-14 md:py-20">
         <Container>
           <SectionHeading
             eyebrow="Who We Work With"

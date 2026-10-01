@@ -17,6 +17,19 @@ export const siteConfig = {
   location: "Surat, Gujarat, India",
 } as const;
 
+// Shown on /about. Set `photo` (a path under /public, for example
+// "/brand/founder.jpg") and `linkedin` (a personal profile URL) when they
+// exist; until then the block shows initials and omits the link.
+export const founder = {
+  name: "Vaibhav Jhaveri",
+  title: "Founder",
+  photo: "",
+  linkedin: "",
+  bio: [
+    "Prakrit Solutions is run by Vaibhav Jhaveri. Enquiries are read and answered personally, so the person you talk to first is the person accountable for the work.",
+  ],
+} as const;
+
 // Leave href empty until the profile exists — links with no URL are not rendered.
 export const socialLinks: {
   label: string;
