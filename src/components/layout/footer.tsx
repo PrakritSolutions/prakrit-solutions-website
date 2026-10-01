@@ -2,8 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { footerNav, siteConfig, socialLinks } from "@/lib/site-config";
-import { ChatIcon, MailIcon, PinIcon } from "@/components/icons";
+import {
+  ChatIcon,
+  FacebookIcon,
+  GithubIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  MailIcon,
+  PinIcon,
+  XIcon,
+} from "@/components/icons";
 import { CookieSettingsButton } from "@/components/analytics/cookie-settings-button";
+
+const socialIcons = {
+  linkedin: LinkedinIcon,
+  x: XIcon,
+  instagram: InstagramIcon,
+  facebook: FacebookIcon,
+  github: GithubIcon,
+} as const;
 
 function FooterColumn({
   title,
@@ -92,21 +109,31 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <CookieSettingsButton className="hover:text-paper" />
-            {socialLinks
-              .filter((link) => link.href)
-              .map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-paper"
-                >
-                  {link.label}
-                </a>
-              ))}
+            <ul className="-mr-2 flex items-center">
+              {socialLinks
+                .filter((link) => link.href)
+                .map((link) => {
+                  const Icon = socialIcons[link.icon];
+                  return (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={link.label}
+                        className="flex h-10 w-10 items-center justify-center hover:text-paper"
+                      >
+                        <Icon className="h-5 w-5" />
+                        <span className="sr-only">
+                          {link.label} (opens in a new tab)
+                        </span>
+                      </a>
+                    </li>
+                  );
+                })}
+            </ul>
           </div>
         </div>
       </Container>

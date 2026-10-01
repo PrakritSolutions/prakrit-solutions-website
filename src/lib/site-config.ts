@@ -18,10 +18,16 @@ export const siteConfig = {
 } as const;
 
 // Leave href empty until the profile exists — links with no URL are not rendered.
-export const socialLinks: { label: string; href: string }[] = [
-  { label: "LinkedIn", href: "" },
-  { label: "X (Twitter)", href: "" },
-  { label: "GitHub", href: "https://github.com/PrakritSolutions" },
+export const socialLinks: {
+  label: string;
+  href: string;
+  icon: "linkedin" | "x" | "instagram" | "facebook" | "github";
+}[] = [
+  { label: "LinkedIn", href: "", icon: "linkedin" },
+  { label: "X (Twitter)", href: "", icon: "x" },
+  { label: "Instagram", href: "https://www.instagram.com/prakritsolutions/", icon: "instagram" },
+  { label: "Facebook", href: "https://www.facebook.com/prakritsolutions/", icon: "facebook" },
+  { label: "GitHub", href: "https://github.com/PrakritSolutions", icon: "github" },
 ];
 
 // True on any deployment that isn't the final production domain — the

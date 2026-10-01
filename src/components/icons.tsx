@@ -152,3 +152,46 @@ export function SparkIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function InstagramIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function FacebookIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M14.5 21v-7.5h2.7l.5-3.2h-3.2V8.4c0-.9.4-1.6 1.7-1.6h1.6V4c-.4-.1-1.4-.2-2.4-.2-2.5 0-4.1 1.5-4.1 4.2v2.3H8.5v3.2h2.8V21Z" />
+    </svg>
+  );
+}
+
+export function GithubIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M9 19c-4 1.3-4-2-5.5-2.5M14.5 21v-3.2c0-.9.1-1.4-.4-2 2.6-.3 5.4-1.3 5.4-5.8 0-1.3-.5-2.4-1.3-3.3.1-.3.6-1.6-.1-3.2 0 0-1-.3-3.3 1.2a11.3 11.3 0 0 0-6 0C6.5 3.3 5.5 3.6 5.5 3.6c-.7 1.6-.2 2.9-.1 3.2A4.7 4.7 0 0 0 4.1 10c0 4.5 2.8 5.5 5.4 5.8-.5.5-.5 1.2-.4 2V21" />
+    </svg>
+  );
+}
+
+export function LinkedinIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" />
+      <path d="M8 10.5V16M8 7.8v.1M11.5 16v-5.5M11.5 13c0-1.5 1-2.6 2.3-2.6s2.2 1 2.2 2.5V16" />
+    </svg>
+  );
+}
+
+export function XIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m4.5 4.5 15 15M19.5 4.5l-15 15" />
+    </svg>
+  );
+}
