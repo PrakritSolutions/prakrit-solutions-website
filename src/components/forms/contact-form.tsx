@@ -7,6 +7,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, CheckIcon } from "@/components/icons";
 
@@ -74,6 +75,20 @@ function readAttribution(): Record<string, string> | null {
 }
 
 type Status = "idle" | "submitting" | "success" | "error";
+type RequiredField = "name" | "email" | "project";
+type FieldErrors = Partial<Record<RequiredField, string>>;
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validate(values: Record<RequiredField, string>): FieldErrors {
+  const errors: FieldErrors = {};
+  if (!values.name) errors.name = "Enter your name.";
+  if (!values.email) errors.email = "Enter your email address.";
+  else if (!EMAIL_PATTERN.test(values.email))
+    errors.email = "Enter a valid email address, such as name@company.com.";
+  if (!values.project) errors.project = "Describe what you want to build.";
+  return errors;
+}
 
 const inputClasses =
   "w-full rounded-[var(--radius-sm)] border border-line bg-paper px-4 py-3 text-[0.9375rem] text-ink placeholder:text-muted/70 transition-colors focus-visible:border-accent";
@@ -85,7 +100,8 @@ export function ContactForm() {
   const [chosenCurrency, setChosenCurrency] = useState<Currency | null>(null);
   const currency = chosenCurrency ?? detectedCurrency;
   const [budget, setBudget] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [serverError, setServerError] = useState<string | null>(null);
   const formId = useId();
 
   function changeCurrency(next: Currency) {
@@ -102,7 +118,7 @@ export function ContactForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setError(null);
+    setServerError(null);
 
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -120,8 +136,11 @@ export function ContactForm() {
       source: readAttribution(),
     };
 
-    if (!payload.name || !payload.email || !payload.project) {
-      setError("Please fill in your name, email, and a short project description.");
+    const fieldErrors = validate(payload);
+    setErrors(fieldErrors);
+    const firstInvalid = (["name", "email", "project"] as const).find((key) => fieldErrors[key]);
+    if (firstInvalid) {
+      form.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
       return;
     }
 
@@ -134,9 +153,17 @@ export function ContactForm() {
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("Request failed");
+      if (!res.ok) {
+        // 400 and 429 carry a message written for the visitor; show it as-is.
+        if (res.status === 400 || res.status === 429) {
+          const body = (await res.json().catch(() => null)) as { error?: string } | null;
+          if (body?.error) setServerError(body.error);
+        }
+        throw new Error("Request failed");
+      }
 
       setStatus("success");
+      setErrors({});
       form.reset();
       setServices([]);
       setBudget("");
@@ -172,13 +199,14 @@ export function ContactForm() {
         </label>
       </div>
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="Name" htmlFor={`${formId}-name`} required>
+        <Field label="Name" htmlFor={`${formId}-name`} required error={errors.name}>
           <input
             id={`${formId}-name`}
             name="name"
             type="text"
             autoComplete="name"
             required
+            {...invalidProps(`${formId}-name`, errors.name)}
             className={inputClasses}
           />
         </Field>
@@ -191,13 +219,14 @@ export function ContactForm() {
             className={inputClasses}
           />
         </Field>
-        <Field label="Email" htmlFor={`${formId}-email`} required>
+        <Field label="Email" htmlFor={`${formId}-email`} required error={errors.email}>
           <input
             id={`${formId}-email`}
             name="email"
             type="email"
             autoComplete="email"
             required
+            {...invalidProps(`${formId}-email`, errors.email)}
             className={inputClasses}
           />
         </Field>
@@ -212,12 +241,18 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <Field label="What do you want to build?" htmlFor={`${formId}-project`} required>
+      <Field
+        label="What do you want to build?"
+        htmlFor={`${formId}-project`}
+        required
+        error={errors.project}
+      >
         <textarea
           id={`${formId}-project`}
           name="project"
           rows={3}
           required
+          {...invalidProps(`${formId}-project`, errors.project)}
           placeholder="A short description is enough to start."
           className={`${inputClasses} resize-y`}
         />
@@ -317,15 +352,10 @@ export function ContactForm() {
         />
       </Field>
 
-      {error ? (
-        <p role="alert" className="text-sm text-red-600">
-          {error}
-        </p>
-      ) : null}
       {status === "error" ? (
         <p role="alert" className="text-sm text-red-600">
-          Something went wrong sending your message. Please try again, or
-          email us directly.
+          {serverError ??
+            "Something went wrong sending your message. Please try again, or email us directly."}
         </p>
       ) : null}
 
@@ -338,20 +368,34 @@ export function ContactForm() {
       >
         {status === "submitting" ? "Sending…" : "Let's Talk"}
       </Button>
+
+      <p className="text-pretty text-sm text-muted">
+        We use your details only to reply to your enquiry. See our{" "}
+        <Link href="/privacy" className="text-ink underline underline-offset-2 hover:text-accent">
+          Privacy Policy
+        </Link>
+        .
+      </p>
     </form>
   );
+}
+
+function invalidProps(id: string, error?: string) {
+  return error ? { "aria-invalid": true, "aria-describedby": `${id}-error` } : {};
 }
 
 function Field({
   label,
   htmlFor,
   required,
+  error,
   aside,
   children,
 }: {
   label: string;
   htmlFor: string;
   required?: boolean;
+  error?: string;
   aside?: ReactNode;
   children: ReactNode;
 }) {
@@ -365,6 +409,11 @@ function Field({
         {aside}
       </div>
       {children}
+      {error ? (
+        <p id={`${htmlFor}-error`} className="mt-1.5 text-sm text-red-600">
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   ExternalLink,
   LegalList,
@@ -9,13 +8,14 @@ import {
 } from "@/components/legal/legal-layout";
 import { legalConfig } from "@/lib/legal-config";
 import { siteConfig } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
   description:
     "How Prakrit Solutions collects, uses, shares and protects personal data submitted through this website, and the rights you have over it.",
-  alternates: { canonical: "/privacy" },
-};
+  path: "/privacy",
+});
 
 const mail = (address: string) => (
   <ExternalLink href={`mailto:${address}`}>{address}</ExternalLink>

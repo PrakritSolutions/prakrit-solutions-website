@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
 import { PageHeader } from "@/components/sections/page-header";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { CtaSection } from "@/components/sections/cta-section";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About",
   description:
     "Prakrit Solutions is a software development agency built on business-first engineering — technology that feels like a natural extension of how a company already works.",
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 const beliefs = [
   {

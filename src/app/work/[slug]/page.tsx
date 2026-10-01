@@ -8,6 +8,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { Eyebrow } from "@/components/ui/badge";
 import { ArrowRightIcon } from "@/components/icons";
 import { caseStudies } from "@/lib/content/case-studies";
+import { pageMetadata } from "@/lib/metadata";
 
 const publishedStudies = caseStudies.filter((study) => !study.placeholder);
 
@@ -24,11 +25,11 @@ export async function generateMetadata(
   const study = publishedStudies.find((item) => item.slug === slug);
   if (!study) return {};
 
-  return {
+  return pageMetadata({
     title: study.title,
     description: study.summary ?? study.problem,
-    alternates: { canonical: `/work/${study.slug}` },
-  };
+    path: `/work/${study.slug}`,
+  });
 }
 
 export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {

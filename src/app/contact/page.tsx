@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
@@ -7,13 +6,14 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { ArrowRightIcon, ChatIcon, ClockIcon, MailIcon, PinIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
 import { contactFaq } from "@/lib/content/faq";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description:
     "Start a project with Prakrit Solutions — tell us what you want to build and we'll reply personally within a couple of business days.",
-  alternates: { canonical: "/contact" },
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
