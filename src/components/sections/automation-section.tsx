@@ -8,7 +8,7 @@ import { automationStages, automationExamples } from "@/lib/content/solutions";
 
 export function AutomationSection() {
   return (
-    <section id="automation" className="border-b border-line-inverse bg-ink py-24 md:py-32">
+    <section id="automation" className="border-b border-line-inverse bg-ink py-16 md:py-24">
       <Container>
         <SectionHeading
           eyebrow="Automation"

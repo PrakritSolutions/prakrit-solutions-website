@@ -8,7 +8,7 @@ import { caseStudies } from "@/lib/content/case-studies";
 
 export function CaseStudiesTeaser() {
   return (
-    <section className="border-b border-line-soft py-24 md:py-32">
+    <section className="border-b border-line-soft py-16 md:py-24">
       <Container>
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading

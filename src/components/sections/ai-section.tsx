@@ -7,7 +7,7 @@ import { aiCapabilities } from "@/lib/content/solutions";
 
 export function AiSection() {
   return (
-    <section id="ai" className="border-b border-line-soft py-24 md:py-32">
+    <section id="ai" className="border-b border-line-soft py-16 md:py-24">
       <Container className="grid gap-14 lg:grid-cols-[1fr_0.85fr] lg:items-center lg:gap-16">
         <Reveal>
           <Eyebrow className="mb-5">AI Solutions</Eyebrow>

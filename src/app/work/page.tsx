@@ -20,7 +20,7 @@ export default function WorkPage() {
         title="A closer look at how we build."
         description="Selected projects and how we approached them: what the client needed, what we built, and where it ended up."
       />
-      <section className="pb-24 md:pb-32">
+      <section className="pt-12 pb-16 md:pt-16 md:pb-24">
         <Container>
           <div className="grid gap-6 md:grid-cols-3">
             {caseStudies.map((study, i) => (

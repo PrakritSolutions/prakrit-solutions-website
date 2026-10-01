@@ -11,7 +11,7 @@ const variants: Record<Variant, string> = {
   primary:
     "bg-ink text-paper hover:bg-accent hover:-translate-y-0.5 shadow-[0_1px_0_0_rgba(0,0,0,0.05)]",
   secondary:
-    "bg-transparent text-ink border border-line hover:border-ink hover:-translate-y-0.5",
+    "bg-transparent text-ink border border-line-strong hover:border-ink hover:-translate-y-0.5",
   ghost: "bg-transparent text-ink hover:text-accent",
   inverse:
     "bg-paper text-ink hover:bg-accent hover:text-accent-contrast hover:-translate-y-0.5",

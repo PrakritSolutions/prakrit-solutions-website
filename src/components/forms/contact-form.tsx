@@ -91,7 +91,7 @@ function validate(values: Record<RequiredField, string>): FieldErrors {
 }
 
 const inputClasses =
-  "w-full rounded-[var(--radius-sm)] border border-line bg-paper px-4 py-3 text-[0.9375rem] text-ink placeholder:text-muted/70 transition-colors focus-visible:border-accent";
+  "w-full rounded-[var(--radius-sm)] border border-line-strong bg-paper px-4 py-3 text-[0.9375rem] text-ink placeholder:text-muted/70 transition-colors focus-visible:border-accent";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -274,7 +274,7 @@ export function ContactForm() {
                 className={`rounded-full border px-3.5 py-1.5 text-sm transition-colors ${
                   active
                     ? "border-accent bg-accent-soft text-accent"
-                    : "border-line text-muted hover:border-ink hover:text-ink"
+                    : "border-line-strong text-muted hover:border-ink hover:text-ink"
                 }`}
               >
                 {service}
@@ -301,7 +301,7 @@ export function ContactForm() {
                     className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
                       active
                         ? "border-accent bg-accent-soft text-accent"
-                        : "border-line text-muted hover:border-ink hover:text-ink"
+                        : "border-line-strong text-muted hover:border-ink hover:text-ink"
                     }`}
                   >
                     {option.label}

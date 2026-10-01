@@ -5,7 +5,7 @@ import { differentiators } from "@/lib/content/why-us";
 
 export function WhyUsSection() {
   return (
-    <section className="border-b border-line-soft bg-paper-dim/50 py-24 md:py-32">
+    <section className="border-b border-line-soft bg-paper-dim py-16 md:py-24">
       <Container className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <Eyebrow className="mb-5">Why Prakrit Solutions</Eyebrow>

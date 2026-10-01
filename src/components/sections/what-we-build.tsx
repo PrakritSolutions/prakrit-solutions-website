@@ -3,15 +3,9 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { productTypes } from "@/lib/content/what-we-build";
 
-const sizeClasses: Record<string, string> = {
-  lg: "sm:col-span-2 sm:row-span-2",
-  md: "sm:col-span-2",
-  sm: "",
-};
-
 export function WhatWeBuild() {
   return (
-    <section className="border-b border-line-soft py-24 md:py-32">
+    <section className="border-b border-line-soft py-16 md:py-24">
       <Container>
         <SectionHeading
           eyebrow="What We Build"
@@ -19,22 +13,21 @@ export function WhatWeBuild() {
           description="A representative range of the products we design and build — not a limit on what we can take on."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-4">
+        <ul className="mt-12 grid grid-cols-1 gap-x-16 border-b border-line md:mt-14 md:grid-cols-2">
           {productTypes.map((item, i) => (
             <Reveal
+              as="li"
               key={item.name}
-              delay={(i % 4) * 60}
-              className={`group rounded-[var(--radius-lg)] border border-line bg-paper-dim/60 p-6 transition-colors duration-[var(--duration-base)] hover:border-accent hover:bg-accent-soft ${
-                sizeClasses[item.size]
-              }`}
+              delay={(i % 2) * 60}
+              className="border-t border-line py-6"
             >
               <h3 className="text-lg font-medium text-ink">{item.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
+              <p className="mt-1.5 max-w-md text-pretty text-[0.9375rem] leading-relaxed text-muted">
                 {item.description}
               </p>
             </Reveal>
           ))}
-        </div>
+        </ul>
       </Container>
     </section>
   );

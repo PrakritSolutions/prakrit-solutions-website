@@ -44,7 +44,7 @@ export default function AboutPage() {
         description="Prakrit Solutions is a software development agency. We design and build mobile apps, web products, AI-powered systems and automation for businesses that need a technology partner, not just a developer."
       />
 
-      <section className="border-b border-line-soft py-20 md:py-28">
+      <section className="border-b border-line-soft py-14 md:py-20">
         <Container className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
           <Reveal>
             <h2 className="text-2xl font-medium tracking-[-0.01em] text-ink md:text-3xl">
@@ -64,7 +64,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="border-b border-line-soft bg-paper-dim/50 py-20 md:py-28">
+      <section className="border-b border-line-soft bg-paper-dim py-14 md:py-20">
         <Container className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16 lg:items-start">
           <Reveal>
             <h2 className="text-2xl font-medium tracking-[-0.01em] text-ink md:text-3xl">
@@ -87,7 +87,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="py-20 md:py-28">
+      <section className="py-14 md:py-20">
         <Container>
           <SectionHeading
             eyebrow="Who We Work With"

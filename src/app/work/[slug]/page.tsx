@@ -84,7 +84,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         </dl>
       </PageHeader>
 
-      <section className="border-b border-line-soft py-20 md:py-24">
+      <section className="border-b border-line-soft py-14 md:py-20">
         <Container>
           <div className="space-y-12">
             {story.map((row, i) => (
@@ -106,7 +106,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
       </section>
 
       {study.components?.length ? (
-        <section className="border-b border-line-soft bg-paper-dim/50 py-20 md:py-24">
+        <section className="border-b border-line-soft bg-paper-dim py-14 md:py-20">
           <Container>
             <Eyebrow className="mb-5">The product</Eyebrow>
             <h2 className="text-balance max-w-2xl text-3xl font-medium leading-[1.15] tracking-[-0.02em] text-ink md:text-4xl">
@@ -161,7 +161,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         </section>
       ) : null}
 
-      <section className="py-20 md:py-24">
+      <section className="py-14 md:py-20">
         <Container>
           <div className="grid gap-12 md:grid-cols-[14rem_1fr] md:gap-12">
             <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">

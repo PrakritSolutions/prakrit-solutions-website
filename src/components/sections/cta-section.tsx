@@ -11,7 +11,7 @@ export function CtaSection({
   description?: string;
 }) {
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-16 md:py-24">
       <Container>
         <Reveal className="flex flex-col items-center gap-7 rounded-[var(--radius-xl)] border border-line bg-ink px-8 py-16 text-center md:px-16 md:py-20">
           <h2 className="text-balance max-w-2xl text-3xl font-medium leading-[1.15] tracking-[-0.02em] text-paper md:text-4xl lg:text-5xl">

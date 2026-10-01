@@ -14,7 +14,7 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <section className="border-b border-line-soft py-20 md:py-28">
+    <section className="border-b border-line-soft py-14 md:py-20">
       <Container>
         <Eyebrow className="mb-5">{eyebrow}</Eyebrow>
         <h1 className="text-balance max-w-3xl text-4xl font-medium leading-[1.1] tracking-[-0.02em] text-ink md:text-5xl lg:text-[3.25rem]">
