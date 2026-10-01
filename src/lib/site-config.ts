@@ -23,7 +23,7 @@ export const socialLinks: {
   href: string;
   icon: "linkedin" | "x" | "instagram" | "facebook" | "github";
 }[] = [
-  { label: "LinkedIn", href: "", icon: "linkedin" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/prakritsolutions/", icon: "linkedin" },
   { label: "X (Twitter)", href: "", icon: "x" },
   { label: "Instagram", href: "https://www.instagram.com/prakritsolutions/", icon: "instagram" },
   { label: "Facebook", href: "https://www.facebook.com/prakritsolutions/", icon: "facebook" },
