@@ -47,7 +47,6 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
-        eyebrow="About"
         title="Technology that feels like a natural extension of your business."
         description="Prakrit Solutions is a software development agency. We design and build mobile apps, web products, AI-powered systems and automation for businesses that need a technology partner, not just a developer."
       />
@@ -158,7 +157,6 @@ export default function AboutPage() {
       <section className="bg-paper-dim py-14 md:py-20">
         <Container>
           <SectionHeading
-            eyebrow="Who We Work With"
             title="Startups shipping a first version. Teams extending one already in production."
             description="We scope every engagement to where you actually are — a focused first build, or ongoing work inside a product that already has real users. What stays constant is how closely we work with your team and how directly we communicate."
           />

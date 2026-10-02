@@ -1,5 +1,4 @@
 import { Container } from "@/components/ui/container";
-import { Eyebrow } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/forms/contact-form";
@@ -21,7 +20,6 @@ export default function ContactPage() {
       <Container className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
         <div>
           <Reveal>
-            <Eyebrow className="mb-5">Contact</Eyebrow>
             <h1 className="text-balance max-w-xl text-4xl font-medium leading-[1.1] tracking-[-0.02em] text-ink md:text-5xl">
               Have an idea? Let&apos;s build it.
             </h1>

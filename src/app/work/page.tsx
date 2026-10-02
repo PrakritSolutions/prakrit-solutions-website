@@ -16,7 +16,6 @@ export default function WorkPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Work"
         title="A closer look at how we build."
         description="Selected projects and how we approached them: what the client needed, what we built, and where it ended up."
       />

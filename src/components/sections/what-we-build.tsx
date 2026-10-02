@@ -8,7 +8,6 @@ export function WhatWeBuild() {
     <section className="border-b border-line-soft py-16 md:py-24">
       <Container>
         <SectionHeading
-          eyebrow="What We Build"
           title="Chances are, your project looks like one of these."
           description="A representative range of the products we design and build — not a limit on what we can take on."
         />

@@ -8,7 +8,6 @@ export function ProcessSection() {
     <section className="border-b border-line-soft py-16 md:py-24">
       <Container>
         <SectionHeading
-          eyebrow="How We Work"
           title="A process built to reduce risk, not paperwork."
           description="Six stages, applied with the weight each project actually needs — a two-week build and a six-month platform don't get the same ceremony."
         />

@@ -5,7 +5,6 @@ import { PageHeader } from "@/components/sections/page-header";
 import { CtaSection } from "@/components/sections/cta-section";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
-import { Eyebrow } from "@/components/ui/badge";
 import { ArrowRightIcon } from "@/components/icons";
 import { caseStudies } from "@/lib/content/case-studies";
 import { pageMetadata } from "@/lib/metadata";
@@ -49,40 +48,24 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         eyebrow="Case study"
         title={study.title}
         description={study.summary}
-      >
-        <dl className="mt-10 grid max-w-2xl gap-6 border-t border-line-soft pt-6 sm:grid-cols-3">
-          <div>
-            <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-              Client
-            </dt>
-            <dd className="mt-1.5 text-sm text-ink">{study.client}</dd>
-          </div>
-          <div>
-            <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-              Category
-            </dt>
-            <dd className="mt-1.5 text-sm text-ink">{study.category}</dd>
-          </div>
-          {study.status ? (
-            <div>
-              <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-                Status
-              </dt>
-              <dd className="mt-1.5 text-sm text-ink">{study.status}</dd>
-            </div>
-          ) : null}
-          {study.scope ? (
-            <div className="sm:col-span-3">
-              <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
-                Our scope
-              </dt>
-              <dd className="mt-1.5 text-sm leading-relaxed text-ink">
-                {study.scope}
-              </dd>
-            </div>
-          ) : null}
-        </dl>
-      </PageHeader>
+        aside={
+          <dl className="space-y-5 rounded-[var(--radius-lg)] border border-line bg-paper-dim p-6">
+            {[
+              { term: "Client", detail: study.client },
+              { term: "Category", detail: study.category },
+              ...(study.status ? [{ term: "Status", detail: study.status }] : []),
+              ...(study.scope ? [{ term: "Our scope", detail: study.scope }] : []),
+            ].map((row) => (
+              <div key={row.term}>
+                <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                  {row.term}
+                </dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-ink">{row.detail}</dd>
+              </div>
+            ))}
+          </dl>
+        }
+      />
 
       <section className="border-b border-line-soft py-14 md:py-20">
         <Container>
@@ -108,7 +91,6 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
       {study.components?.length ? (
         <section className="border-b border-line-soft bg-paper-dim py-14 md:py-20">
           <Container>
-            <Eyebrow className="mb-5">The product</Eyebrow>
             <h2 className="text-balance max-w-2xl text-3xl font-medium leading-[1.15] tracking-[-0.02em] text-ink md:text-4xl">
               {study.componentsHeading ?? "How the pieces fit together."}
             </h2>

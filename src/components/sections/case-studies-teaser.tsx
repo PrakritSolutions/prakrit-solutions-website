@@ -12,7 +12,6 @@ export function CaseStudiesTeaser() {
       <Container>
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading
-            eyebrow="Selected Work"
             title="A closer look at how we build."
             className="max-w-xl"
           />

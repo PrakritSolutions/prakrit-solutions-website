@@ -14,7 +14,7 @@ export function LegalPage({
 }) {
   return (
     <>
-      <PageHeader eyebrow="Legal" title={title} description={`Last updated: ${updated}`} />
+      <PageHeader title={title} description={`Last updated: ${updated}`} />
       <section className="pb-24 pt-12 md:pb-32 md:pt-16">
         <Container>
           <div className="max-w-2xl space-y-12">{children}</div>
