@@ -8,7 +8,7 @@ import { caseStudies } from "@/lib/content/case-studies";
 
 export function CaseStudiesTeaser() {
   return (
-    <section className="border-b border-line-soft py-16 md:py-24">
+    <section className="border-b border-line-soft py-12 md:py-24">
       <Container>
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <SectionHeading
@@ -22,9 +22,20 @@ export function CaseStudiesTeaser() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        {/* Swipeable row on phones so three tall cards do not stack; grid from md. */}
+        <div
+          role="region"
+          aria-label="Selected projects"
+          tabIndex={0}
+          className="-mx-6 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:mt-14 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0"
+        >
           {caseStudies.map((study, i) => (
-            <CaseStudyCard key={study.slug} study={study} delay={i * 80} />
+            <CaseStudyCard
+              key={study.slug}
+              study={study}
+              delay={i * 80}
+              className="w-[85%] shrink-0 snap-start max-md:!opacity-100 max-md:![transform:none] md:w-auto"
+            />
           ))}
         </div>
       </Container>

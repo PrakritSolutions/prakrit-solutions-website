@@ -3,8 +3,10 @@ import { ArrowRightIcon } from "@/components/icons";
 export function PageJumpLinks({
   label = "On this page",
   links,
+  arrow = "down",
 }: {
   label?: string;
+  arrow?: "down" | "right";
   links: { label: string; href: string }[];
 }) {
   return (
@@ -21,7 +23,9 @@ export function PageJumpLinks({
               className="group flex items-center justify-between gap-4 py-3 text-[0.9375rem] font-medium text-ink transition-colors hover:text-accent"
             >
               {link.label}
-              <ArrowRightIcon className="h-4 w-4 rotate-90 text-muted transition-colors group-hover:text-accent" />
+              <ArrowRightIcon className={`h-4 w-4 text-muted transition-colors group-hover:text-accent ${
+                arrow === "down" ? "rotate-90" : ""
+              }`} />
             </a>
           </li>
         ))}

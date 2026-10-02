@@ -10,10 +10,12 @@ export function CaseStudyCard({
   study,
   delay = 0,
   expanded = false,
+  className = "",
 }: {
   study: CaseStudy;
   delay?: number;
   expanded?: boolean;
+  className?: string;
 }) {
   const isPlaceholder = Boolean(study.placeholder);
   const showFullDetail = expanded && isPlaceholder;
@@ -23,7 +25,7 @@ export function CaseStudyCard({
   return (
     <Reveal
       delay={delay}
-      className="flex flex-col rounded-[var(--radius-lg)] border border-line bg-paper p-7 transition-colors duration-[var(--duration-base)] hover:border-accent md:p-8"
+      className={`flex flex-col rounded-[var(--radius-lg)] border border-line bg-paper p-7 transition-colors duration-[var(--duration-base)] hover:border-accent md:p-8 ${className}`}
     >
       <div className="flex min-h-7 items-start justify-between gap-3">
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-accent">
