@@ -1,8 +1,24 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { SparkIcon } from "@/components/icons";
 
 export function HeroGraphic() {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // The graphic loops forever, so stop it while it is off-screen.
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      node.dataset.offscreen = String(!entry.isIntersecting);
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="relative isolate mx-auto aspect-[4/3.6] w-full max-w-md lg:max-w-none">
+    <div ref={rootRef} className="relative isolate mx-auto aspect-[4/3.6] w-full max-w-md lg:max-w-none">
       <div
         className="absolute inset-0 rounded-[var(--radius-lg)] border border-line bg-paper-dim"
         style={{

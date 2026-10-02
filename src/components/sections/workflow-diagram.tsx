@@ -21,7 +21,7 @@ export function WorkflowDiagram({
               <h3 className="mt-2 text-lg font-medium text-paper">
                 {item.stage}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-inverse">
+              <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted-inverse">
                 {item.detail}
               </p>
             </Reveal>

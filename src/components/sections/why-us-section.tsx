@@ -26,7 +26,7 @@ export function WhyUsSection() {
               }`}
             >
               <h3 className="text-lg font-medium text-ink">{item.title}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-muted">
+              <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-muted">
                 {item.description}
               </p>
             </Reveal>

@@ -1,7 +1,9 @@
 "use client";
 
 import {
+  useEffect,
   useId,
+  useRef,
   useState,
   useSyncExternalStore,
   type FormEvent,
@@ -91,7 +93,7 @@ function validate(values: Record<RequiredField, string>): FieldErrors {
 }
 
 const inputClasses =
-  "w-full rounded-[var(--radius-sm)] border border-line-strong bg-paper px-4 py-3 text-[0.9375rem] text-ink placeholder:text-muted/70 transition-colors focus-visible:border-accent";
+  "w-full rounded-[var(--radius-sm)] border border-line-strong bg-paper px-4 py-3 text-[0.9375rem] text-ink placeholder:text-muted transition-colors focus-visible:border-accent";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -102,12 +104,25 @@ export function ContactForm() {
   const [budget, setBudget] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [serverError, setServerError] = useState<string | null>(null);
+  const [pendingCurrency, setPendingCurrency] = useState<Currency | null>(null);
+  const successRef = useRef<HTMLHeadingElement>(null);
   const formId = useId();
 
-  function changeCurrency(next: Currency) {
-    if (next === currency) return;
+  useEffect(() => {
+    if (status === "success") successRef.current?.focus();
+  }, [status]);
+
+  function applyCurrency(next: Currency) {
     setChosenCurrency(next);
     setBudget("");
+    setPendingCurrency(null);
+  }
+
+  // A chosen range is in the old currency, so ask before clearing it.
+  function changeCurrency(next: Currency) {
+    if (next === currency) return;
+    if (budget) setPendingCurrency(next);
+    else applyCurrency(next);
   }
 
   function toggleService(service: string) {
@@ -178,7 +193,9 @@ export function ContactForm() {
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-signal-soft">
           <CheckIcon className="h-5 w-5 text-signal" />
         </span>
-        <h3 className="text-xl font-medium text-ink">Message sent.</h3>
+        <h3 ref={successRef} tabIndex={-1} className="text-xl font-medium text-ink focus:outline-none">
+          Message sent.
+        </h3>
         <p className="text-pretty text-muted">
           Thanks for reaching out — we read every enquiry personally and
           usually reply within a couple of business days.
@@ -230,7 +247,7 @@ export function ContactForm() {
             className={inputClasses}
           />
         </Field>
-        <Field label="Phone" htmlFor={`${formId}-phone`}>
+        <Field label="Phone" htmlFor={`${formId}-phone`} optional>
           <input
             id={`${formId}-phone`}
             name="phone"
@@ -327,6 +344,31 @@ export function ContactForm() {
               </option>
             ))}
           </select>
+          {pendingCurrency ? (
+            <div
+              role="status"
+              className="mt-2 rounded-[var(--radius-sm)] border border-line bg-paper-dim px-3 py-2.5 text-sm text-ink"
+            >
+              <p>Switching to {pendingCurrency} clears the range you chose.</p>
+              <div className="mt-2 flex gap-4">
+                <button
+                  type="button"
+                  autoFocus
+                  onClick={() => applyCurrency(pendingCurrency)}
+                  className="min-h-9 font-medium text-accent underline underline-offset-2"
+                >
+                  Switch to {pendingCurrency}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPendingCurrency(null)}
+                  className="min-h-9 text-muted underline underline-offset-2 hover:text-ink"
+                >
+                  Keep {currency}
+                </button>
+              </div>
+            </div>
+          ) : null}
         </Field>
         <Field label="Timeline" htmlFor={`${formId}-timeline`}>
           <select id={`${formId}-timeline`} name="timeline" className={inputClasses} defaultValue="">
@@ -388,6 +430,7 @@ function Field({
   label,
   htmlFor,
   required,
+  optional,
   error,
   aside,
   children,
@@ -395,6 +438,7 @@ function Field({
   label: string;
   htmlFor: string;
   required?: boolean;
+  optional?: boolean;
   error?: string;
   aside?: ReactNode;
   children: ReactNode;
@@ -405,6 +449,7 @@ function Field({
         <label htmlFor={htmlFor} className="block text-sm font-medium text-ink">
           {label}
           {required ? <span className="text-accent"> *</span> : null}
+          {optional ? <span className="font-normal text-muted"> (optional)</span> : null}
         </label>
         {aside}
       </div>

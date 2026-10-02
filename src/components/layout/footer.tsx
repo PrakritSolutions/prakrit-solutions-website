@@ -31,9 +31,9 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="font-mono text-xs uppercase tracking-[0.14em] text-muted-inverse">
+      <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted-inverse">
         {title}
-      </h3>
+      </h2>
       <ul className="mt-3">
         {links.map((link) => (
           <li key={link.href}>

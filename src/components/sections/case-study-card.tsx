@@ -61,7 +61,7 @@ export function CaseStudyCard({
           ))}
         </dl>
       ) : (
-        <p className="mb-6 mt-4 text-sm leading-relaxed text-muted">
+        <p className="mb-6 mt-4 text-[0.9375rem] leading-relaxed text-muted">
           {study.summary ?? study.problem}
         </p>
       )}

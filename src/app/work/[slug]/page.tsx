@@ -107,14 +107,14 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
                   <h3 className="mt-2 text-xl font-medium text-ink md:text-2xl">
                     {component.name}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">
                     {component.description}
                   </p>
                   <ul className="mt-6 space-y-2.5 border-t border-line-soft pt-6">
                     {component.highlights.map((highlight) => (
                       <li
                         key={highlight}
-                        className="flex gap-3 text-sm leading-relaxed text-ink/85"
+                        className="flex gap-3 text-[0.9375rem] leading-relaxed text-ink/85"
                       >
                         <span
                           aria-hidden="true"

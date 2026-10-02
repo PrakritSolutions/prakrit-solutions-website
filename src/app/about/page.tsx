@@ -62,7 +62,7 @@ export default function AboutPage() {
             {beliefs.map((belief, i) => (
               <Reveal key={belief.title} delay={i * 70}>
                 <h3 className="text-lg font-medium text-ink">{belief.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted">
+                <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-muted">
                   {belief.description}
                 </p>
               </Reveal>

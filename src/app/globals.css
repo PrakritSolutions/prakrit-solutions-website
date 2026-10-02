@@ -103,6 +103,7 @@ body {
   *,
   *::before,
   *::after {
+    animation-delay: 0s !important;
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
@@ -155,6 +156,11 @@ body {
     transform: none;
     transition: none;
   }
+}
+
+[data-offscreen="true"],
+[data-offscreen="true"] * {
+  animation-play-state: paused !important;
 }
 
 .text-balance {

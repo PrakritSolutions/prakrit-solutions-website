@@ -26,7 +26,7 @@ export function ServiceDetail({ service, index }: { service: Service; index: num
         <p className="text-pretty mt-4 text-base leading-relaxed text-muted">
           {service.problem}
         </p>
-        <p className="mt-5 border-l-2 border-accent pl-4 text-sm leading-relaxed text-ink/80">
+        <p className="mt-5 border-l-2 border-accent pl-4 text-[0.9375rem] leading-relaxed text-ink/80">
           {service.why}
         </p>
       </Reveal>
@@ -42,7 +42,7 @@ export function ServiceDetail({ service, index }: { service: Service; index: num
         </p>
         <ul className="mt-5 space-y-3.5">
           {service.build.map((item) => (
-            <li key={item} className="flex gap-2.5 text-sm text-ink/85">
+            <li key={item} className="flex gap-2.5 text-[0.9375rem] text-ink/85">
               <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
               {item}
             </li>

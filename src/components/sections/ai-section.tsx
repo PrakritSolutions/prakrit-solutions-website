@@ -25,8 +25,8 @@ export function AiSection() {
               <li key={item.name} className="flex gap-2.5">
                 <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 <div>
-                  <p className="text-sm font-medium text-ink">{item.name}</p>
-                  <p className="mt-0.5 text-sm leading-relaxed text-muted">
+                  <p className="text-[0.9375rem] font-medium text-ink">{item.name}</p>
+                  <p className="mt-0.5 text-[0.9375rem] leading-relaxed text-muted">
                     {item.description}
                   </p>
                 </div>
