@@ -34,12 +34,12 @@ function FooterColumn({
       <h3 className="font-mono text-xs uppercase tracking-[0.14em] text-muted-inverse">
         {title}
       </h3>
-      <ul className="mt-4 space-y-3">
+      <ul className="mt-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-sm text-paper/80 transition-colors hover:text-paper"
+              className="flex min-h-11 items-center text-sm text-paper/80 transition-colors hover:text-paper md:min-h-9"
             >
               {link.label}
             </Link>
@@ -70,11 +70,11 @@ export function Footer() {
               We build mobile apps, web products, AI systems and automation
               that solve real business problems.
             </p>
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-4">
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-2 text-sm text-paper/80 hover:text-paper"
+                  className="flex min-h-11 items-center gap-2 text-sm text-paper/80 hover:text-paper md:min-h-9"
                 >
                   <MailIcon className="h-4 w-4 shrink-0" />
                   {siteConfig.email}
@@ -85,14 +85,14 @@ export function Footer() {
                   href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-paper/80 hover:text-paper"
+                  className="flex min-h-11 items-center gap-2 text-sm text-paper/80 hover:text-paper md:min-h-9"
                 >
                   <ChatIcon className="h-4 w-4 shrink-0" />
                   WhatsApp {siteConfig.whatsapp}
                   <span className="sr-only"> (opens WhatsApp in a new tab)</span>
                 </a>
               </li>
-              <li className="flex items-center gap-2 text-sm text-paper/80">
+              <li className="flex min-h-11 items-center gap-2 text-sm text-paper/80 md:min-h-9">
                 <PinIcon className="h-4 w-4 shrink-0" />
                 {siteConfig.location}
               </li>
@@ -110,8 +110,8 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <CookieSettingsButton className="hover:text-paper" />
-            <ul className="-mr-2 flex items-center">
+            <CookieSettingsButton className="min-h-11 hover:text-paper md:min-h-9" />
+            <ul className="-mr-2.5 flex items-center">
               {socialLinks
                 .filter((link) => link.href)
                 .map((link) => {
@@ -123,9 +123,9 @@ export function Footer() {
                         target="_blank"
                         rel="noopener noreferrer"
                         title={link.label}
-                        className="flex h-10 w-10 items-center justify-center hover:text-paper"
+                        className="flex h-11 w-11 items-center justify-center hover:text-paper"
                       >
-                        <Icon className="h-5 w-5" />
+                        <Icon className="h-[1.375rem] w-[1.375rem]" />
                         <span className="sr-only">
                           {link.label} (opens in a new tab)
                         </span>

@@ -17,9 +17,11 @@ export const metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <section className="py-14 md:py-20">
-      <Container className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
-        <div>
-          <Reveal>
+      <Container className="flex flex-col gap-12 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
+        {/* On phones the wrappers dissolve (contents) so the direct contact
+            details can sit above the form; from lg they are two columns. */}
+        <div className="contents lg:block">
+          <Reveal className="order-1 lg:order-none">
             <h1 className="text-balance max-w-xl text-4xl font-medium leading-[1.1] tracking-[-0.02em] text-ink md:text-5xl">
               Have an idea? Let&apos;s build it.
             </h1>
@@ -29,21 +31,21 @@ export default function ContactPage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 max-w-2xl">
+          <div className="order-3 max-w-2xl lg:order-none lg:mt-12">
             <ContactForm />
           </div>
         </div>
 
-        <div className="space-y-10 lg:border-l lg:border-line-soft lg:pl-16">
-          <Reveal delay={80}>
+        <div className="contents lg:block lg:space-y-10 lg:border-l lg:border-line-soft lg:pl-16">
+          <Reveal delay={80} className="order-2 lg:order-none">
             <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
               Direct
             </h2>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-2 lg:mt-4 lg:space-y-3">
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-2.5 text-[0.9375rem] text-ink hover:text-accent"
+                  className="flex min-h-11 items-center gap-2.5 text-[0.9375rem] text-ink hover:text-accent lg:min-h-0"
                 >
                   <MailIcon className="h-4 w-4 shrink-0 text-accent" />
                   {siteConfig.email}
@@ -54,7 +56,7 @@ export default function ContactPage() {
                   href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 text-[0.9375rem] text-ink hover:text-accent"
+                  className="flex min-h-11 items-center gap-2.5 text-[0.9375rem] text-ink hover:text-accent lg:min-h-0"
                 >
                   <ChatIcon className="h-4 w-4 shrink-0 text-accent" />
                   <span>
@@ -87,7 +89,7 @@ export default function ContactPage() {
             </p>
           </Reveal>
 
-          <Reveal delay={140}>
+          <Reveal delay={140} className="order-4 lg:order-none">
             <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
               Before you write in
             </h2>

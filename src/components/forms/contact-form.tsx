@@ -271,7 +271,7 @@ export function ContactForm() {
                 key={service}
                 aria-pressed={active}
                 onClick={() => toggleService(service)}
-                className={`rounded-full border px-3.5 py-1.5 text-sm transition-colors ${
+                className={`rounded-full border px-3.5 py-2.5 text-sm transition-colors sm:py-1.5 ${
                   active
                     ? "border-accent bg-accent-soft text-accent"
                     : "border-line-strong text-muted hover:border-ink hover:text-ink"
@@ -298,7 +298,7 @@ export function ContactForm() {
                     key={option.code}
                     aria-pressed={active}
                     onClick={() => changeCurrency(option.code)}
-                    className={`rounded-full border px-2.5 py-0.5 text-xs transition-colors ${
+                    className={`relative rounded-full border px-2.5 py-0.5 text-xs transition-colors before:absolute before:-inset-x-1 before:-inset-y-2.5 before:content-[''] ${
                       active
                         ? "border-accent bg-accent-soft text-accent"
                         : "border-line-strong text-muted hover:border-ink hover:text-ink"

@@ -85,7 +85,7 @@ export function CaseStudyCard({
       {!isPlaceholder ? (
         <Link
           href={`/work/${study.slug}`}
-          className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+          className="mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
         >
           Read the case study
           <ArrowRightIcon className="h-4 w-4" />
