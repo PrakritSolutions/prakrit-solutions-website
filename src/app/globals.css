@@ -138,19 +138,21 @@ body {
   }
 }
 
+/* Content is visible by default. Only hide it for the scroll-in effect once
+   the inline script in layout.tsx has marked <html> as .js, so a page without
+   JavaScript still shows everything. */
 .reveal {
-  opacity: 0;
-  transform: translate3d(0, 14px, 0);
   transition: opacity var(--duration-slow) var(--ease-out-quint),
     transform var(--duration-slow) var(--ease-out-quint);
 }
 
-.reveal[data-visible="true"] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+.js .reveal:not([data-visible="true"]) {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .js .reveal:not([data-visible="true"]),
   .reveal {
     opacity: 1;
     transform: none;
