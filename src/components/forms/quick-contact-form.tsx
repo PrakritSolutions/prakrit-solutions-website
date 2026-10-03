@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, CheckIcon } from "@/components/icons";
 import { ATTRIBUTION_KEY } from "@/components/analytics/attribution";
+import { siteConfig } from "@/lib/site-config";
 
 type Status = "idle" | "submitting" | "success" | "error";
 type FieldErrors = Partial<Record<"email" | "project", string>>;
@@ -197,7 +198,8 @@ export function QuickContactForm() {
           {status === "submitting" ? "Sending…" : "Send note"}
         </Button>
         <p className="text-sm text-muted">
-          We use your details only to reply. See our{" "}
+          We reply within {siteConfig.responseTime}. We use your details only to
+          reply. See our{" "}
           <Link href="/privacy" className="text-ink underline underline-offset-2 hover:text-accent">
             Privacy Policy
           </Link>

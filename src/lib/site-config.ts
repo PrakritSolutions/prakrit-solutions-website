@@ -13,6 +13,7 @@ export const siteConfig = {
   whatsapp: "+91-9033519764",
   whatsappUrl: "https://wa.me/919033519764",
   hours: "Monday to Friday, 10 AM to 6 PM IST",
+  responseTime: "2 business days",
   bookingUrl: "https://calendly.com/mail-prakritsolutions/30min",
   location: "Surat, Gujarat, India",
 } as const;
@@ -24,7 +25,7 @@ export const founder = {
   name: "Vaibhav Jhaveri",
   title: "Founder",
   photo: "",
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/vaibhavjhaveri",
   bio: [
     "Prakrit Solutions is run by Vaibhav Jhaveri. Enquiries are read and answered personally, so the person you talk to first is the person accountable for the work.",
   ],

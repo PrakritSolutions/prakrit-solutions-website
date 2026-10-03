@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, CheckIcon } from "@/components/icons";
+import { siteConfig } from "@/lib/site-config";
 
 const serviceOptions = [
   "Mobile Application",
@@ -412,7 +413,8 @@ export function ContactForm() {
       </Button>
 
       <p className="text-pretty text-sm text-muted">
-        We use your details only to reply to your enquiry. See our{" "}
+        We reply within {siteConfig.responseTime}. We use your details only to
+        reply to your enquiry. See our{" "}
         <Link href="/privacy" className="text-ink underline underline-offset-2 hover:text-accent">
           Privacy Policy
         </Link>

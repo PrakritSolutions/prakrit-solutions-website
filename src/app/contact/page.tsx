@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/forms/contact-form";
 import { QuickContactForm } from "@/components/forms/quick-contact-form";
 import { ArrowRightIcon, ChatIcon, ClockIcon, MailIcon, PinIcon } from "@/components/icons";
+import { LocalHours } from "@/components/ui/local-hours";
 import { siteConfig } from "@/lib/site-config";
 import { contactFaq } from "@/lib/content/faq";
 import { pageMetadata } from "@/lib/metadata";
@@ -73,9 +74,12 @@ export default function ContactPage() {
                   <span className="sr-only"> (opens WhatsApp in a new tab)</span>
                 </a>
               </li>
-              <li className="flex items-center gap-2.5 text-[0.9375rem] text-ink">
-                <ClockIcon className="h-4 w-4 shrink-0 text-accent" />
-                {siteConfig.hours}
+              <li className="flex items-start gap-2.5 text-[0.9375rem] text-ink">
+                <ClockIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                <span>
+                  {siteConfig.hours}
+                  <LocalHours className="block text-sm text-muted" />
+                </span>
               </li>
               <li className="flex items-center gap-2.5 text-[0.9375rem] text-ink">
                 <PinIcon className="h-4 w-4 shrink-0 text-accent" />

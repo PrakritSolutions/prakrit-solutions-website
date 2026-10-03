@@ -19,7 +19,7 @@ export default function Home() {
       <ProcessSection />
       <WhyUsSection />
       <CaseStudiesTeaser />
-      <CtaSection />
+      <CtaSection bookCall />
     </>
   );
 }
