@@ -37,7 +37,7 @@ export default function Image() {
             maxWidth: 980,
           }}
         >
-          We build technology that solves real business problems.
+          Mobile apps, web platforms and AI automation for startups and growing businesses.
         </div>
         <div style={{ display: "flex", color: "#5d5f68", fontSize: 24 }}>
           {siteConfig.url.replace("https://", "")}

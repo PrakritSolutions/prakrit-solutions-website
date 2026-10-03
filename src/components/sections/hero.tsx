@@ -11,13 +11,13 @@ export function Hero() {
       <Container className="grid gap-16 pb-20 pt-14 md:pb-28 md:pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12">
         <div>
           <Eyebrow className="mb-6">Software · AI · Automation</Eyebrow>
-          <h1 className="text-balance text-[2.6rem] font-medium leading-[1.08] tracking-[-0.03em] text-ink sm:text-6xl lg:text-[3.5rem]">
-            We build digital products that move businesses forward.
+          <h1 className="text-balance text-[2.25rem] font-medium leading-[1.1] tracking-[-0.03em] text-ink sm:text-5xl lg:text-[3.1rem]">
+            Mobile apps, web platforms and AI automation for startups and
+            growing businesses.
           </h1>
           <p className="text-pretty mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
-            From mobile and web applications to AI-powered products and
-            intelligent automation, we help businesses turn ideas into
-            reliable software.
+            We design, build and maintain software end to end, from the first
+            version to ongoing releases.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button href="/contact" size="lg" icon={<ArrowRightIcon className="h-4 w-4" />}>
