@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/forms/contact-form";
+import { QuickContactForm } from "@/components/forms/quick-contact-form";
 import { ArrowRightIcon, ChatIcon, ClockIcon, MailIcon, PinIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
 import { contactFaq } from "@/lib/content/faq";
@@ -32,6 +33,12 @@ export default function ContactPage() {
           </Reveal>
 
           <div className="order-3 max-w-2xl lg:order-none lg:mt-12">
+            <QuickContactForm />
+            <p className="my-8 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.14em] text-muted">
+              <span aria-hidden="true" className="h-px flex-1 bg-line" />
+              Or share the full details
+              <span aria-hidden="true" className="h-px flex-1 bg-line" />
+            </p>
             <ContactForm />
           </div>
         </div>

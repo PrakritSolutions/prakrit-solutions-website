@@ -50,7 +50,7 @@ function submittedRows(payload: ContactPayload): [string, string][] {
 
 export function buildConfirmationEmail(payload: ContactPayload, config: ConfirmationConfig) {
   const rows = submittedRows(payload);
-  const intro = `Dear ${payload.name},`;
+  const intro = payload.name ? `Dear ${payload.name},` : "Hello,";
   const body = `Thank you for contacting ${config.name}. We have received your enquiry and will respond within one to two business days (${config.hours}).`;
   const followUp = "If you would like to add anything, simply reply to this email.";
 

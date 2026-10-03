@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "inverse";
+type Variant = "primary" | "secondary" | "ghost" | "inverse" | "inverse-outline";
 type Size = "md" | "lg";
 
 const base =
@@ -13,6 +13,8 @@ const variants: Record<Variant, string> = {
   secondary:
     "bg-transparent text-ink border border-line-strong hover:border-ink hover:-translate-y-0.5",
   ghost: "bg-transparent text-ink hover:text-accent",
+  "inverse-outline":
+    "bg-transparent text-paper border border-paper/35 hover:border-paper hover:-translate-y-0.5",
   inverse:
     "bg-paper text-ink hover:bg-accent hover:text-accent-contrast hover:-translate-y-0.5",
 };

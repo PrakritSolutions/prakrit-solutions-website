@@ -193,6 +193,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
       </section>
 
       <CtaSection
+        bookCall
         title="Have something like this in mind?"
         description="Tell us what you're building. We'll walk you through how we'd approach it."
       />

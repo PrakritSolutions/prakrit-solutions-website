@@ -44,7 +44,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function buildEmail(payload: ContactPayload, trackerUrl?: string) {
   const rows: [string, string][] = [
-    ["Name", payload.name],
+    ["Name", payload.name || "—"],
     ["Company", payload.company || "—"],
     ["Email", payload.email],
     ["Phone", payload.phone || "—"],
@@ -119,13 +119,13 @@ export async function POST(request: Request) {
     );
   }
 
-  const name = payload.name?.trim();
+  const name = payload.name?.trim() ?? "";
   const email = payload.email?.trim();
   const project = payload.project?.trim();
 
-  if (!name || !email || !project || !EMAIL_PATTERN.test(email)) {
+  if (!email || !project || !EMAIL_PATTERN.test(email)) {
     return NextResponse.json(
-      { error: "Name, a valid email, and a project description are required." },
+      { error: "A valid email and a short project description are required." },
       { status: 400 }
     );
   }
@@ -158,7 +158,7 @@ export async function POST(request: Request) {
 
   if (process.env.RESEND_API_KEY) {
     const { text, html } = buildEmail(full, process.env.SHEETS_URL);
-    const subject = `New project enquiry from ${full.name}${full.company ? ` (${full.company})` : ""}`;
+    const subject = `New project enquiry from ${full.name || full.email}${full.company ? ` (${full.company})` : ""}`;
 
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",

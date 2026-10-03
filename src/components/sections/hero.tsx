@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/badge";
 import { ArrowRightIcon } from "@/components/icons";
+import { siteConfig } from "@/lib/site-config";
 import { HeroGraphic } from "@/components/sections/hero-graphic";
 
 export function Hero() {
@@ -26,6 +27,19 @@ export function Hero() {
               Explore Our Services
             </Button>
           </div>
+          <p className="mt-5 text-[0.9375rem] text-muted">
+            Prefer to talk first?{" "}
+            <a
+              href={siteConfig.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-1.5 font-medium text-ink underline underline-offset-4 transition-colors hover:text-accent"
+            >
+              Book a 30-minute call
+              <ArrowRightIcon className="h-4 w-4 -rotate-45" />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          </p>
         </div>
 
         <HeroGraphic />
