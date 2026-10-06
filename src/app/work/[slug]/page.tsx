@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/sections/page-header";
 import { CtaSection } from "@/components/sections/cta-section";
+import { CaseStudyFlow } from "@/components/sections/case-study-flow";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { ArrowRightIcon } from "@/components/icons";
@@ -66,6 +67,8 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
           </dl>
         }
       />
+
+      {study.flow ? <CaseStudyFlow flow={study.flow} /> : null}
 
       <section className="border-b border-line-soft py-14 md:py-20">
         <Container>

@@ -6,6 +6,17 @@ export type CaseStudyComponent = {
   storeLink?: { label: string; href: string };
 };
 
+export type CaseFlowStep = {
+  who: string;
+  label: string;
+  detail: string;
+};
+
+export type CaseFlow = {
+  title: string;
+  steps: CaseFlowStep[];
+};
+
 export type CaseStudy = {
   slug: string;
   client: string;
@@ -22,6 +33,7 @@ export type CaseStudy = {
   components?: CaseStudyComponent[];
   technology: string[];
   outcome: string;
+  flow?: CaseFlow;
   storeLinks?: { label: string; href: string }[];
   placeholder?: boolean;
 };
@@ -40,6 +52,15 @@ export const caseStudies: CaseStudy[] = [
       "We rebuilt the apps in SwiftUI instead of patching the old Objective-C code, working against BookCargo's existing backend. Delivery ran in milestones, with TestFlight builds and rounds of client feedback, and the driver app was built as the second half of the same trip lifecycle.",
     solution:
       "Two apps that cover a trip from request to payment: a customer app for booking and tracking, and a driver app for accepting and completing trips. On top of the original scope we added in-app payments and real-time chat between customer and driver.",
+    flow: {
+      title: "One trip, two apps",
+      steps: [
+        { who: "Customer app", label: "Request", detail: "Book a vehicle with a fare estimate, now or scheduled." },
+        { who: "Driver app", label: "Accept", detail: "Nearby booking requests arrive in real time." },
+        { who: "Both apps", label: "Track", detail: "Live trip tracking, OTP-verified rides and in-app chat." },
+        { who: "Both apps", label: "Pay", detail: "In-app payments for the customer, earnings reports for the driver." },
+      ],
+    },
     scope:
       "iOS development of both apps, the customer app and the driver app. The apps run against BookCargo's existing backend.",
     componentsHeading: "Two apps, one trip.",
@@ -107,6 +128,15 @@ export const caseStudies: CaseStudy[] = [
       "We started with maintenance, working through bug fixes and small improvements, which gave us a deep understanding of both codebases. As the product's plans grew, the engagement became full-time development, with our team building new features on both platforms in step.",
     solution:
       "Continuous feature work and fixes across two native apps, so that iOS and Android stay consistent for buyers and sellers: listings and search, offers and purchase requests, memberships and payments, and in-app chat with moderation tools.",
+    flow: {
+      title: "One marketplace, two native apps",
+      steps: [
+        { who: "iOS and Android", label: "List", detail: "Create, edit and relist listings with photos." },
+        { who: "iOS and Android", label: "Discover", detail: "Search, categories and a near-me map." },
+        { who: "iOS and Android", label: "Offer", detail: "Offers, purchase requests and swap listings." },
+        { who: "iOS and Android", label: "Pay and chat", detail: "Memberships, in-app payments and moderated chat." },
+      ],
+    },
     scope:
       "iOS and Android app development and maintenance. The backend and website are handled separately.",
     componentsHeading: "Two apps, one marketplace.",
@@ -166,6 +196,15 @@ export const caseStudies: CaseStudy[] = [
       "We owned the iOS app end to end, from development and payments integration through to App Store releases, working directly against the client's requirements over roughly a year and a half. NFC table tags sit at the centre of the experience.",
     solution:
       "A native app that covers a whole meal: tap the table tag to open the menu and order, send requests to the server, then settle the bill, add a tip and split it between friends. Around that core sit restaurant discovery, table reservations, reviews and offers.",
+    flow: {
+      title: "One meal, one app",
+      steps: [
+        { who: "Diner", label: "Tap", detail: "Tap the NFC table tag to open the restaurant's menu." },
+        { who: "Diner", label: "Order", detail: "Order from the menu and follow the order live." },
+        { who: "Diner", label: "Ask", detail: "Call the waiter for anything extra." },
+        { who: "Diner", label: "Pay", detail: "Pay by card or Apple Pay, add a tip and split the bill." },
+      ],
+    },
     scope: "iOS app development, end to end.",
     componentsHeading: "What it does",
     components: [
