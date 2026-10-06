@@ -57,8 +57,7 @@ function buildEmail(payload: ContactPayload, trackerUrl?: string) {
   const text = [
     ...rows.map(([label, value]) => `${label}: ${value}`),
     "",
-    "Project:",
-    payload.project,
+    ...(payload.project ? ["Project:", payload.project] : []),
     ...(payload.message ? ["", "Additional information:", payload.message] : []),
     ...(trackerUrl ? ["", `Open enquiry tracker: ${trackerUrl}`] : []),
   ].join("\n");
@@ -77,8 +76,12 @@ function buildEmail(payload: ContactPayload, trackerUrl?: string) {
           )
           .join("")}
       </table>
-      <p style="color: #5d5f68; margin-bottom: 4px;">Project</p>
-      <p style="white-space: pre-wrap;">${escapeHtml(payload.project)}</p>
+      ${
+        payload.project
+          ? `<p style="color: #5d5f68; margin-bottom: 4px;">Project</p>
+             <p style="white-space: pre-wrap;">${escapeHtml(payload.project)}</p>`
+          : ""
+      }
       ${
         payload.message
           ? `<p style="color: #5d5f68; margin-bottom: 4px;">Additional information</p>
@@ -121,11 +124,19 @@ export async function POST(request: Request) {
 
   const name = payload.name?.trim() ?? "";
   const email = payload.email?.trim();
-  const project = payload.project?.trim();
+  const phone = payload.phone?.trim() ?? "";
+  const project = payload.project?.trim() ?? "";
+  const services = Array.isArray(payload.services) ? payload.services : [];
 
-  if (!email || !project || !EMAIL_PATTERN.test(email)) {
+  if (
+    !name ||
+    !email ||
+    !EMAIL_PATTERN.test(email) ||
+    phone.replace(/\D/g, "").length < 7 ||
+    services.length === 0
+  ) {
     return NextResponse.json(
-      { error: "A valid email and a short project description are required." },
+      { error: "Name, a valid email, a phone number and at least one service are required." },
       { status: 400 }
     );
   }
@@ -134,9 +145,9 @@ export async function POST(request: Request) {
     name,
     company: payload.company?.trim() ?? "",
     email,
-    phone: payload.phone?.trim() ?? "",
+    phone,
     project,
-    services: payload.services ?? [],
+    services,
     budget: payload.budget ?? "",
     timeline: payload.timeline ?? "",
     message: payload.message?.trim() ?? "",

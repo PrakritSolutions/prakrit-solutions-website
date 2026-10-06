@@ -65,8 +65,7 @@ export function buildConfirmationEmail(payload: ContactPayload, config: Confirma
     "YOUR SUBMISSION",
     ...rows.map(([label, value]) => `${label}: ${value}`),
     "",
-    "Project:",
-    payload.project,
+    ...(payload.project ? ["Project:", payload.project] : []),
     ...(payload.message ? ["", "Additional information:", payload.message] : []),
     "",
     "Kind regards,",
@@ -124,7 +123,7 @@ export function buildConfirmationEmail(payload: ContactPayload, config: Confirma
                 <div style="background: ${PAPER}; border-radius: 10px; padding: 18px 22px;">
                   <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: ${INK}; padding-bottom: 4px;">Your submission</div>
                   <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${detailRows}</table>
-                  ${textBlock("Project", payload.project)}
+                  ${payload.project ? textBlock("Project", payload.project) : ""}
                   ${payload.message ? textBlock("Additional information", payload.message) : ""}
                 </div>
                 <p style="margin: 24px 0 0; font-size: 15px; line-height: 1.6; color: ${INK};">Kind regards,<br />${escapeHtml(config.name)}</p>

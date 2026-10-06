@@ -21,7 +21,6 @@ const serviceOptions = [
   "Automation",
   "Custom Software",
   "Backend & APIs",
-  "Not sure yet",
 ];
 
 type Currency = "INR" | "USD";
@@ -78,18 +77,28 @@ function readAttribution(): Record<string, string> | null {
 }
 
 type Status = "idle" | "submitting" | "success" | "error";
-type RequiredField = "name" | "email" | "project";
+type RequiredField = "name" | "email" | "phone" | "services";
 type FieldErrors = Partial<Record<RequiredField, string>>;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function validate(values: Record<RequiredField, string>): FieldErrors {
+const requiredOrder: RequiredField[] = ["name", "email", "phone", "services"];
+
+function validate(values: {
+  name: string;
+  email: string;
+  phone: string;
+  services: string[];
+}): FieldErrors {
   const errors: FieldErrors = {};
   if (!values.name) errors.name = "Enter your name.";
   if (!values.email) errors.email = "Enter your email address.";
   else if (!EMAIL_PATTERN.test(values.email))
     errors.email = "Enter a valid email address, such as name@company.com.";
-  if (!values.project) errors.project = "Describe what you want to build.";
+  if (!values.phone) errors.phone = "Enter your phone number.";
+  else if (values.phone.replace(/\D/g, "").length < 7)
+    errors.phone = "Enter a valid phone number, including the country code if outside India.";
+  if (values.services.length === 0) errors.services = "Select at least one service.";
   return errors;
 }
 
@@ -106,6 +115,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [serverError, setServerError] = useState<string | null>(null);
   const [pendingCurrency, setPendingCurrency] = useState<Currency | null>(null);
+  const [showExtras, setShowExtras] = useState(false);
   const successRef = useRef<HTMLHeadingElement>(null);
   const formId = useId();
 
@@ -130,6 +140,7 @@ export function ContactForm() {
     setServices((prev) =>
       prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service]
     );
+    setErrors((prev) => ({ ...prev, services: undefined }));
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -147,16 +158,17 @@ export function ContactForm() {
       services,
       budget,
       timeline: String(data.get("timeline") || ""),
-      message: String(data.get("message") || "").trim(),
       website: String(data.get("website") || ""),
       source: readAttribution(),
     };
 
     const fieldErrors = validate(payload);
     setErrors(fieldErrors);
-    const firstInvalid = (["name", "email", "project"] as const).find((key) => fieldErrors[key]);
+    const firstInvalid = requiredOrder.find((key) => fieldErrors[key]);
     if (firstInvalid) {
-      form.querySelector<HTMLElement>(`[name="${firstInvalid}"]`)?.focus();
+      const target =
+        firstInvalid === "services" ? "[data-service-chip]" : `[name="${firstInvalid}"]`;
+      form.querySelector<HTMLElement>(target)?.focus();
       return;
     }
 
@@ -183,6 +195,7 @@ export function ContactForm() {
       form.reset();
       setServices([]);
       setBudget("");
+      setShowExtras(false);
     } catch {
       setStatus("error");
     }
@@ -248,37 +261,33 @@ export function ContactForm() {
             className={inputClasses}
           />
         </Field>
-        <Field label="Phone" htmlFor={`${formId}-phone`} optional>
+        <Field label="Phone" htmlFor={`${formId}-phone`} required error={errors.phone}>
           <input
             id={`${formId}-phone`}
             name="phone"
             type="tel"
             autoComplete="tel"
+            required
+            {...invalidProps(`${formId}-phone`, errors.phone)}
             className={inputClasses}
           />
         </Field>
       </div>
 
-      <Field
-        label="What do you want to build?"
-        htmlFor={`${formId}-project`}
-        required
-        error={errors.project}
-      >
+      <Field label="What do you want to build?" htmlFor={`${formId}-project`} optional>
         <textarea
           id={`${formId}-project`}
           name="project"
           rows={3}
-          required
-          {...invalidProps(`${formId}-project`, errors.project)}
           placeholder="A short description is enough to start."
           className={`${inputClasses} resize-y`}
         />
       </Field>
 
-      <fieldset>
+      <fieldset aria-describedby={errors.services ? `${formId}-services-error` : undefined}>
         <legend className="mb-3 text-sm font-medium text-ink">
-          Services <span className="font-normal text-muted">(select any that apply)</span>
+          Services <span className="text-accent">*</span>{" "}
+          <span className="font-normal text-muted">(select at least one)</span>
         </legend>
         <div className="flex flex-wrap gap-2">
           {serviceOptions.map((service) => {
@@ -287,6 +296,7 @@ export function ContactForm() {
               <button
                 type="button"
                 key={service}
+                data-service-chip
                 aria-pressed={active}
                 onClick={() => toggleService(service)}
                 className={`rounded-full border px-3.5 py-2.5 text-sm transition-colors sm:py-1.5 ${
@@ -300,9 +310,35 @@ export function ContactForm() {
             );
           })}
         </div>
+        {errors.services ? (
+          <p id={`${formId}-services-error`} className="mt-2 text-sm text-red-600">
+            {errors.services}
+          </p>
+        ) : null}
       </fieldset>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div>
+        <button
+          type="button"
+          aria-expanded={showExtras}
+          aria-controls={`${formId}-extras`}
+          onClick={() => setShowExtras((open) => !open)}
+          className="-my-1 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+        >
+          <ArrowRightIcon
+            className={`h-4 w-4 transition-transform ${showExtras ? "rotate-90" : ""}`}
+          />
+          {showExtras ? "Hide budget and timeline" : "Add budget and timeline"}
+          <span className="font-normal text-muted">(optional)</span>
+        </button>
+      </div>
+
+      {/* Hidden, not unmounted, so a chosen budget or timeline survives a collapse. */}
+      <div
+        id={`${formId}-extras`}
+        hidden={!showExtras}
+        className="grid gap-6 sm:grid-cols-2"
+      >
         <Field
           label="Budget"
           htmlFor={`${formId}-budget`}
@@ -384,16 +420,6 @@ export function ContactForm() {
           </select>
         </Field>
       </div>
-
-      <Field label="Additional information" htmlFor={`${formId}-message`}>
-        <textarea
-          id={`${formId}-message`}
-          name="message"
-          rows={3}
-          placeholder="Anything else that would help us understand the project."
-          className={`${inputClasses} resize-y`}
-        />
-      </Field>
 
       {status === "error" ? (
         <p role="alert" className="text-sm text-red-600">

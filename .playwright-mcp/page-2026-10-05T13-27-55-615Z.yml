@@ -1,0 +1,351 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Prakrit Solutions" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary" [ref=e6]:
+        - link "Services" [ref=e7] [cursor=pointer]:
+          - /url: /services
+        - link "Solutions" [ref=e8] [cursor=pointer]:
+          - /url: /solutions
+        - link "Work" [ref=e9] [cursor=pointer]:
+          - /url: /work
+        - link "About" [ref=e10] [cursor=pointer]:
+          - /url: /about
+      - link "Start a Project" [ref=e12] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=e13]:
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]: Software · AI · Automation
+        - heading "Mobile apps, web platforms and AI automation for startups and growing businesses." [level=1] [ref=e19]
+        - paragraph [ref=e20]: We design, build and maintain software end to end, from the first version to ongoing releases.
+        - generic [ref=e21]:
+          - link "Start a Project" [ref=e22] [cursor=pointer]:
+            - /url: /contact
+          - link "Explore Our Services" [ref=e25] [cursor=pointer]:
+            - /url: /services
+        - paragraph [ref=e26]:
+          - text: Prefer to talk first?
+          - link "Book a 30-minute call (opens in a new tab)" [ref=e27] [cursor=pointer]:
+            - /url: https://calendly.com/mail-prakritsolutions/30min
+            - text: Book a 30-minute call
+            - generic [ref=e30]: (opens in a new tab)
+      - generic [ref=e31]:
+        - generic [ref=e36]: Overview
+        - generic [ref=e59]: AI Assistant
+    - generic [ref=e67]:
+      - paragraph [ref=e69]: From product idea to production-ready software
+      - list [ref=e70]:
+        - listitem [ref=e71]:
+          - generic [ref=e74]: Mobile
+        - listitem [ref=e75]:
+          - generic [ref=e79]: Web
+        - listitem [ref=e80]:
+          - generic [ref=e84]: AI
+        - listitem [ref=e85]:
+          - generic [ref=e91]: Automation
+        - listitem [ref=e92]:
+          - generic [ref=e98]: Backend
+        - listitem [ref=e99]:
+          - generic [ref=e102]: Cloud
+    - generic [ref=e104]:
+      - generic [ref=e105]:
+        - heading "Chances are, your project looks like one of these." [level=2] [ref=e106]
+        - paragraph [ref=e107]: A representative range of the products we design and build — not a limit on what we can take on.
+      - list [ref=e108]:
+        - listitem [ref=e109]:
+          - heading "SaaS Platforms" [level=3] [ref=e110]
+          - paragraph [ref=e111]: Multi-tenant products built to onboard your first customer and your thousandth.
+        - listitem [ref=e112]:
+          - heading "AI Assistants" [level=3] [ref=e113]
+          - paragraph [ref=e114]: Scoped, task-aware assistants embedded in a real workflow.
+        - listitem [ref=e115]:
+          - heading "Customer Portals" [level=3] [ref=e116]
+          - paragraph [ref=e117]: Self-service account, billing and support in one place.
+        - listitem [ref=e118]:
+          - heading "Admin Dashboards" [level=3] [ref=e119]
+          - paragraph [ref=e120]: Internal visibility into the metrics that actually run the business.
+        - listitem [ref=e121]:
+          - heading "Automation Platforms" [level=3] [ref=e122]
+          - paragraph [ref=e123]: Purpose-built tooling that replaces a spreadsheet-and-email process.
+        - listitem [ref=e124]:
+          - heading "E-commerce Systems" [level=3] [ref=e125]
+          - paragraph [ref=e126]: Storefronts, checkout and inventory tuned to how you actually sell.
+        - listitem [ref=e127]:
+          - heading "Booking Platforms" [level=3] [ref=e128]
+          - paragraph [ref=e129]: Scheduling, availability and payments without the back-and-forth.
+        - listitem [ref=e130]:
+          - heading "CRM Integrations" [level=3] [ref=e131]
+          - paragraph [ref=e132]: Your customer data, connected across the tools your team already uses.
+        - listitem [ref=e133]:
+          - heading "Internal Business Tools" [level=3] [ref=e134]
+          - paragraph [ref=e135]: The operational software that never makes it to a product roadmap, but should.
+        - listitem [ref=e136]:
+          - heading "Data-Driven Applications" [level=3] [ref=e137]
+          - paragraph [ref=e138]: Products where the insight is the feature, not an afterthought.
+    - generic [ref=e140]:
+      - generic [ref=e141]:
+        - generic [ref=e142]: AI Solutions
+        - heading "AI should solve a problem, not just exist in a product." [level=2] [ref=e144]
+        - paragraph [ref=e145]: We treat AI as a practical engineering capability — a way to automate judgment, surface knowledge, and remove repetitive work, wired directly into the software you already run.
+        - list [ref=e146]:
+          - listitem [ref=e147]:
+            - generic [ref=e150]:
+              - paragraph [ref=e151]: AI application development
+              - paragraph [ref=e152]: Products built around a model from the ground up, not bolted on after launch.
+          - listitem [ref=e153]:
+            - generic [ref=e156]:
+              - paragraph [ref=e157]: LLM integration
+              - paragraph [ref=e158]: Bringing large language models into existing software you already run.
+          - listitem [ref=e159]:
+            - generic [ref=e162]:
+              - paragraph [ref=e163]: AI assistants & agents
+              - paragraph [ref=e164]: Conversational and task-executing assistants scoped to a real workflow.
+          - listitem [ref=e165]:
+            - generic [ref=e168]:
+              - paragraph [ref=e169]: Document intelligence
+              - paragraph [ref=e170]: Extraction, classification and summarization over contracts, forms and records.
+          - listitem [ref=e171]:
+            - generic [ref=e174]:
+              - paragraph [ref=e175]: Knowledge systems & AI search
+              - paragraph [ref=e176]: Retrieval over your own data, so answers are grounded in your business.
+          - listitem [ref=e177]:
+            - generic [ref=e180]:
+              - paragraph [ref=e181]: Workflow intelligence
+              - paragraph [ref=e182]: AI steps embedded inside a pipeline, deciding rather than just generating.
+        - link "Explore AI Solutions" [ref=e183] [cursor=pointer]:
+          - /url: /solutions#ai
+      - generic [ref=e186]:
+        - paragraph [ref=e187]: Example pipeline
+        - generic [ref=e188]:
+          - generic [ref=e189]: Incoming document
+          - generic [ref=e194]: AI extraction & classification
+          - generic [ref=e200]: Structured record in your system
+    - generic [ref=e205]:
+      - generic [ref=e206]:
+        - generic [ref=e207]: Automation
+        - heading "Turn repetitive work into reliable software workflows." [level=2] [ref=e209]
+        - paragraph [ref=e210]: Every automation we build follows the same shape — a trigger, a decision, an integration, and an action your team no longer has to do by hand.
+      - generic [ref=e213]:
+        - generic [ref=e215]:
+          - generic [ref=e216]:
+            - text: "01"
+            - heading "Trigger" [level=3] [ref=e217]
+          - paragraph [ref=e218]: A new lead, a form submission, a scheduled time, a status change.
+        - generic [ref=e223]:
+          - generic [ref=e224]:
+            - text: "02"
+            - heading "Logic / AI" [level=3] [ref=e225]
+          - paragraph [ref=e226]: Rules, branching, or a model deciding what should happen next.
+        - generic [ref=e231]:
+          - generic [ref=e232]:
+            - text: "03"
+            - heading "Integration" [level=3] [ref=e233]
+          - paragraph [ref=e234]: Your CRM, inbox, spreadsheet, database or internal tool, connected.
+        - generic [ref=e239]:
+          - generic [ref=e240]:
+            - text: "04"
+            - heading "Action" [level=3] [ref=e241]
+          - paragraph [ref=e242]: A record is created, a message is sent, a document is generated.
+        - generic [ref=e247]:
+          - generic [ref=e248]:
+            - text: "05"
+            - heading "Result" [level=3] [ref=e249]
+          - paragraph [ref=e250]: Work that used to take an afternoon happens before anyone notices.
+      - generic [ref=e251]:
+        - generic [ref=e252]:
+          - generic [ref=e253]: Lead capture and routing
+          - generic [ref=e254]: CRM synchronization
+          - generic [ref=e255]: Reporting and dashboards
+          - generic [ref=e256]: Document processing
+          - generic [ref=e257]: Approval workflows
+          - generic [ref=e258]: Internal operations tooling
+        - link "Explore Automation" [ref=e259] [cursor=pointer]:
+          - /url: /solutions#automation
+    - generic [ref=e263]:
+      - generic [ref=e264]:
+        - heading "A process built to reduce risk, not paperwork." [level=2] [ref=e265]
+        - paragraph [ref=e266]: Six stages, applied with the weight each project actually needs — a two-week build and a six-month platform don't get the same ceremony.
+      - generic [ref=e267]:
+        - generic [ref=e268]:
+          - generic [ref=e269]: "01"
+          - heading "Understand" [level=3] [ref=e270]
+          - paragraph [ref=e271]: We start with your business, not a feature list — the users, the goal, and the constraint that matters most.
+        - generic [ref=e272]:
+          - generic [ref=e273]: "02"
+          - heading "Plan" [level=3] [ref=e274]
+          - paragraph [ref=e275]: Scope, architecture and technical direction, decided before code — so later changes are cheap, not painful.
+        - generic [ref=e276]:
+          - generic [ref=e277]: "03"
+          - heading "Design" [level=3] [ref=e278]
+          - paragraph [ref=e279]: A clear, usable product experience, shaped around how your users actually work.
+        - generic [ref=e280]:
+          - generic [ref=e281]: "04"
+          - heading "Build" [level=3] [ref=e282]
+          - paragraph [ref=e283]: Development in focused, reviewable increments, using technology chosen for the job.
+        - generic [ref=e284]:
+          - generic [ref=e285]: "05"
+          - heading "Validate" [level=3] [ref=e286]
+          - paragraph [ref=e287]: Functionality, quality, security and performance, tested before your users find the gaps.
+        - generic [ref=e288]:
+          - generic [ref=e289]: "06"
+          - heading "Launch & Improve" [level=3] [ref=e290]
+          - paragraph [ref=e291]: Deployed, monitored, and improved on evidence — the relationship doesn't end at launch.
+    - generic [ref=e293]:
+      - generic [ref=e294]:
+        - heading "Software agencies are common. A team that thinks like your business isn't." [level=2] [ref=e295]
+        - paragraph [ref=e296]: We measure our work by whether it solved your problem — not by whether it matched the original spec.
+      - generic [ref=e297]:
+        - generic [ref=e298]:
+          - heading "Business-first thinking" [level=3] [ref=e299]
+          - paragraph [ref=e300]: We solve the underlying problem, not just the requested feature — the fastest way to end up rebuilding is to skip this step.
+        - generic [ref=e301]:
+          - heading "End-to-end capability" [level=3] [ref=e302]
+          - paragraph [ref=e303]: From product thinking and architecture through development and launch, under one team that already has context.
+        - generic [ref=e304]:
+          - heading "Modern engineering" [level=3] [ref=e305]
+          - paragraph [ref=e306]: We use modern technologies, including AI, where they provide genuine value — not because they're trending.
+        - generic [ref=e307]:
+          - heading "Flexible engagement" [level=3] [ref=e308]
+          - paragraph [ref=e309]: We work with startups shipping a first version and established teams extending a product already in production.
+        - generic [ref=e310]:
+          - heading "Long-term partnership" [level=3] [ref=e311]
+          - paragraph [ref=e312]: Launch is a milestone, not an ending — we keep improving the product as your business changes.
+    - generic [ref=e314]:
+      - generic [ref=e315]:
+        - heading "A closer look at how we build." [level=2] [ref=e317]
+        - link "View All Work" [ref=e319] [cursor=pointer]:
+          - /url: /work
+      - region "Selected projects" [ref=e322]:
+        - generic [ref=e323]:
+          - paragraph [ref=e325]: Mobile Application
+          - heading "Two native iOS apps for an on-demand goods transport platform" [level=3] [ref=e326]
+          - paragraph [ref=e327]: BookCargo
+          - paragraph [ref=e328]: An unfinished Objective-C rewrite, rebuilt in SwiftUI as a customer app and a driver app on the App Store.
+          - generic [ref=e329]:
+            - generic [ref=e330]: Swift
+            - generic [ref=e331]: SwiftUI
+            - generic [ref=e332]: Google Maps & Places
+            - generic [ref=e333]: Firebase
+            - generic [ref=e334]: +3 more
+          - link "Read the case study" [ref=e335] [cursor=pointer]:
+            - /url: /work/bookcargo
+        - generic [ref=e338]:
+          - generic [ref=e339]:
+            - paragraph [ref=e340]: Mobile Application
+            - generic [ref=e341]: In development
+          - heading "Ongoing development of a marketplace's iOS and Android apps" [level=3] [ref=e342]
+          - paragraph [ref=e343]: Dealerwerx
+          - paragraph [ref=e344]: A maintenance engagement that grew into full-time development, keeping the native iOS and Android apps of a buy, sell and swap marketplace moving forward together.
+          - generic [ref=e345]:
+            - generic [ref=e346]: Swift
+            - generic [ref=e347]: Java
+            - generic [ref=e348]: Firebase
+            - generic [ref=e349]: Google Maps & Places
+            - generic [ref=e350]: +3 more
+          - link "Read the case study" [ref=e351] [cursor=pointer]:
+            - /url: /work/dealerwerx
+        - generic [ref=e354]:
+          - paragraph [ref=e356]: Mobile Application
+          - heading "MyO (formerly nuBottle)" [level=3] [ref=e357]
+          - paragraph [ref=e358]: Restaurant-technology client
+          - paragraph [ref=e359]: "A native iOS dining app built around NFC: diners tap a table tag to open the menu, order, call the waiter and pay, all from their phone."
+          - generic [ref=e360]:
+            - generic [ref=e361]: Swift
+            - generic [ref=e362]: NFC
+            - generic [ref=e363]: Stripe & Apple Pay
+            - generic [ref=e364]: Mapbox
+            - generic [ref=e365]: +2 more
+          - link "Read the case study" [ref=e366] [cursor=pointer]:
+            - /url: /work/myo
+    - generic [ref=e371]:
+      - heading "Have an idea? Let's build it." [level=2] [ref=e372]
+      - paragraph [ref=e373]: Tell us what you're trying to solve. We'll tell you honestly whether we're the right team to build it.
+      - generic [ref=e374]:
+        - link "Start a Project" [ref=e375] [cursor=pointer]:
+          - /url: /contact
+        - link "Book a 30-minute call (opens in a new tab)" [ref=e378] [cursor=pointer]:
+          - /url: https://calendly.com/mail-prakritsolutions/30min
+          - text: Book a 30-minute call
+          - generic [ref=e379]: (opens in a new tab)
+  - contentinfo [ref=e382]:
+    - generic [ref=e383]:
+      - generic [ref=e384]:
+        - generic [ref=e385]:
+          - generic [ref=e386]: Prakrit Solutions
+          - paragraph [ref=e387]: We build mobile apps, web products, AI systems and automation that solve real business problems.
+          - list [ref=e388]:
+            - listitem [ref=e389]:
+              - link "hello@prakritsolutions.in" [ref=e390] [cursor=pointer]:
+                - /url: mailto:hello@prakritsolutions.in
+            - listitem [ref=e394]:
+              - link "WhatsApp +91-9033519764 (opens WhatsApp in a new tab)" [ref=e395] [cursor=pointer]:
+                - /url: https://wa.me/919033519764
+                - text: WhatsApp +91-9033519764
+                - generic [ref=e399]: (opens WhatsApp in a new tab)
+            - listitem [ref=e400]: Surat, Gujarat, India
+        - generic [ref=e404]:
+          - heading "Services" [level=2] [ref=e405]
+          - list [ref=e406]:
+            - listitem [ref=e407]:
+              - link "Mobile Applications" [ref=e408] [cursor=pointer]:
+                - /url: /services#mobile
+            - listitem [ref=e409]:
+              - link "Web Applications" [ref=e410] [cursor=pointer]:
+                - /url: /services#web
+            - listitem [ref=e411]:
+              - link "Custom Software" [ref=e412] [cursor=pointer]:
+                - /url: /services#custom-software
+            - listitem [ref=e413]:
+              - link "Backend & APIs" [ref=e414] [cursor=pointer]:
+                - /url: /services#backend
+        - generic [ref=e415]:
+          - heading "Solutions" [level=2] [ref=e416]
+          - list [ref=e417]:
+            - listitem [ref=e418]:
+              - link "AI Solutions" [ref=e419] [cursor=pointer]:
+                - /url: /solutions#ai
+            - listitem [ref=e420]:
+              - link "Automation" [ref=e421] [cursor=pointer]:
+                - /url: /solutions#automation
+        - generic [ref=e422]:
+          - heading "Company" [level=2] [ref=e423]
+          - list [ref=e424]:
+            - listitem [ref=e425]:
+              - link "About" [ref=e426] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e427]:
+              - link "Work" [ref=e428] [cursor=pointer]:
+                - /url: /work
+            - listitem [ref=e429]:
+              - link "Contact" [ref=e430] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e431]:
+          - heading "Legal" [level=2] [ref=e432]
+          - list [ref=e433]:
+            - listitem [ref=e434]:
+              - link "Privacy Policy" [ref=e435] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e436]:
+              - link "Terms of Service" [ref=e437] [cursor=pointer]:
+                - /url: /terms
+      - generic [ref=e438]:
+        - paragraph [ref=e439]: © 2026 Prakrit Solutions. All rights reserved.
+        - list [ref=e441]:
+          - listitem [ref=e442]:
+            - link "LinkedIn (opens in a new tab)" [ref=e443] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/prakritsolutions/
+          - listitem [ref=e448]:
+            - link "Instagram (opens in a new tab)" [ref=e449] [cursor=pointer]:
+              - /url: https://www.instagram.com/prakritsolutions/
+          - listitem [ref=e455]:
+            - link "Facebook (opens in a new tab)" [ref=e456] [cursor=pointer]:
+              - /url: https://www.facebook.com/prakritsolutions/
+          - listitem [ref=e460]:
+            - link "GitHub (opens in a new tab)" [ref=e461] [cursor=pointer]:
+              - /url: https://github.com/PrakritSolutions
+  - button "Open Next.js Dev Tools" [ref=e470] [cursor=pointer]
+  - alert [ref=e474]
