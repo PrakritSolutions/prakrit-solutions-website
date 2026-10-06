@@ -20,7 +20,7 @@ const capabilities = [
 export function CapabilityStrip() {
   return (
     <section className="border-b border-line-soft bg-paper-dim/50">
-      <div className="mx-auto max-w-[1280px] px-6 py-10 md:px-10 md:py-16">
+      <div className="mx-auto max-w-[var(--container-content)] px-[var(--gutter)] py-10 md:py-16">
         <Reveal>
           <p className="text-center font-mono text-xs uppercase tracking-[0.14em] text-muted">
             From product idea to production-ready software

@@ -63,7 +63,8 @@
   --font-sans: var(--font-geist);
   --font-mono: var(--font-mono-technical);
 
-  --container-content: 1280px;
+  --container-content: 1920px;
+  --gutter: clamp(1.5rem, 4vw, 4.5rem);
 }
 
 @layer base {
