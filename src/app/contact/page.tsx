@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Start a project with Prakrit Solutions — tell us what you want to build and we'll reply personally within a couple of business days.",
+    "Start a project with Prakrit Solutions — tell us what you want to build and we'll reply personally in up to 2 business days.",
   path: "/contact",
 });
 

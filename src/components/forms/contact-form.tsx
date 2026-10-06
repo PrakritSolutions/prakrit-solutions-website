@@ -212,7 +212,7 @@ export function ContactForm() {
         </h3>
         <p className="text-pretty text-muted">
           Thanks for reaching out — we read every enquiry personally and
-          usually reply within a couple of business days.
+          reply in {siteConfig.responseTime}.
         </p>
         <Button variant="secondary" onClick={() => setStatus("idle")}>
           Send another message
@@ -439,7 +439,7 @@ export function ContactForm() {
       </Button>
 
       <p className="text-pretty text-sm text-muted">
-        We reply within {siteConfig.responseTime}. We use your details only to
+        We reply in {siteConfig.responseTime}. We use your details only to
         reply to your enquiry. See our{" "}
         <Link href="/privacy" className="text-ink underline underline-offset-2 hover:text-accent">
           Privacy Policy
