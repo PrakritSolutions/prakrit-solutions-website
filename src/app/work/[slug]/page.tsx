@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/sections/page-header";
 import { CtaSection } from "@/components/sections/cta-section";
 import { CaseStudyFlow } from "@/components/sections/case-study-flow";
+import { ScreenStrip } from "@/components/sections/screen-strip";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { ArrowRightIcon } from "@/components/icons";
@@ -70,6 +71,21 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
 
       {study.flow ? <CaseStudyFlow flow={study.flow} /> : null}
 
+      {study.screens?.length ? (
+        <section className="border-b border-line-soft py-10 md:py-14">
+          <Container>
+            <h2 className="mb-6 font-mono text-xs uppercase tracking-[0.14em] text-accent">
+              From the App Store
+            </h2>
+            <ScreenStrip
+              screens={study.screens}
+              label={`${study.client} app screens`}
+              className="md:max-w-4xl"
+            />
+          </Container>
+        </section>
+      ) : null}
+
       <section className="border-b border-line-soft py-14 md:py-20">
         <Container>
           <div className="space-y-12">
@@ -113,6 +129,13 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">
                     {component.description}
                   </p>
+                  {component.screens?.length ? (
+                    <ScreenStrip
+                      screens={component.screens}
+                      label={`${component.name} screens`}
+                      className="mt-6"
+                    />
+                  ) : null}
                   <ul className="mt-6 space-y-2.5 border-t border-line-soft pt-6">
                     {component.highlights.map((highlight) => (
                       <li

@@ -1,8 +1,14 @@
+export type CaseScreen = {
+  src: string;
+  alt: string;
+};
+
 export type CaseStudyComponent = {
   name: string;
   audience: string;
   description: string;
   highlights: string[];
+  screens?: CaseScreen[];
   storeLink?: { label: string; href: string };
 };
 
@@ -34,6 +40,7 @@ export type CaseStudy = {
   technology: string[];
   outcome: string;
   flow?: CaseFlow;
+  screens?: CaseScreen[];
   storeLinks?: { label: string; href: string }[];
   placeholder?: boolean;
 };
@@ -68,6 +75,12 @@ export const caseStudies: CaseStudy[] = [
       {
         name: "BookCargo, the customer app",
         audience: "For people and businesses booking a vehicle",
+        screens: [
+          { src: "/work/bookcargo/pickup-drop.jpg", alt: "BookCargo customer app: choosing pickup and drop locations on a map" },
+          { src: "/work/bookcargo/fare-estimate.jpg", alt: "BookCargo customer app: fare estimate for a Tata Ace before booking" },
+          { src: "/work/bookcargo/start-otp.jpg", alt: "BookCargo customer app: trip details with the driver and a start OTP" },
+          { src: "/work/bookcargo/payments.jpg", alt: "BookCargo customer app: payment methods including cash, wallet and cards" },
+        ],
         storeLink: {
           label: "View on the App Store",
           href: "https://apps.apple.com/in/app/bookcargo-to-transport-goods/id1532396613",
@@ -86,6 +99,12 @@ export const caseStudies: CaseStudy[] = [
       {
         name: "BookCargo Pilot, the driver app",
         audience: "For registered BookCargo drivers",
+        screens: [
+          { src: "/work/bookcargo-pilot/go-online.jpg", alt: "BookCargo Pilot driver app: going online on the map" },
+          { src: "/work/bookcargo-pilot/accept-ride.jpg", alt: "BookCargo Pilot driver app: a ride request with pickup, distance, estimated fare and an Accept button" },
+          { src: "/work/bookcargo-pilot/trip-otp.jpg", alt: "BookCargo Pilot driver app: entering the OTP to begin a trip" },
+          { src: "/work/bookcargo-pilot/earnings.jpg", alt: "BookCargo Pilot driver app: trip summary with earnings for each trip" },
+        ],
         storeLink: {
           label: "View on the App Store",
           href: "https://apps.apple.com/in/app/bookcargo-pilot-for-drivers/id1532396673",
@@ -205,6 +224,12 @@ export const caseStudies: CaseStudy[] = [
         { who: "Diner", label: "Pay", detail: "Pay by card or Apple Pay, add a tip and split the bill." },
       ],
     },
+    screens: [
+      { src: "/work/myo/scan-nfc.jpg", alt: "MyO app home screen with a Scan NFC Tag button" },
+      { src: "/work/myo/venues.jpg", alt: "MyO app: searchable list of venues" },
+      { src: "/work/myo/menu.jpg", alt: "MyO app: a venue's cocktail menu with Wallet, Cart and Call Waiter buttons" },
+      { src: "/work/myo/item.jpg", alt: "MyO app: item detail with quantity and an add-to-cart button" },
+    ],
     scope: "iOS app development, end to end.",
     componentsHeading: "What it does",
     components: [
