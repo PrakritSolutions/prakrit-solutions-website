@@ -161,11 +161,6 @@ body {
   }
 }
 
-[data-offscreen="true"],
-[data-offscreen="true"] * {
-  animation-play-state: paused !important;
-}
-
 .text-balance {
   text-wrap: balance;
 }
