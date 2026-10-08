@@ -41,6 +41,8 @@ export type CaseStudy = {
   outcome: string;
   flow?: CaseFlow;
   screens?: CaseScreen[];
+  // Up to three screen images shown cropped at the top of the card on Home and Work.
+  cardThumbs?: string[];
   storeLinks?: { label: string; href: string }[];
   placeholder?: boolean;
 };
@@ -48,6 +50,11 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "bookcargo",
+    cardThumbs: [
+      "/work/bookcargo/pickup-drop.jpg",
+      "/work/bookcargo/fare-estimate.jpg",
+      "/work/bookcargo-pilot/accept-ride.jpg",
+    ],
     client: "BookCargo",
     category: "Mobile Application",
     title: "Two native iOS apps for an on-demand goods transport platform",
@@ -203,6 +210,11 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "myo",
+    cardThumbs: [
+      "/work/myo/venues.jpg",
+      "/work/myo/menu.jpg",
+      "/work/myo/item.jpg",
+    ],
     client: "Restaurant-technology client",
     category: "Mobile Application",
     title: "MyO (formerly nuBottle)",

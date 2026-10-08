@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { Pill } from "@/components/ui/badge";
@@ -5,6 +6,51 @@ import { ArrowRightIcon } from "@/components/icons";
 import type { CaseStudy } from "@/lib/content/case-studies";
 
 const MAX_TECH_TAGS = 4;
+
+// A 16:10 preview at the top of the card: real screens cropped at the bottom, or
+// two outline phones for a project that has no screens yet. Decorative, because
+// the title below says the same thing.
+function CardThumb({ images }: { images?: string[] }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="relative mb-6 aspect-[16/10] overflow-hidden rounded-[var(--radius-md)] border border-line bg-paper-dim"
+    >
+      {images?.length ? (
+        <div className="absolute inset-x-[7%] top-[10%] flex gap-[3%]">
+          {images.map((src) => (
+            <Image
+              key={src}
+              src={src}
+              alt=""
+              width={460}
+              height={996}
+              sizes="(min-width: 768px) 11vw, 26vw"
+              className="h-auto min-w-0 flex-1 basis-0 rounded-t-[12px] shadow-[0_18px_30px_-20px_rgba(9,17,39,0.5)]"
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="absolute inset-x-0 bottom-0 top-[12%] flex items-end justify-center gap-[6%]">
+          {[0, 1].map((i) => (
+            <span
+              key={i}
+              className={`flex w-[24%] flex-col gap-2 rounded-t-[1.1rem] border-2 border-b-0 border-ink/70 bg-paper p-2 ${
+                i === 1 ? "h-[78%]" : "h-[92%]"
+              }`}
+            >
+              <span className="mx-auto h-1 w-6 rounded-full bg-line" />
+              <span className="h-2 w-2/3 rounded bg-line" />
+              <span className={`h-10 rounded ${i === 0 ? "bg-accent-soft" : "bg-paper-dim"}`} />
+              <span className="h-1.5 rounded bg-line" />
+              <span className="h-1.5 w-4/5 rounded bg-line" />
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function CaseStudyCard({
   study,
@@ -27,6 +73,7 @@ export function CaseStudyCard({
       delay={delay}
       className={`flex flex-col rounded-[var(--radius-lg)] border border-line bg-paper p-7 transition-colors duration-[var(--duration-base)] hover:border-accent md:p-8 ${className}`}
     >
+      {!isPlaceholder ? <CardThumb images={study.cardThumbs} /> : null}
       <div className="flex min-h-7 items-start justify-between gap-3">
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-accent">
           {study.category}
