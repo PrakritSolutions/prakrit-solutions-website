@@ -12,6 +12,6 @@ export const contactFaq = [
   {
     question: "What happens after I submit the form?",
     answer:
-      "We review what you've shared and reply personally, usually within a couple of business days, either with questions or a proposed next step.",
+      "We review what you've shared and reply personally in up to 2 business days, either with questions or a proposed next step.",
   },
 ];

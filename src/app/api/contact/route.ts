@@ -1,21 +1,106 @@
 import { NextResponse } from "next/server";
+import { siteConfig } from "@/lib/site-config";
+import { logEnquiryToSheet } from "@/lib/enquiry-log";
+import {
+  buildConfirmationEmail,
+  escapeHtml,
+  type ContactPayload,
+} from "@/lib/contact-email";
 
-type ContactPayload = {
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-  project: string;
-  services: string[];
-  budget: string;
-  timeline: string;
-  message: string;
-};
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const recentSubmissions = new Map<string, number[]>();
+
+// Best-effort limiter: state is per server instance, so it slows a single
+// abuser rather than guaranteeing a global cap.
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const recent = (recentSubmissions.get(ip) ?? []).filter(
+    (time) => now - time < RATE_LIMIT_WINDOW_MS
+  );
+  if (recent.length >= RATE_LIMIT_MAX) {
+    recentSubmissions.set(ip, recent);
+    return true;
+  }
+  recent.push(now);
+  recentSubmissions.set(ip, recent);
+  return false;
+}
+
+// Turns the browser's stored campaign tags into one short readable label such as
+// "linkedin / post / launch", or the referring site, or "direct".
+function describeSource(input: unknown): string {
+  if (!input || typeof input !== "object") return "direct";
+  const raw = input as Record<string, unknown>;
+  const clean = (value: unknown) =>
+    typeof value === "string" ? value.replace(/[^\w .:/@+-]/g, "").trim().slice(0, 60) : "";
+  const parts = [clean(raw.utm_source), clean(raw.utm_medium), clean(raw.utm_campaign)].filter(Boolean);
+  if (parts.length > 0) return parts.join(" / ");
+  const ref = clean(raw.ref);
+  return ref ? `referral: ${ref}` : "direct";
+}
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function buildEmail(payload: ContactPayload, trackerUrl?: string) {
+  const rows: [string, string][] = [
+    ["Name", payload.name || "—"],
+    ["Company", payload.company || "—"],
+    ["Email", payload.email],
+    ["Phone", payload.phone || "—"],
+    ["Services", payload.services.length ? payload.services.join(", ") : "—"],
+    ["Budget", payload.budget || "—"],
+    ["Timeline", payload.timeline || "—"],
+    ["Source", payload.source || "direct"],
+  ];
+
+  const text = [
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    ...(payload.project ? ["Project:", payload.project] : []),
+    ...(payload.message ? ["", "Additional information:", payload.message] : []),
+    ...(trackerUrl ? ["", `Open enquiry tracker: ${trackerUrl}`] : []),
+  ].join("\n");
+
+  const html = `
+    <div style="font-family: -apple-system, sans-serif; max-width: 560px; margin: 0 auto;">
+      <h2 style="margin-bottom: 4px;">New project enquiry</h2>
+      <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
+        ${rows
+          .map(
+            ([label, value]) => `
+          <tr>
+            <td style="padding: 4px 12px 4px 0; color: #5d5f68; white-space: nowrap; vertical-align: top;">${escapeHtml(label)}</td>
+            <td style="padding: 4px 0;">${escapeHtml(value)}</td>
+          </tr>`
+          )
+          .join("")}
+      </table>
+      ${
+        payload.project
+          ? `<p style="color: #5d5f68; margin-bottom: 4px;">Project</p>
+             <p style="white-space: pre-wrap;">${escapeHtml(payload.project)}</p>`
+          : ""
+      }
+      ${
+        payload.message
+          ? `<p style="color: #5d5f68; margin-bottom: 4px;">Additional information</p>
+             <p style="white-space: pre-wrap;">${escapeHtml(payload.message)}</p>`
+          : ""
+      }
+      ${
+        trackerUrl
+          ? `<p style="margin-top: 20px;"><a href="${escapeHtml(trackerUrl)}">Open enquiry tracker</a></p>`
+          : ""
+      }
+    </div>
+  `;
+
+  return { text, html };
+}
+
 export async function POST(request: Request) {
-  let payload: Partial<ContactPayload>;
+  let payload: Partial<Omit<ContactPayload, "source">> & { website?: string; source?: unknown };
 
   try {
     payload = await request.json();
@@ -23,34 +108,122 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const name = payload.name?.trim();
-  const email = payload.email?.trim();
-  const project = payload.project?.trim();
+  // Honeypot: real visitors never see or fill this field. Pretend success so
+  // bots get no signal, and send nothing.
+  if (typeof payload.website === "string" && payload.website.trim() !== "") {
+    return NextResponse.json({ ok: true });
+  }
 
-  if (!name || !email || !project || !EMAIL_PATTERN.test(email)) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  if (isRateLimited(ip)) {
     return NextResponse.json(
-      { error: "Name, a valid email, and a project description are required." },
+      { error: "Too many submissions. Please try again later." },
+      { status: 429 }
+    );
+  }
+
+  const name = payload.name?.trim() ?? "";
+  const email = payload.email?.trim();
+  const phone = payload.phone?.trim() ?? "";
+  const project = payload.project?.trim() ?? "";
+  const services = Array.isArray(payload.services) ? payload.services : [];
+
+  if (
+    !name ||
+    !email ||
+    !EMAIL_PATTERN.test(email) ||
+    phone.replace(/\D/g, "").length < 7 ||
+    services.length === 0
+  ) {
+    return NextResponse.json(
+      { error: "Name, a valid email, a phone number and at least one service are required." },
       { status: 400 }
     );
   }
 
-  // Wire up an email/CRM provider here (e.g. Resend, Postmark) using an
-  // API key from the environment. Without one configured, enquiries are
-  // logged server-side so the form remains usable end to end.
-  if (process.env.RESEND_API_KEY) {
-    // Intentionally left as a placeholder: add the provider call once
-    // RESEND_API_KEY (or an equivalent) is configured for this environment.
-  }
+  const full: ContactPayload = {
+    name,
+    company: payload.company?.trim() ?? "",
+    email,
+    phone,
+    project,
+    services,
+    budget: payload.budget ?? "",
+    timeline: payload.timeline ?? "",
+    message: payload.message?.trim() ?? "",
+    source: describeSource(payload.source),
+  };
 
   console.info("[contact] new enquiry", {
-    name,
-    email,
-    company: payload.company,
-    project,
-    services: payload.services,
-    budget: payload.budget,
-    timeline: payload.timeline,
+    name: full.name,
+    email: full.email,
+    company: full.company,
+    services: full.services,
+    budget: full.budget,
+    timeline: full.timeline,
+    source: full.source,
   });
+
+  // Runs alongside the emails; never throws.
+  const sheetLog = logEnquiryToSheet(full);
+
+  if (process.env.RESEND_API_KEY) {
+    const { text, html } = buildEmail(full, process.env.SHEETS_URL);
+    const subject = `New project enquiry from ${full.name || full.email}${full.company ? ` (${full.company})` : ""}`;
+
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: `Prakrit Solutions <${siteConfig.noreplyEmail}>`,
+        to: [siteConfig.email],
+        reply_to: full.email,
+        subject,
+        text,
+        html,
+      }),
+    });
+
+    if (!resendResponse.ok) {
+      const errorBody = await resendResponse.text().catch(() => "");
+      console.error("[contact] Resend send failed", resendResponse.status, errorBody);
+      await sheetLog;
+      return NextResponse.json({ error: "Failed to send enquiry." }, { status: 502 });
+    }
+
+    // Courtesy confirmation to the visitor. The enquiry has already reached us,
+    // so a failure here is logged and never surfaced as a form error.
+    try {
+      const confirmation = buildConfirmationEmail(full, siteConfig);
+      const confirmationResponse = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: `${siteConfig.name} <${siteConfig.noreplyEmail}>`,
+          to: [full.email],
+          reply_to: siteConfig.email,
+          subject: `We have received your enquiry — ${siteConfig.name}`,
+          text: confirmation.text,
+          html: confirmation.html,
+        }),
+      });
+
+      if (!confirmationResponse.ok) {
+        const errorBody = await confirmationResponse.text().catch(() => "");
+        console.error("[contact] confirmation send failed", confirmationResponse.status, errorBody);
+      }
+    } catch (error) {
+      console.error("[contact] confirmation send threw", error);
+    }
+  }
+
+  await sheetLog;
 
   return NextResponse.json({ ok: true });
 }

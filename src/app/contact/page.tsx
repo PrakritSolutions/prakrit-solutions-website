@@ -1,26 +1,28 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
-import { Eyebrow } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
+import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/forms/contact-form";
-import { MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import { ArrowRightIcon, ChatIcon, ClockIcon, MailIcon, PinIcon } from "@/components/icons";
+import { LocalHours } from "@/components/ui/local-hours";
 import { siteConfig } from "@/lib/site-config";
 import { contactFaq } from "@/lib/content/faq";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Start a project with Prakrit Solutions — tell us what you want to build and we'll reply personally within a couple of business days.",
-  alternates: { canonical: "/contact" },
-};
+    "Start a project with Prakrit Solutions — tell us what you want to build and we'll reply personally in up to 2 business days.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
-    <section className="py-20 md:py-28">
-      <Container className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
-        <div>
-          <Reveal>
-            <Eyebrow className="mb-5">Contact</Eyebrow>
+    <section className="py-14 md:py-20">
+      <Container className="flex flex-col gap-12 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
+        {/* On phones the wrappers dissolve (contents) so the direct contact
+            details can sit above the form; from lg they are two columns. */}
+        <div className="contents lg:block">
+          <Reveal className="order-1 lg:order-none">
             <h1 className="text-balance max-w-xl text-4xl font-medium leading-[1.1] tracking-[-0.02em] text-ink md:text-5xl">
               Have an idea? Let&apos;s build it.
             </h1>
@@ -30,38 +32,68 @@ export default function ContactPage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 max-w-2xl">
+          <div className="order-3 max-w-2xl lg:order-none lg:mt-12">
             <ContactForm />
           </div>
         </div>
 
-        <div className="space-y-10 lg:border-l lg:border-line-soft lg:pl-16">
-          <Reveal delay={80}>
+        <div className="contents lg:block lg:space-y-10 lg:border-l lg:border-line-soft lg:pl-16">
+          <Reveal delay={80} className="order-2 lg:order-none">
             <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
               Direct
             </h2>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-2 lg:mt-4 lg:space-y-3">
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-2.5 text-[0.9375rem] text-ink hover:text-accent"
+                  className="flex min-h-11 items-center gap-2.5 text-[0.9375rem] text-ink hover:text-accent lg:min-h-0"
                 >
                   <MailIcon className="h-4 w-4 shrink-0 text-accent" />
                   {siteConfig.email}
                 </a>
               </li>
-              <li className="flex items-center gap-2.5 text-[0.9375rem] text-ink">
-                <PhoneIcon className="h-4 w-4 shrink-0 text-accent" />
-                {siteConfig.phone}
+              <li>
+                <a
+                  href={siteConfig.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-11 items-center gap-2.5 text-[0.9375rem] text-ink hover:text-accent lg:min-h-0"
+                >
+                  <ChatIcon className="h-4 w-4 shrink-0 text-accent" />
+                  <span>
+                    WhatsApp {siteConfig.whatsapp}
+                    <span className="text-muted"> · messages only</span>
+                  </span>
+                  <span className="sr-only"> (opens WhatsApp in a new tab)</span>
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5 text-[0.9375rem] text-ink">
+                <ClockIcon className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                <span>
+                  {siteConfig.hours}
+                  <LocalHours className="block text-sm text-muted" />
+                </span>
               </li>
               <li className="flex items-center gap-2.5 text-[0.9375rem] text-ink">
                 <PinIcon className="h-4 w-4 shrink-0 text-accent" />
                 {siteConfig.location}
               </li>
             </ul>
+            <Button
+              href={siteConfig.bookingUrl}
+              variant="secondary"
+              className="mt-6"
+              icon={<ArrowRightIcon className="h-4 w-4 -rotate-45" />}
+            >
+              Book a 30-minute call
+              <span className="sr-only"> (opens in a new tab)</span>
+            </Button>
+            <p className="mt-2.5 text-sm text-muted">
+              A video call, during the hours above.
+            </p>
           </Reveal>
 
-          <Reveal delay={140}>
+          <Reveal delay={140} className="order-4 lg:order-none">
             <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
               Before you write in
             </h2>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#091127;--accent:#0032ea;--cyan:#18fafd;--paper:#fafaf8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1080px;font-family:'Geist','Helvetica Neue',Arial,sans-serif;color:var(--paper);background:var(--ink);overflow:hidden}
+body.story{height:1920px}
+body.post{height:1350px}
+.wrap{position:relative;width:100%;height:100%;padding:96px 88px;display:flex;flex-direction:column;
+ background:radial-gradient(900px 700px at 100% 0%,rgba(0,50,234,.55),transparent 70%),radial-gradient(700px 600px at 0% 100%,rgba(24,250,253,.18),transparent 70%),var(--ink)}
+body.post .wrap{padding:72px 88px 80px}body.post h1{font-size:84px}body.post .eyebrow{padding-top:36px}body.post .sub{margin-top:26px;font-size:32px}body.post .chips{margin-top:36px}body.post .cta{margin-top:40px;padding:28px 40px}body.post .foot{margin-top:28px}
+body.story .wrap{padding:150px 88px 170px}
+.brand{display:flex;align-items:center;gap:22px}
+.brand img{width:110px;height:110px;margin:-9px -14px -9px -9px}
+.brand span{font-size:42px;font-weight:700;letter-spacing:-.01em}
+.eyebrow{margin-top:auto;padding-top:56px;font-size:28px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+h1{margin-top:26px;font-size:96px;line-height:1.02;font-weight:800;letter-spacing:-.035em}
+body.story h1{font-size:108px}
+h1 em{font-style:normal;background:linear-gradient(90deg,#4f7bff,var(--cyan));-webkit-background-clip:text;color:transparent}
+.sub{margin-top:34px;font-size:34px;line-height:1.4;color:#c4c7d4;max-width:840px}
+.chips{margin-top:48px;display:flex;flex-wrap:wrap;gap:16px}
+.chips b{font-weight:600;font-size:29px;padding:15px 28px;border-radius:100px;border:2px solid rgba(250,250,248,.22);background:rgba(250,250,248,.06)}
+.cta{margin-top:56px;display:flex;align-items:center;gap:28px;background:var(--paper);color:var(--ink);border-radius:30px;padding:34px 40px}
+.wa{flex:none;width:92px;height:92px;border-radius:50%;background:#25d366;display:grid;place-items:center}
+.wa svg{width:54px;height:54px;fill:#fff}
+.cta small{display:block;font-size:26px;font-weight:500;color:#5d5f68}
+.cta strong{display:block;margin-top:4px;font-size:46px;font-weight:800;letter-spacing:-.01em}
+.foot{margin-top:34px;display:flex;justify-content:space-between;font-size:28px;color:#a3a5ae;font-weight:500}
+.foot b{color:var(--paper);font-weight:600}
+.bar{position:absolute;left:0;right:0;bottom:0;height:16px;background:linear-gradient(90deg,var(--cyan),var(--accent))}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="brand"><img src="logo-mark.svg" alt=""><span>Prakrit Solutions</span></div>
+  <div class="eyebrow">Software agency · Surat, India</div>
+  <h1>Software built around how your business <em>actually works.</em></h1>
+  <p class="sub">Apps, websites, AI and automation for growing companies. Tell us the problem, we'll tell you honestly what it takes.</p>
+  <div class="chips"><b>Mobile Apps</b><b>Web Apps</b><b>AI Solutions</b><b>Automation</b><b>Custom Software</b></div>
+  <div class="cta">
+    <div class="wa"><svg viewBox="0 0 24 24"><path fill-rule="evenodd" d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1c-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2z"/></svg></div>
+    <div><small>Message us on WhatsApp</small><strong>+91 90335 19764</strong></div>
+  </div>
+  <div class="foot"><b>prakritsolutions.in</b><span>hello@prakritsolutions.in</span></div>
+  <div class="bar"></div>
+</div>
+<script>document.body.className=location.hash.slice(1)||'post'</script>
+</body></html>

@@ -1,40 +1,73 @@
+import type { ComponentType, SVGProps } from "react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
+import {
+  AiIcon,
+  AutomationIcon,
+  CalendarIcon,
+  CartIcon,
+  ChartIcon,
+  CloudIcon,
+  CustomSoftwareIcon,
+  DashboardIcon,
+  LinkIcon,
+  UserIcon,
+} from "@/components/icons";
 import { productTypes } from "@/lib/content/what-we-build";
 
-const sizeClasses: Record<string, string> = {
-  lg: "sm:col-span-2 sm:row-span-2",
-  md: "sm:col-span-2",
-  sm: "",
+type ProductName = (typeof productTypes)[number]["name"];
+
+// One icon per product type; the record is keyed by name so adding a product
+// type without an icon is a type error.
+const icons: Record<ProductName, ComponentType<SVGProps<SVGSVGElement>>> = {
+  "SaaS Platforms": CloudIcon,
+  "AI Assistants": AiIcon,
+  "Customer Portals": UserIcon,
+  "Admin Dashboards": DashboardIcon,
+  "Automation Platforms": AutomationIcon,
+  "E-commerce Systems": CartIcon,
+  "Booking Platforms": CalendarIcon,
+  "CRM Integrations": LinkIcon,
+  "Internal Business Tools": CustomSoftwareIcon,
+  "Data-Driven Applications": ChartIcon,
 };
 
 export function WhatWeBuild() {
   return (
-    <section className="border-b border-line-soft py-24 md:py-32">
+    <section className="border-b border-line-soft py-12 md:py-24">
       <Container>
         <SectionHeading
-          eyebrow="What We Build"
           title="Chances are, your project looks like one of these."
           description="A representative range of the products we design and build — not a limit on what we can take on."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-4">
-          {productTypes.map((item, i) => (
-            <Reveal
-              key={item.name}
-              delay={(i % 4) * 60}
-              className={`group rounded-[var(--radius-lg)] border border-line bg-paper-dim/60 p-6 transition-colors duration-[var(--duration-base)] hover:border-accent hover:bg-accent-soft ${
-                sizeClasses[item.size]
-              }`}
-            >
-              <h3 className="text-lg font-medium text-ink">{item.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                {item.description}
-              </p>
-            </Reveal>
-          ))}
-        </div>
+        <ul className="mt-8 grid grid-cols-1 gap-x-16 border-b border-line md:mt-14 md:grid-cols-2">
+          {productTypes.map((item, i) => {
+            const Icon = icons[item.name];
+            return (
+              <Reveal
+                as="li"
+                key={item.name}
+                delay={(i % 2) * 60}
+                className="flex items-start gap-4 border-t border-line py-4 md:py-6"
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-md)] border border-line bg-paper-dim text-ink"
+                >
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-medium text-ink">{item.name}</h3>
+                  <p className="mt-1.5 max-w-md text-pretty text-[0.9375rem] leading-relaxed text-muted">
+                    {item.description}
+                  </p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </ul>
       </Container>
     </section>
   );

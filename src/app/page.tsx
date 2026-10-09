@@ -1,5 +1,4 @@
 import { Hero } from "@/components/sections/hero";
-import { CapabilityStrip } from "@/components/sections/capability-strip";
 import { WhatWeBuild } from "@/components/sections/what-we-build";
 import { AiSection } from "@/components/sections/ai-section";
 import { AutomationSection } from "@/components/sections/automation-section";
@@ -12,14 +11,13 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <CapabilityStrip />
       <WhatWeBuild />
       <AiSection />
       <AutomationSection />
       <ProcessSection />
       <WhyUsSection />
       <CaseStudiesTeaser />
-      <CtaSection />
+      <CtaSection bookCall />
     </>
   );
 }

@@ -1,22 +1,48 @@
-const PRODUCTION_URL = "https://www.prakritsolutions.in";
+const PRODUCTION_URL = "https://prakritsolutions.in";
 
 export const siteConfig = {
   name: "Prakrit Solutions",
   shortName: "Prakrit",
-  tagline: "We build technology that solves real business problems.",
+  tagline: "Mobile apps, web platforms and AI automation",
   description:
     "Prakrit Solutions is a software development agency building mobile apps, web applications, AI-powered products and business automation for growing companies.",
   url: process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_URL,
   email: "hello@prakritsolutions.in",
-  phone: "[Phone Number]",
-  address: "[Office Address]",
-  location: "[City, Country]",
-  social: {
-    linkedin: "[LinkedIn URL]",
-    twitter: "[Twitter / X URL]",
-    github: "[GitHub URL]",
-  },
+  privacyEmail: "privacy@prakritsolutions.in",
+  noreplyEmail: "noreply@prakritsolutions.in",
+  whatsapp: "+91-9033519764",
+  whatsappUrl: "https://wa.me/919033519764",
+  hours: "Monday to Friday, 10 AM to 6 PM IST",
+  responseTime: "up to 2 business days",
+  bookingUrl: "https://calendly.com/mail-prakritsolutions/30min",
+  location: "Surat, Gujarat, India",
 } as const;
+
+// Shown on /about. Set `photo` (a path under /public, for example
+// "/brand/founder.jpg") and `linkedin` (a personal profile URL) when they
+// exist; until then the block shows initials and omits the link.
+export const founder = {
+  name: "Vaibhav Jhaveri",
+  title: "Founder",
+  photo: "",
+  linkedin: "https://www.linkedin.com/in/vaibhavjhaveri",
+  bio: [
+    "Prakrit Solutions is run by Vaibhav Jhaveri. Enquiries are read and answered personally, so the person you talk to first is the person accountable for the work.",
+  ],
+} as const;
+
+// Leave href empty until the profile exists — links with no URL are not rendered.
+export const socialLinks: {
+  label: string;
+  href: string;
+  icon: "linkedin" | "x" | "instagram" | "facebook" | "github";
+}[] = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/prakritsolutions/", icon: "linkedin" },
+  { label: "X (Twitter)", href: "", icon: "x" },
+  { label: "Instagram", href: "https://www.instagram.com/prakritsolutions/", icon: "instagram" },
+  { label: "Facebook", href: "https://www.facebook.com/prakritsolutions/", icon: "facebook" },
+  { label: "GitHub", href: "https://github.com/PrakritSolutions", icon: "github" },
+];
 
 // True on any deployment that isn't the final production domain — the
 // draft/staging subdomain used for feedback before this goes live.

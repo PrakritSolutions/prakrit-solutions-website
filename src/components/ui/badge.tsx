@@ -12,11 +12,11 @@ export function Eyebrow({
   return (
     <span
       className={`inline-flex items-center gap-2 font-mono text-[0.75rem] uppercase tracking-[0.14em] ${
-        inverse ? "text-accent-soft" : "text-accent"
+        inverse ? "text-accent-2" : "text-accent"
       } ${className}`}
     >
       <span
-        className={`h-1.5 w-1.5 rounded-full ${inverse ? "bg-accent-soft" : "bg-accent"}`}
+        className={`h-1.5 w-1.5 rounded-full ${inverse ? "bg-accent-2" : "bg-accent"}`}
       />
       {children}
     </span>

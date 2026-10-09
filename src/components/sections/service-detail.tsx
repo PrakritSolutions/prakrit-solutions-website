@@ -1,10 +1,12 @@
 import { Reveal } from "@/components/ui/reveal";
 import { CheckIcon } from "@/components/icons";
+import { serviceVisuals } from "@/components/sections/service-visuals";
 import type { Service } from "@/lib/content/services";
 
 export function ServiceDetail({ service, index }: { service: Service; index: number }) {
   const Icon = service.icon;
   const reversed = index % 2 === 1;
+  const Visual = serviceVisuals[service.slug];
 
   return (
     <div
@@ -26,28 +28,26 @@ export function ServiceDetail({ service, index }: { service: Service; index: num
         <p className="text-pretty mt-4 text-base leading-relaxed text-muted">
           {service.problem}
         </p>
-        <p className="mt-5 border-l-2 border-accent pl-4 text-sm leading-relaxed text-ink/80">
+        <p className="mt-5 border-l-2 border-accent pl-4 text-[0.9375rem] leading-relaxed text-ink/80">
           {service.why}
         </p>
       </Reveal>
 
-      <Reveal
-        delay={100}
-        className={`rounded-[var(--radius-lg)] border border-line bg-paper-dim/60 p-7 md:p-8 ${
-          reversed ? "md:order-1" : ""
-        }`}
-      >
-        <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
-          What we build
-        </p>
-        <ul className="mt-5 space-y-3.5">
-          {service.build.map((item) => (
-            <li key={item} className="flex gap-2.5 text-sm text-ink/85">
-              <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              {item}
-            </li>
-          ))}
-        </ul>
+      <Reveal delay={100} className={`min-w-0 space-y-5 ${reversed ? "md:order-1" : ""}`}>
+        {Visual ? <Visual /> : null}
+        <div className="rounded-[var(--radius-lg)] border border-line bg-paper-dim/60 p-6 md:p-7">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            What we build
+          </p>
+          <ul className="mt-4 space-y-3">
+            {service.build.map((item) => (
+              <li key={item} className="flex gap-2.5 text-[0.9375rem] text-ink/85">
+                <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </Reveal>
     </div>
   );

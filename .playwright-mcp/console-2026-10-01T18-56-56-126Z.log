@@ -1,0 +1,3 @@
+[    1566ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'attribution-reporting'. @ :0
+[    1868ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://claude.ai/api/frame/8cd2149a-18a6-4684-a9fc-b92c5549c90b?via=user_open&bk=initial&actor=id:0
+[    2136ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://claude.ai/api/account:0

@@ -1,0 +1,214 @@
+- generic [active] [ref=f32e1]:
+  - link "Skip to content" [ref=f32e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f32e3]:
+    - generic [ref=f32e4]:
+      - link "Prakrit Solutions" [ref=f32e5] [cursor=pointer]:
+        - /url: /
+      - button "Open menu" [ref=f32e6]
+  - main [ref=f32e9]:
+    - generic [ref=f32e11]:
+      - generic [ref=f32e12]:
+        - generic [ref=f32e13]:
+          - heading "Have an idea? Let's build it." [level=1] [ref=f32e14]
+          - paragraph [ref=f32e15]: Tell us what you're trying to solve. There's no minimum project size for a first conversation.
+        - generic [ref=f32e16]:
+          - form [ref=f32e17]:
+            - heading "Short on time? Send a quick note." [level=2] [ref=f32e18]
+            - paragraph [ref=f32e19]: Just your email and one line. We will take it from there.
+            - generic [ref=f32e20]:
+              - text: Leave this field empty
+              - textbox [ref=f32e21]
+            - generic [ref=f32e22]:
+              - generic [ref=f32e23]:
+                - generic [ref=f32e24]: Email *
+                - textbox "Email *" [ref=f32e25]
+              - generic [ref=f32e26]:
+                - generic [ref=f32e27]: What do you need? *
+                - textbox "What do you need? *" [ref=f32e28]:
+                  - /placeholder: "For example: an iOS app for my delivery business"
+            - generic [ref=f32e29]:
+              - button "Send note" [ref=f32e30]
+              - paragraph [ref=f32e33]:
+                - text: We reply within 2 business days. We use your details only to reply. See our
+                - link "Privacy Policy" [ref=f32e34] [cursor=pointer]:
+                  - /url: /privacy
+                - text: .
+          - paragraph [ref=f32e35]: Or share the full details
+          - generic [ref=f32e38]:
+            - generic [ref=f32e39]:
+              - text: Leave this field empty
+              - textbox [ref=f32e40]
+            - generic [ref=f32e41]:
+              - generic [ref=f32e42]:
+                - generic [ref=f32e43]: Name *
+                - textbox "Name *" [ref=f32e45]
+              - generic [ref=f32e46]:
+                - generic [ref=f32e47]: Company
+                - textbox "Company" [ref=f32e49]
+              - generic [ref=f32e50]:
+                - generic [ref=f32e51]: Email *
+                - textbox "Email *" [ref=f32e53]
+              - generic [ref=f32e54]:
+                - generic [ref=f32e55]: Phone (optional)
+                - textbox "Phone (optional)" [ref=f32e57]
+            - generic [ref=f32e58]:
+              - generic [ref=f32e59]: What do you want to build? *
+              - textbox "What do you want to build? *" [ref=f32e61]:
+                - /placeholder: A short description is enough to start.
+            - group "Services (select any that apply)" [ref=f32e62]:
+              - generic [ref=f32e64]:
+                - button "Mobile Application" [ref=f32e65]
+                - button "Web Application" [ref=f32e66]
+                - button "AI Solution" [ref=f32e67]
+                - button "Automation" [ref=f32e68]
+                - button "Custom Software" [ref=f32e69]
+                - button "Backend & APIs" [ref=f32e70]
+                - button "Not sure yet" [ref=f32e71]
+            - generic [ref=f32e72]:
+              - generic [ref=f32e73]:
+                - generic [ref=f32e74]:
+                  - generic [ref=f32e75]: Budget
+                  - group "Budget currency" [ref=f32e76]:
+                    - button "₹ INR" [pressed] [ref=f32e77]
+                    - button "$ USD" [ref=f32e78]
+                - combobox "Budget" [ref=f32e79]:
+                  - option "Select a range" [disabled] [selected]
+                  - option "Under ₹50,000"
+                  - option "₹50,000 – ₹1 lakh"
+                  - option "₹1 – ₹2.5 lakh"
+                  - option "₹2.5 – ₹5 lakh"
+                  - option "₹5 – ₹10 lakh"
+                  - option "₹10 – ₹25 lakh"
+                  - option "₹25 – ₹50 lakh"
+                  - option "₹50 lakh – ₹1 crore"
+                  - option "₹1 crore+"
+                  - option "Not sure yet"
+              - generic [ref=f32e80]:
+                - generic [ref=f32e81]: Timeline
+                - combobox "Timeline" [ref=f32e83]:
+                  - option "Select a timeline" [disabled] [selected]
+                  - option "ASAP"
+                  - option "1–3 months"
+                  - option "3–6 months"
+                  - option "6+ months"
+                  - option "Flexible"
+            - generic [ref=f32e84]:
+              - generic [ref=f32e85]: Additional information
+              - textbox "Additional information" [ref=f32e87]:
+                - /placeholder: Anything else that would help us understand the project.
+            - button "Let's Talk" [ref=f32e88]
+            - paragraph [ref=f32e91]:
+              - text: We reply within 2 business days. We use your details only to reply to your enquiry. See our
+              - link "Privacy Policy" [ref=f32e92] [cursor=pointer]:
+                - /url: /privacy
+              - text: .
+      - generic [ref=f32e93]:
+        - generic [ref=f32e94]:
+          - heading "Direct" [level=2] [ref=f32e95]
+          - list [ref=f32e96]:
+            - listitem [ref=f32e97]:
+              - link "hello@prakritsolutions.in" [ref=f32e98] [cursor=pointer]:
+                - /url: mailto:hello@prakritsolutions.in
+            - listitem [ref=f32e102]:
+              - link "WhatsApp +91-9033519764 · messages only (opens WhatsApp in a new tab)" [ref=f32e103] [cursor=pointer]:
+                - /url: https://wa.me/919033519764
+                - generic [ref=f32e107]: WhatsApp +91-9033519764 · messages only
+                - generic [ref=f32e108]: (opens WhatsApp in a new tab)
+            - listitem [ref=f32e109]:
+              - generic [ref=f32e113]: Monday to Friday, 10 AM to 6 PM IST
+            - listitem [ref=f32e114]: Surat, Gujarat, India
+          - link "Book a 30-minute call (opens in a new tab)" [ref=f32e118] [cursor=pointer]:
+            - /url: https://calendly.com/mail-prakritsolutions/30min
+            - text: Book a 30-minute call
+            - generic [ref=f32e119]: (opens in a new tab)
+          - paragraph [ref=f32e122]: A video call, during the hours above.
+        - generic [ref=f32e123]:
+          - heading "Before you write in" [level=2] [ref=f32e124]
+          - generic [ref=f32e125]:
+            - generic [ref=f32e126]:
+              - paragraph [ref=f32e127]: What should I have ready before reaching out?
+              - paragraph [ref=f32e128]: Nothing formal. A rough description of the problem and, if you have one, a sense of timeline or budget range is enough to start a useful conversation.
+            - generic [ref=f32e129]:
+              - paragraph [ref=f32e130]: Do you work with early-stage startups?
+              - paragraph [ref=f32e131]: Yes — alongside established businesses extending a product already in production. We scope the engagement to match where you actually are.
+            - generic [ref=f32e132]:
+              - paragraph [ref=f32e133]: What happens after I submit the form?
+              - paragraph [ref=f32e134]: We review what you've shared and reply personally, usually within a couple of business days, either with questions or a proposed next step.
+  - contentinfo [ref=f32e135]:
+    - generic [ref=f32e136]:
+      - generic [ref=f32e137]:
+        - generic [ref=f32e138]:
+          - generic [ref=f32e139]: Prakrit Solutions
+          - paragraph [ref=f32e140]: We build mobile apps, web products, AI systems and automation that solve real business problems.
+          - list [ref=f32e141]:
+            - listitem [ref=f32e142]:
+              - link "hello@prakritsolutions.in" [ref=f32e143] [cursor=pointer]:
+                - /url: mailto:hello@prakritsolutions.in
+            - listitem [ref=f32e147]:
+              - link "WhatsApp +91-9033519764 (opens WhatsApp in a new tab)" [ref=f32e148] [cursor=pointer]:
+                - /url: https://wa.me/919033519764
+                - text: WhatsApp +91-9033519764
+                - generic [ref=f32e152]: (opens WhatsApp in a new tab)
+            - listitem [ref=f32e153]: Surat, Gujarat, India
+        - generic [ref=f32e157]:
+          - heading "Services" [level=2] [ref=f32e158]
+          - list [ref=f32e159]:
+            - listitem [ref=f32e160]:
+              - link "Mobile Applications" [ref=f32e161] [cursor=pointer]:
+                - /url: /services#mobile
+            - listitem [ref=f32e162]:
+              - link "Web Applications" [ref=f32e163] [cursor=pointer]:
+                - /url: /services#web
+            - listitem [ref=f32e164]:
+              - link "Custom Software" [ref=f32e165] [cursor=pointer]:
+                - /url: /services#custom-software
+            - listitem [ref=f32e166]:
+              - link "Backend & APIs" [ref=f32e167] [cursor=pointer]:
+                - /url: /services#backend
+        - generic [ref=f32e168]:
+          - heading "Solutions" [level=2] [ref=f32e169]
+          - list [ref=f32e170]:
+            - listitem [ref=f32e171]:
+              - link "AI Solutions" [ref=f32e172] [cursor=pointer]:
+                - /url: /solutions#ai
+            - listitem [ref=f32e173]:
+              - link "Automation" [ref=f32e174] [cursor=pointer]:
+                - /url: /solutions#automation
+        - generic [ref=f32e175]:
+          - heading "Company" [level=2] [ref=f32e176]
+          - list [ref=f32e177]:
+            - listitem [ref=f32e178]:
+              - link "About" [ref=f32e179] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f32e180]:
+              - link "Work" [ref=f32e181] [cursor=pointer]:
+                - /url: /work
+            - listitem [ref=f32e182]:
+              - link "Contact" [ref=f32e183] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f32e184]:
+          - heading "Legal" [level=2] [ref=f32e185]
+          - list [ref=f32e186]:
+            - listitem [ref=f32e187]:
+              - link "Privacy Policy" [ref=f32e188] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=f32e189]:
+              - link "Terms of Service" [ref=f32e190] [cursor=pointer]:
+                - /url: /terms
+      - generic [ref=f32e191]:
+        - paragraph [ref=f32e192]: © 2026 Prakrit Solutions. All rights reserved.
+        - list [ref=f32e194]:
+          - listitem [ref=f32e195]:
+            - link "LinkedIn (opens in a new tab)" [ref=f32e196] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/prakritsolutions/
+          - listitem [ref=f32e201]:
+            - link "Instagram (opens in a new tab)" [ref=f32e202] [cursor=pointer]:
+              - /url: https://www.instagram.com/prakritsolutions/
+          - listitem [ref=f32e208]:
+            - link "Facebook (opens in a new tab)" [ref=f32e209] [cursor=pointer]:
+              - /url: https://www.facebook.com/prakritsolutions/
+          - listitem [ref=f32e213]:
+            - link "GitHub (opens in a new tab)" [ref=f32e214] [cursor=pointer]:
+              - /url: https://github.com/PrakritSolutions
+  - button "Open Next.js Dev Tools" [ref=f32e223] [cursor=pointer]
