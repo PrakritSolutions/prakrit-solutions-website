@@ -27,8 +27,8 @@ export async function generateMetadata(
   if (!study) return {};
 
   return pageMetadata({
-    title: study.title,
-    description: study.summary ?? study.problem,
+    title: study.metaTitle ?? study.title,
+    description: study.metaDescription ?? study.summary ?? study.problem,
     path: `/work/${study.slug}`,
   });
 }

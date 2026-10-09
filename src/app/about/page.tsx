@@ -11,7 +11,7 @@ import { founder, siteConfig } from "@/lib/site-config";
 export const metadata = pageMetadata({
   title: "About",
   description:
-    "Prakrit Solutions is a software development agency built on business-first engineering — technology that feels like a natural extension of how a company already works.",
+    "Prakrit Solutions is a Surat-based software agency built on business-first engineering: technology that feels like a natural extension of your business.",
   path: "/about",
 });
 

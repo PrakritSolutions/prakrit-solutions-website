@@ -6,9 +6,9 @@ import { PageJumpLinks } from "@/components/sections/page-jump-links";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "AI Solutions & Automation",
+  title: "AI Integration and Business Automation",
   description:
-    "Practical AI application development and business automation — LLM integration, AI assistants, document intelligence, and workflow automation that removes repetitive work.",
+    "LLM integration, AI assistants, document intelligence and workflow automation that removes repetitive work from your business.",
   path: "/solutions",
 });
 

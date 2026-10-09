@@ -7,9 +7,9 @@ import { services } from "@/lib/content/services";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Services",
+  title: "Mobile and Web App Development Services",
   description:
-    "Mobile applications, web applications, custom software and backend engineering — the core disciplines behind every product we build.",
+    "iOS and Android apps, web applications, custom software and backend APIs, built end to end by a Surat-based team.",
   path: "/services",
 });
 
