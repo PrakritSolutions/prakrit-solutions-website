@@ -69,6 +69,65 @@ export function CloudIcon(props: IconProps) {
   );
 }
 
+export function UserIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M4.5 20.5c.6-3.9 3.7-6.2 7.5-6.2s6.9 2.3 7.5 6.2" />
+    </svg>
+  );
+}
+
+export function DashboardIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.5" y="3.5" width="7.5" height="9" rx="1.6" />
+      <rect x="13" y="3.5" width="7.5" height="5" rx="1.6" />
+      <rect x="13" y="11" width="7.5" height="9.5" rx="1.6" />
+      <rect x="3.5" y="15" width="7.5" height="5.5" rx="1.6" />
+    </svg>
+  );
+}
+
+export function CartIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3 4h2.4l2.1 11h9.7l2-7.8H6.3" />
+      <circle cx="9" cy="19.2" r="1.3" />
+      <circle cx="17" cy="19.2" r="1.3" />
+    </svg>
+  );
+}
+
+export function CalendarIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.2" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </svg>
+  );
+}
+
+export function LinkIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M10.2 13.8a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" />
+      <path d="M13.8 10.2a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
+    </svg>
+  );
+}
+
+export function ChartIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 20.5h16" />
+      <rect x="5.5" y="12" width="3.2" height="6.5" rx="0.8" />
+      <rect x="10.4" y="7.5" width="3.2" height="11" rx="0.8" />
+      <rect x="15.3" y="4" width="3.2" height="14.5" rx="0.8" />
+    </svg>
+  );
+}
+
 export function CustomSoftwareIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
