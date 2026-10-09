@@ -14,6 +14,8 @@ export type Service = {
   problem: string;
   build: string[];
   why: string;
+  // Published work that backs this service up; omit when there is none yet.
+  work?: { label: string; href: string }[];
 };
 
 export const services: Service[] = [
@@ -35,6 +37,11 @@ export const services: Service[] = [
     ],
     why:
       "We choose native or cross-platform based on your product's actual requirements, not on habit — so you get the right trade-off between speed, cost and long-term flexibility.",
+    work: [
+      { label: "BookCargo: two iOS apps rebuilt in SwiftUI", href: "/work/bookcargo" },
+      { label: "MyO: an NFC dining app for iOS", href: "/work/myo" },
+      { label: "A marketplace's iOS and Android apps", href: "/work/dealerwerx" },
+    ],
   },
   {
     slug: "web",

@@ -27,9 +27,14 @@ export type CaseStudy = {
   slug: string;
   client: string;
   category: string;
+  // Section of /services that this work belongs to, e.g. "/services#mobile".
+  serviceHref?: string;
   status?: string;
   title: string;
   summary?: string;
+  // Search-result title and description; fall back to title and summary.
+  metaTitle?: string;
+  metaDescription?: string;
   problemHeading?: string;
   problem: string;
   approach: string;
@@ -57,7 +62,9 @@ export const caseStudies: CaseStudy[] = [
     ],
     client: "BookCargo",
     category: "Mobile Application",
+    serviceHref: "/services#mobile",
     title: "Two native iOS apps for an on-demand goods transport platform",
+    metaTitle: "BookCargo iOS Apps Rebuilt in SwiftUI",
     summary:
       "An unfinished Objective-C rewrite, rebuilt in SwiftUI as a customer app and a driver app on the App Store.",
     problem:
@@ -144,8 +151,12 @@ export const caseStudies: CaseStudy[] = [
     slug: "dealerwerx",
     client: "Dealerwerx",
     category: "Mobile Application",
+    serviceHref: "/services#mobile",
     status: "In development",
     title: "Ongoing development of a marketplace's iOS and Android apps",
+    metaTitle: "Marketplace iOS and Android Apps",
+    metaDescription:
+      "A maintenance engagement that grew into full-time development of a buy, sell and swap marketplace's iOS and Android apps.",
     summary:
       "A maintenance engagement that grew into full-time development, keeping the native iOS and Android apps of a buy, sell and swap marketplace moving forward together.",
     problem:
@@ -217,7 +228,9 @@ export const caseStudies: CaseStudy[] = [
     ],
     client: "Restaurant-technology client",
     category: "Mobile Application",
+    serviceHref: "/services#mobile",
     title: "MyO (formerly nuBottle)",
+    metaTitle: "MyO: NFC Dining App for iOS",
     summary:
       "A native iOS dining app built around NFC: diners tap a table tag to open the menu, order, call the waiter and pay, all from their phone.",
     problemHeading: "The brief",

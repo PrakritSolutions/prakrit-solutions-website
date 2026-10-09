@@ -238,7 +238,7 @@ DNS re-checked 2026-10-01 (`dig`, no account access needed):
 
 ## 14. Business and operations readiness
 
-- [ ] **P1** Calendly link (`https://calendly.com/mail-prakritsolutions/30min`) opens, shows real availability in IST, and matches "Monday to Friday, 10 AM to 6 PM IST".
+- [ ] **P1** Calendly link (`https://calendly.com/mail-prakritsolutions/30min`) opens, shows real availability in IST, and matches "Monday to Saturday, 10 AM to 6 PM IST".
 - [ ] **P2** Calendly account uses the new business email, notifications go to you, and the event has a good description and confirmation text.
 - [ ] **P2** Calendly connects to Google Calendar and generates a Meet link.
 - [x] WhatsApp number `+91 90335 19764` confirmed as a WhatsApp Business profile 2026-10-01 (name "Prakrit Solutions" shown publicly, plus a product catalogue). Owner confirms it's up to date.

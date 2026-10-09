@@ -101,14 +101,33 @@ body {
   html {
     scroll-behavior: auto;
   }
+  /* Remove movement, keep feedback: transform, translate and scale changes
+     (hover lift, pressed squeeze) are not animated, but colour, border and
+     opacity still change on hover, focus and press so state stays visible. */
   *,
   *::before,
   *::after {
-    animation-delay: 0s !important;
-    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+    transition-property: color, background-color, border-color, text-decoration-color,
+      fill, stroke, opacity, box-shadow !important;
+  }
+
+  /* Entrances fade in place instead of sliding; ambient drift stops. */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes soft-drift {
+    0%,
+    100% {
+      transform: none;
+    }
   }
 }
 

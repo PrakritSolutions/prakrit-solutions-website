@@ -65,14 +65,14 @@ export function Navbar() {
       <Container className="flex h-16 items-center justify-between md:h-20">
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-mono text-[0.9375rem] font-medium tracking-tight text-ink"
+          className="flex items-center gap-2.5 font-mono text-base font-medium tracking-tight text-ink transition-opacity active:opacity-70 lg:gap-3 lg:text-lg"
         >
           <Image
             src="/brand/logo-mark.svg"
             alt=""
-            width={24}
-            height={24}
-            className="h-6 w-6"
+            width={32}
+            height={32}
+            className="h-7 w-7 lg:h-8 lg:w-8"
             priority
           />
           {siteConfig.name}
@@ -105,7 +105,7 @@ export function Navbar() {
         <button
           ref={toggleRef}
           type="button"
-          className="-mr-2 flex h-10 w-10 items-center justify-center text-ink md:hidden"
+          className="-mr-2.5 flex h-11 w-11 items-center justify-center text-ink md:hidden"
           aria-expanded={open}
           aria-controls={open ? "mobile-menu" : undefined}
           aria-label={open ? "Close menu" : "Open menu"}

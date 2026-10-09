@@ -2,13 +2,14 @@ import { PageHeader } from "@/components/sections/page-header";
 import { AiSection } from "@/components/sections/ai-section";
 import { AutomationSection } from "@/components/sections/automation-section";
 import { CtaSection } from "@/components/sections/cta-section";
+import { RelatedLinks } from "@/components/sections/related-links";
 import { PageJumpLinks } from "@/components/sections/page-jump-links";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "AI Solutions & Automation",
+  title: "AI Integration and Business Automation",
   description:
-    "Practical AI application development and business automation — LLM integration, AI assistants, document intelligence, and workflow automation that removes repetitive work.",
+    "LLM integration, AI assistants, document intelligence and workflow automation that removes repetitive work from your business.",
   path: "/solutions",
 });
 
@@ -29,6 +30,12 @@ export default function SolutionsPage() {
       />
       <AiSection />
       <AutomationSection />
+      <RelatedLinks
+        links={[
+          { label: "Mobile and web app development services", href: "/services" },
+          { label: "App development case studies", href: "/work" },
+        ]}
+      />
       <CtaSection
         title="Not sure if AI or automation fits your problem?"
         description="That's a fair question to bring to a first conversation — we'll help you figure out what's actually worth building."

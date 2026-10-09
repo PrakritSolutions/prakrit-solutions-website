@@ -5,13 +5,14 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { CtaSection } from "@/components/sections/cta-section";
+import { RelatedLinks } from "@/components/sections/related-links";
 import { pageMetadata } from "@/lib/metadata";
 import { founder, siteConfig } from "@/lib/site-config";
 
 export const metadata = pageMetadata({
   title: "About",
   description:
-    "Prakrit Solutions is a software development agency built on business-first engineering — technology that feels like a natural extension of how a company already works.",
+    "Prakrit Solutions is a Surat-based software agency built on business-first engineering: technology that feels like a natural extension of your business.",
   path: "/about",
 });
 
@@ -164,6 +165,13 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      <RelatedLinks
+        links={[
+          { label: "Our services", href: "/services" },
+          { label: "AI and automation solutions", href: "/solutions" },
+          { label: "App development case studies", href: "/work" },
+        ]}
+      />
       <CtaSection />
     </>
   );

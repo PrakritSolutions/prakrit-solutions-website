@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-09T10:49:54Z",
+  "title": "Design System: Prakrit Solutions",
+  "extensions": {
+    "colorMeta": {
+      "midnight-ink": {
+        "role": "neutral",
+        "displayName": "Midnight Ink",
+        "canonical": "#091127",
+        "tonalRamp": [
+          "#0e1b3e",
+          "#182d68",
+          "#213f91",
+          "#2b51ba",
+          "#597bd9",
+          "#97ade7",
+          "#cdd7f4",
+          "#eaeffa"
+        ]
+      },
+      "midnight-ink-soft": {
+        "role": "neutral",
+        "displayName": "Midnight Ink Soft",
+        "canonical": "#111930",
+        "tonalRamp": [
+          "#141d38",
+          "#21315e",
+          "#2f4584",
+          "#3c58a9",
+          "#6881ca",
+          "#a1b1de",
+          "#d2d9ef",
+          "#eceff8"
+        ]
+      },
+      "chalk-paper": {
+        "role": "neutral",
+        "displayName": "Chalk Paper",
+        "canonical": "#fafaf8",
+        "tonalRamp": [
+          "#2d2d20",
+          "#4a4a35",
+          "#68684a",
+          "#868660",
+          "#aaaa88",
+          "#cacab5",
+          "#e5e5db",
+          "#f4f4f0"
+        ]
+      },
+      "ledger-paper": {
+        "role": "neutral",
+        "displayName": "Ledger Paper",
+        "canonical": "#eeede6",
+        "tonalRamp": [
+          "#2e2c1f",
+          "#4c4934",
+          "#6a6648",
+          "#89835d",
+          "#aca886",
+          "#cbc8b3",
+          "#e6e5db",
+          "#f5f4f0"
+        ]
+      },
+      "slate-text": {
+        "role": "neutral",
+        "displayName": "Slate Text",
+        "canonical": "#5d5f68",
+        "tonalRamp": [
+          "#242528",
+          "#3c3d43",
+          "#54565e",
+          "#6c6f79",
+          "#93959f",
+          "#bcbdc3",
+          "#dfdfe2",
+          "#f2f2f3"
+        ]
+      },
+      "slate-text-on-ink": {
+        "role": "neutral",
+        "displayName": "Slate Text on Ink",
+        "canonical": "#a3a5ae",
+        "tonalRamp": [
+          "#242529",
+          "#3c3d44",
+          "#54565f",
+          "#6b6e7a",
+          "#93959f",
+          "#bbbdc3",
+          "#dedfe2",
+          "#f1f2f3"
+        ]
+      },
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "canonical": "#0032ea",
+        "tonalRamp": [
+          "#00104c",
+          "#001b80",
+          "#0026b2",
+          "#0031e6",
+          "#335fff",
+          "#809bff",
+          "#c2cfff",
+          "#e5ebff"
+        ]
+      },
+      "signal-blue-pressed": {
+        "role": "primary",
+        "displayName": "Signal Blue Pressed",
+        "canonical": "#002a9f",
+        "tonalRamp": [
+          "#00144c",
+          "#002280",
+          "#002fb2",
+          "#003de6",
+          "#3369ff",
+          "#80a1ff",
+          "#c2d2ff",
+          "#e5ecff"
+        ]
+      },
+      "signal-blue-wash": {
+        "role": "primary",
+        "displayName": "Signal Blue Wash",
+        "canonical": "#e6eaf7",
+        "tonalRamp": [
+          "#131c3a",
+          "#1f2e61",
+          "#2b4187",
+          "#3853ae",
+          "#647dce",
+          "#9eaee0",
+          "#d1d8f0",
+          "#eceff9"
+        ]
+      },
+      "cyan-spark": {
+        "role": "secondary",
+        "displayName": "Cyan Spark",
+        "canonical": "#18fafd",
+        "tonalRamp": [
+          "#014b4c",
+          "#017d7e",
+          "#02afb1",
+          "#02e1e4",
+          "#35fbfd",
+          "#81fcfe",
+          "#c2fefe",
+          "#e6feff"
+        ]
+      },
+      "confirm-green": {
+        "role": "neutral",
+        "displayName": "Confirm Green",
+        "canonical": "#1fa97e",
+        "tonalRamp": [
+          "#0c4130",
+          "#146c50",
+          "#1c9770",
+          "#24c291",
+          "#53dfb4",
+          "#93ebd0",
+          "#cbf6e8",
+          "#e9fbf6"
+        ]
+      },
+      "confirm-green-wash": {
+        "role": "neutral",
+        "displayName": "Confirm Green Wash",
+        "canonical": "#e7f6f0",
+        "tonalRamp": [
+          "#15382a",
+          "#235d46",
+          "#318261",
+          "#3fa77d",
+          "#6bc7a2",
+          "#a2dcc5",
+          "#d2eee3",
+          "#ecf8f3"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page headers."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles and sub-sections."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lead and running text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Mono eyebrows, step numbers and the wordmark."
+      }
+    },
+    "shadows": [
+      {
+        "name": "app-screen",
+        "value": "0 18px 30px -20px rgba(9,17,39,0.5)",
+        "purpose": "Under real app screenshots."
+      },
+      {
+        "name": "device-illustration",
+        "value": "0 20px 45px -25px rgba(11,13,18,0.35)",
+        "purpose": "Under phone and browser mock-ups."
+      },
+      {
+        "name": "button-contact",
+        "value": "0 1px 0 0 rgba(0,0,0,0.05)",
+        "purpose": "Under the primary button."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-quint",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default easing."
+      },
+      {
+        "name": "duration-fast",
+        "value": "160ms",
+        "purpose": "State changes on controls."
+      },
+      {
+        "name": "duration-base",
+        "value": "320ms",
+        "purpose": "Border and colour transitions on cards."
+      },
+      {
+        "name": "duration-slow",
+        "value": "640ms",
+        "purpose": "Scroll-in reveal."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "wide",
+        "value": "1500px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Midnight ink fill that turns signal blue on hover and squeezes slightly when pressed.",
+      "html": "<button class=\"ds-btn-primary\">Start a Project</button>",
+      "css": ".ds-btn-primary{font-family:Geist,ui-sans-serif,system-ui,sans-serif;background:#091127;color:#fafaf8;padding:10px 20px;border:0;border-radius:6px;font-size:15px;font-weight:500;cursor:pointer;box-shadow:0 1px 0 0 rgba(0,0,0,.05);transition:all 160ms ease-out}.ds-btn-primary:hover{background:#0032ea;transform:translateY(-2px)}.ds-btn-primary:active{transform:translateY(0) scale(.98)}.ds-btn-primary:focus-visible{outline:2px solid #0032ea;outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Transparent with a strong hairline; darkens on hover.",
+      "html": "<button class=\"ds-btn-secondary\">Explore Our Services</button>",
+      "css": ".ds-btn-secondary{font-family:Geist,ui-sans-serif,system-ui,sans-serif;background:transparent;color:#091127;padding:10px 20px;border:1px solid rgba(9,17,39,.4);border-radius:6px;font-size:15px;font-weight:500;cursor:pointer;transition:all 160ms ease-out}.ds-btn-secondary:hover{border-color:#091127;transform:translateY(-2px)}.ds-btn-secondary:active{transform:translateY(0) scale(.98)}.ds-btn-secondary:focus-visible{outline:2px solid #0032ea;outline-offset:2px}"
+    },
+    {
+      "name": "Inverse Button",
+      "kind": "button",
+      "refersTo": "button-inverse",
+      "description": "Paper fill used on midnight bands.",
+      "html": "<button class=\"ds-btn-inverse\">Start a Project</button>",
+      "css": ".ds-btn-inverse{font-family:Geist,ui-sans-serif,system-ui,sans-serif;background:#fafaf8;color:#091127;padding:14px 24px;border:0;border-radius:6px;font-size:16px;font-weight:500;cursor:pointer;transition:all 160ms ease-out}.ds-btn-inverse:hover{background:#0032ea;color:#fafaf8;transform:translateY(-2px)}.ds-btn-inverse:active{transform:translateY(0) scale(.98)}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Paper fill, strong hairline, blue border on focus.",
+      "html": "<input class=\"ds-input\" placeholder=\"Your name\">",
+      "css": ".ds-input{font-family:Geist,ui-sans-serif,system-ui,sans-serif;width:100%;box-sizing:border-box;background:#fafaf8;color:#091127;padding:12px 16px;border:1px solid rgba(9,17,39,.4);border-radius:6px;font-size:15px;transition:border-color 160ms}.ds-input::placeholder{color:#5d5f68}.ds-input:focus-visible{outline:2px solid #0032ea;outline-offset:2px;border-color:#0032ea}"
+    },
+    {
+      "name": "Service Chip",
+      "kind": "chip",
+      "refersTo": null,
+      "description": "Fully rounded toggle chip; selected state uses the blue wash.",
+      "html": "<button class=\"ds-chip\">Mobile apps</button> <button class=\"ds-chip ds-chip-on\">Web apps</button>",
+      "css": ".ds-chip{font-family:Geist,ui-sans-serif,system-ui,sans-serif;background:transparent;color:#5d5f68;padding:6px 14px;border:1px solid rgba(9,17,39,.16);border-radius:999px;font-size:14px;cursor:pointer;transition:all 160ms}.ds-chip:hover{border-color:rgba(9,17,39,.4)}.ds-chip-on{background:#e6eaf7;border-color:#0032ea;color:#091127}.ds-chip:focus-visible{outline:2px solid #0032ea;outline-offset:2px}"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat card with a hairline that turns blue on hover.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-card-k\">MOBILE \u00b7 LIVE</p><h3>BookCargo</h3><p>Two native iOS apps for an on-demand goods transport platform.</p></div>",
+      "css": ".ds-card{font-family:Geist,ui-sans-serif,system-ui,sans-serif;background:#fafaf8;border:1px solid rgba(9,17,39,.16);border-radius:18px;padding:32px;max-width:340px;transition:border-color 320ms}.ds-card:hover{border-color:#0032ea}.ds-card h3{margin:8px 0;font-size:24px;font-weight:500;color:#091127;line-height:1.25}.ds-card p{margin:0;color:#5d5f68;font-size:15px;line-height:1.6}.ds-card .ds-card-k{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.14em;color:#0032ea}"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Sticky translucent paper bar with the wordmark, links and a primary button.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-wm\">Prakrit Solutions</span><span class=\"ds-links\"><a>Services</a><a>Solutions</a><a>Work</a><a class=\"on\">About</a></span></nav>",
+      "css": ".ds-nav{font-family:Geist,ui-sans-serif,system-ui,sans-serif;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:rgba(250,250,248,.8);border-bottom:1px solid rgba(9,17,39,.1)}.ds-wm{font-family:'Geist Mono',ui-monospace,monospace;font-size:18px;font-weight:500;color:#091127}.ds-links{display:flex;gap:32px}.ds-links a{font-size:15px;color:#5d5f68;cursor:pointer}.ds-links a:hover{color:#0032ea}.ds-links a.on{color:#091127;font-weight:500}"
+    },
+    {
+      "name": "Call-to-action Band",
+      "kind": "custom",
+      "refersTo": "cta-band",
+      "description": "Midnight ink band with a faint cropped logo mark.",
+      "html": "<div class=\"ds-cta\"><h3>Have an idea? Let's build it.</h3><p>Tell us what you're trying to solve.</p></div>",
+      "css": ".ds-cta{font-family:Geist,ui-sans-serif,system-ui,sans-serif;position:relative;overflow:hidden;background:#091127;color:#fafaf8;border-radius:28px;padding:56px 40px;text-align:center}.ds-cta h3{margin:0 0 8px;font-size:32px;font-weight:500;letter-spacing:-.02em}.ds-cta p{margin:0;color:#a3a5ae;font-size:16px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineer's Ledger",
+    "overview": "The site reads like a well-kept working document: warm paper, ruled hairlines, midnight-ink type and a single precise blue. Structure is drawn with 1px lines and tonal steps instead of shadows. Proof comes from real App Store screens, never stock imagery. The voice is calm, exact and honest, and the visuals match it.",
+    "keyCharacteristics": [
+      "Warm off-white paper and midnight ink, never pure white or pure black.",
+      "One signal blue for action and attention; cyan only on midnight bands.",
+      "Hairline borders and tonal layering carry structure.",
+      "Geist for reading, Geist Mono for small labels, data and the wordmark.",
+      "Real app screens, with tinted soft shadows, are the only imagery.",
+      "Motion is brief and functional."
+    ],
+    "rules": [
+      {
+        "name": "The One Blue Rule",
+        "body": "Signal blue means \"act here\" or \"this is current\". It never fills large areas and never decorates.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Borders are 1px translucent ink. A stronger line (40%) is reserved for form fields and secondary buttons.",
+        "section": "colors"
+      },
+      {
+        "name": "The Navy Band Rule",
+        "body": "Dark midnight sections are a deliberate rhythm used a few times per page. Do not add one without a reason.",
+        "section": "colors"
+      },
+      {
+        "name": "The Quiet Label Rule",
+        "body": "Mono labels stay at 12px or larger and in Slate Text or Signal Blue. They never carry long text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Card Rule",
+        "body": "Cards stay flat at rest. Only imagery of real apps gets a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do build structure from 1px hairlines and tonal steps between Chalk Paper, Ledger Paper and Midnight Ink.",
+      "Do use Signal Blue only for action, links and the current state.",
+      "Do show real App Store screens for proof, with the soft tinted shadow.",
+      "Do keep body copy plain and exact, in Slate Text on paper.",
+      "Do make every touch target at least 44px."
+    ],
+    "donts": [
+      "Don't use purple, glowing or neon startup gradients.",
+      "Don't put an eyebrow label above every section heading.",
+      "Don't give cards drop shadows or glass blur.",
+      "Don't use stock photography or abstract 3D imagery.",
+      "Don't use pure white (#ffffff) or pure black (#000000); use Chalk Paper and Midnight Ink.",
+      "Don't add non-English script text as decoration."
+    ]
+  }
+}

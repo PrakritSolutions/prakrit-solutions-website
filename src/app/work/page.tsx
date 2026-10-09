@@ -6,9 +6,9 @@ import { caseStudies } from "@/lib/content/case-studies";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Work",
+  title: "App Development Case Studies",
   description:
-    "Case studies from Prakrit Solutions engagements — the problem, our approach, the solution we built, and the outcome.",
+    "How we rebuilt BookCargo's iOS apps, built an NFC dining app and keep a marketplace's iOS and Android apps moving forward.",
   path: "/work",
 });
 

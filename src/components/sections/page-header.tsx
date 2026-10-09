@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
+import type { Breadcrumb } from "@/lib/structured-data";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/badge";
 import { BrandMark } from "@/components/ui/brand-mark";
@@ -8,6 +10,7 @@ import { BrandMark } from "@/components/ui/brand-mark";
 // `brandPanel` makes the right half a navy panel with the large logo mark, from
 // xl up; the text column is capped so it never runs under the panel.
 export function PageHeader({
+  breadcrumbs,
   eyebrow,
   title,
   description,
@@ -15,6 +18,7 @@ export function PageHeader({
   brandPanel = false,
   children,
 }: {
+  breadcrumbs?: Breadcrumb[];
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
@@ -42,6 +46,28 @@ export function PageHeader({
         <div
           className={brandPanel ? "relative xl:max-w-[calc(50vw-var(--gutter)-2rem)]" : ""}
         >
+          {breadcrumbs ? (
+            <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted">
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                {breadcrumbs.map((crumb, index) => (
+                  <li key={crumb.path} className="flex items-center gap-2">
+                    {index < breadcrumbs.length - 1 ? (
+                      <>
+                        <Link href={crumb.path} className="hover:text-accent">
+                          {crumb.name}
+                        </Link>
+                        <span aria-hidden="true">/</span>
+                      </>
+                    ) : (
+                      <span aria-current="page" className="text-ink">
+                        {crumb.name}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          ) : null}
           {eyebrow ? <Eyebrow className="mb-5">{eyebrow}</Eyebrow> : null}
           <h1 className="text-balance max-w-3xl text-4xl font-medium leading-[1.1] tracking-[-0.02em] text-ink md:text-5xl lg:text-[3.25rem]">
             {title}
