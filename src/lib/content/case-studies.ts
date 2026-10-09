@@ -27,6 +27,8 @@ export type CaseStudy = {
   slug: string;
   client: string;
   category: string;
+  // Section of /services that this work belongs to, e.g. "/services#mobile".
+  serviceHref?: string;
   status?: string;
   title: string;
   summary?: string;
@@ -60,6 +62,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     client: "BookCargo",
     category: "Mobile Application",
+    serviceHref: "/services#mobile",
     title: "Two native iOS apps for an on-demand goods transport platform",
     metaTitle: "BookCargo iOS Apps Rebuilt in SwiftUI",
     summary:
@@ -148,6 +151,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "dealerwerx",
     client: "Dealerwerx",
     category: "Mobile Application",
+    serviceHref: "/services#mobile",
     status: "In development",
     title: "Ongoing development of a marketplace's iOS and Android apps",
     metaTitle: "Marketplace iOS and Android Apps",
@@ -224,6 +228,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     client: "Restaurant-technology client",
     category: "Mobile Application",
+    serviceHref: "/services#mobile",
     title: "MyO (formerly nuBottle)",
     metaTitle: "MyO: NFC Dining App for iOS",
     summary:

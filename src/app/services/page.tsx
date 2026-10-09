@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/container";
 import { ServiceDetail } from "@/components/sections/service-detail";
 import { CtaSection } from "@/components/sections/cta-section";
 import { PageJumpLinks } from "@/components/sections/page-jump-links";
+import { RelatedLinks } from "@/components/sections/related-links";
 import { services } from "@/lib/content/services";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -35,6 +36,13 @@ export default function ServicesPage() {
           ))}
         </Container>
       </section>
+      <RelatedLinks
+        links={[
+          { label: "AI and automation solutions", href: "/solutions" },
+          { label: "App development case studies", href: "/work" },
+          { label: "About Prakrit Solutions", href: "/about" },
+        ]}
+      />
       <CtaSection />
     </>
   );

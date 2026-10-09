@@ -65,6 +65,23 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
             {[
               { term: "Client", detail: study.client },
               { term: "Category", detail: study.category },
+              ...(study.serviceHref
+                ? [
+                    {
+                      term: "Related service",
+                      detail: (
+                        <Link
+                          href={study.serviceHref}
+                          className="font-medium underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                        >
+                          {study.category === "Mobile Application"
+                            ? "Mobile application development"
+                            : study.category}
+                        </Link>
+                      ),
+                    },
+                  ]
+                : []),
               ...(study.status ? [{ term: "Status", detail: study.status }] : []),
               ...(study.scope ? [{ term: "Our scope", detail: study.scope }] : []),
             ].map((row) => (

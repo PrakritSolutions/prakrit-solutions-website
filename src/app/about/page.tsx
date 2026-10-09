@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { CtaSection } from "@/components/sections/cta-section";
+import { RelatedLinks } from "@/components/sections/related-links";
 import { pageMetadata } from "@/lib/metadata";
 import { founder, siteConfig } from "@/lib/site-config";
 
@@ -164,6 +165,13 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      <RelatedLinks
+        links={[
+          { label: "Our services", href: "/services" },
+          { label: "AI and automation solutions", href: "/solutions" },
+          { label: "App development case studies", href: "/work" },
+        ]}
+      />
       <CtaSection />
     </>
   );
