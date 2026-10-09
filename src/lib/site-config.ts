@@ -12,7 +12,7 @@ export const siteConfig = {
   noreplyEmail: "noreply@prakritsolutions.in",
   whatsapp: "+91-9033519764",
   whatsappUrl: "https://wa.me/919033519764",
-  hours: "Monday to Friday, 10 AM to 6 PM IST",
+  hours: "Monday to Saturday, 10 AM to 6 PM IST",
   responseTime: "up to 2 business days",
   bookingUrl: "https://calendly.com/mail-prakritsolutions/30min",
   location: "Surat, Gujarat, India",

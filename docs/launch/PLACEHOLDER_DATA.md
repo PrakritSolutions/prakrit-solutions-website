@@ -38,7 +38,7 @@ Legend: **Replace** = must change before launch · **Confirm** = looks real but 
 | 19 | `docs/legal/PRIVACY_POLICY.md`, `TERMS_OF_SERVICE.md` | Still say "DRAFT: pending legal review" and `[Effective Date]`, use `www` | **Remove** or update so they match the TSX pages |
 | 20 | `src/lib/site-config.ts` → `whatsapp`, `whatsappUrl` | `+91-9033519764` | **Confirm** it is the public number you want (ideally a WhatsApp Business number) |
 | 21 | `site-config.ts` → `bookingUrl` | `https://calendly.com/mail-prakritsolutions/30min` | **Confirm** the account and slug are the ones you want long-term (the slug is tied to a personal-style mail name) |
-| 22 | `site-config.ts` → `hours` | `Monday to Friday, 10 AM to 6 PM IST` | **Confirm** matches Calendly availability |
+| 22 | `site-config.ts` → `hours` | `Monday to Saturday, 10 AM to 6 PM IST` | **Confirm** matches Calendly availability |
 | 23 | `site-config.ts` → `location` | `Surat, Gujarat, India` | **Confirm**; add a registered address to the legal pages if you need one |
 | 24 | `site-config.ts` → `email`, `privacyEmail`, `noreplyEmail` | `hello@`, `privacy@`, `noreply@prakritsolutions.in` | **Confirm** each mailbox or alias exists (see accounts list) |
 | 25 | `src/lib/content/faq.ts` | "reply personally, usually within a couple of business days" | **Confirm** you can honour it |

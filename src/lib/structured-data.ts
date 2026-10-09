@@ -33,10 +33,10 @@ export function siteJsonLd() {
           "@type": "Place",
           name: siteConfig.location,
         },
-        // Keep in step with siteConfig.hours (Monday to Friday, 10 AM to 6 PM IST).
+        // Keep in step with siteConfig.hours (Monday to Saturday, 10 AM to 6 PM IST).
         openingHoursSpecification: {
           "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
           opens: "10:00",
           closes: "18:00",
         },
