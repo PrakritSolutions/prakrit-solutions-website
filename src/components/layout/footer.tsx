@@ -56,13 +56,13 @@ export function Footer() {
       <Container className="py-16 md:py-20">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-6">
           <div className="col-span-2 md:col-span-2">
-            <span className="flex items-center gap-2.5 font-mono text-[0.9375rem] font-medium text-paper">
+            <span className="flex items-center gap-2.5 font-mono text-base font-medium text-paper lg:gap-3 lg:text-lg">
               <Image
                 src="/brand/logo-mark.svg"
                 alt=""
-                width={24}
-                height={24}
-                className="h-6 w-6"
+                width={32}
+                height={32}
+                className="h-7 w-7 lg:h-8 lg:w-8"
               />
               {siteConfig.name}
             </span>
