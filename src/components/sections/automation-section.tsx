@@ -23,13 +23,13 @@ export function AutomationSection() {
 
         <Reveal
           delay={200}
-          className="mt-10 flex flex-col gap-6 border-t border-line-inverse-soft pt-8 md:mt-16 md:flex-row md:items-center md:justify-between md:pt-10"
+          className="mt-10 flex flex-col gap-8 border-t border-line-inverse-soft pt-8 md:mt-16 md:pt-10 min-[1500px]:flex-row min-[1500px]:items-center min-[1500px]:justify-between min-[1500px]:gap-6"
         >
-          <div className="flex flex-wrap gap-2.5">
+          <div className="grid w-full max-w-3xl grid-cols-2 gap-2.5 sm:grid-cols-3 xl:flex xl:max-w-none xl:max-[1499px]:flex-wrap min-[1500px]:flex-nowrap">
             {automationExamples.map((example) => (
               <span
                 key={example}
-                className="rounded-full border border-line-inverse px-3.5 py-1.5 text-sm text-muted-inverse"
+                className="rounded-full border border-line-inverse px-3 py-1.5 text-center text-sm text-muted-inverse min-[1500px]:whitespace-nowrap"
               >
                 {example}
               </span>
@@ -38,7 +38,7 @@ export function AutomationSection() {
           <Button
             href="/solutions#automation"
             variant="inverse"
-            className="shrink-0"
+            className="shrink-0 sm:self-start min-[1500px]:self-center"
             icon={<ArrowRightIcon className="h-4 w-4" />}
           >
             Explore Automation

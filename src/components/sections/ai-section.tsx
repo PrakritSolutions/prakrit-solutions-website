@@ -8,7 +8,7 @@ import { aiCapabilities } from "@/lib/content/solutions";
 export function AiSection() {
   return (
     <section id="ai" className="scroll-mt-20 border-b border-line-soft py-12 md:py-24">
-      <Container className="grid gap-14 lg:grid-cols-[1fr_0.85fr] lg:items-center lg:gap-16">
+      <Container className="grid gap-14 lg:grid-cols-[1fr_0.85fr] lg:items-start lg:gap-16">
         <Reveal>
           <Eyebrow className="mb-5">AI Solutions</Eyebrow>
           <h2 className="text-balance text-3xl font-medium leading-[1.15] tracking-[-0.02em] text-ink md:text-4xl">
@@ -44,7 +44,7 @@ export function AiSection() {
           </Button>
         </Reveal>
 
-        <Reveal delay={120} className="rounded-[var(--radius-lg)] border border-line bg-paper-dim/60 p-6 md:p-8">
+        <Reveal delay={120} className="rounded-[var(--radius-lg)] border border-line bg-paper-dim/60 p-6 md:p-8 lg:sticky lg:top-28">
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
             Example pipeline
           </p>
