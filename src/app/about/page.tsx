@@ -47,6 +47,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
+        brandPanel
         title="Technology that feels like a natural extension of your business."
         description="Prakrit Solutions is a software development agency. We design and build mobile apps, web products, AI-powered systems and automation for businesses that need a technology partner, not just a developer."
       />

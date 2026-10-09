@@ -98,7 +98,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
                 <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">
                   {row.term}
                 </h2>
-                <p className="text-pretty max-w-3xl text-lg leading-relaxed text-ink/85">
+                <p className="text-pretty max-w-3xl text-base leading-relaxed text-ink/85 md:text-lg">
                   {row.detail}
                 </p>
               </Reveal>
@@ -169,14 +169,14 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
         </section>
       ) : null}
 
-      <section className="py-14 md:py-20">
+      <section className="py-10 md:py-20">
         <Container>
           <div className="grid gap-12 md:grid-cols-[14rem_1fr] md:gap-12">
             <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">
               Outcome
             </h2>
             <div>
-              <p className="text-pretty max-w-3xl text-lg leading-relaxed text-ink/85">
+              <p className="text-pretty max-w-3xl text-base leading-relaxed text-ink/85 md:text-lg">
                 {study.outcome}
               </p>
               {study.storeLinks?.length ? (
