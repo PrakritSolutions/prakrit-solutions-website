@@ -30,7 +30,7 @@ function FooterColumn({
   links: readonly { label: string; href: string }[];
 }) {
   return (
-    <div>
+    <div className="md:pt-2">
       <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted-inverse">
         {title}
       </h2>
@@ -54,8 +54,8 @@ export function Footer() {
   return (
     <footer className="border-t border-line-inverse bg-ink text-paper">
       <Container className="py-16 md:py-20">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-6">
-          <div className="col-span-2 md:col-span-2">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
+          <div className="col-span-2 md:col-span-1">
             <span className="flex items-center gap-2.5 font-mono text-base font-medium text-paper lg:gap-3 lg:text-lg">
               <Image
                 src="/brand/logo-mark.svg"
@@ -99,18 +99,32 @@ export function Footer() {
             </ul>
           </div>
 
-          <FooterColumn title="Services" links={footerNav.services} />
-          <FooterColumn title="Solutions" links={footerNav.solutions} />
+          <FooterColumn
+            title="What we do"
+            links={[...footerNav.services, ...footerNav.solutions]}
+          />
           <FooterColumn title="Company" links={footerNav.company} />
-          <FooterColumn title="Legal" links={footerNav.legal} />
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-line-inverse-soft pt-8 text-sm text-paper/60 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-          </p>
+          <div className="flex flex-col gap-x-8 gap-y-1 md:flex-row md:flex-wrap md:items-center">
+            <p>
+              © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            </p>
+            <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6">
+              {footerNav.legal.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex min-h-11 items-center hover:text-paper md:min-h-9"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <CookieSettingsButton className="min-h-11 hover:text-paper md:min-h-9" />
+            </nav>
+          </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <CookieSettingsButton className="min-h-11 hover:text-paper md:min-h-9" />
             <ul className="-mr-2.5 flex items-center">
               {socialLinks
                 .filter((link) => link.href)
