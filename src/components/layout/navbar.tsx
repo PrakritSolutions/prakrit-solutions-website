@@ -105,7 +105,7 @@ export function Navbar() {
         <button
           ref={toggleRef}
           type="button"
-          className="-mr-2 flex h-10 w-10 items-center justify-center text-ink md:hidden"
+          className="-mr-2.5 flex h-11 w-11 items-center justify-center text-ink md:hidden"
           aria-expanded={open}
           aria-controls={open ? "mobile-menu" : undefined}
           aria-label={open ? "Close menu" : "Open menu"}
