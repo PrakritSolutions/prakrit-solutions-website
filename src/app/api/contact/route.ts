@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { siteConfig } from "@/lib/site-config";
 import { logEnquiryToSheet } from "@/lib/enquiry-log";
 import {
+  budgetOptions,
+  contactLimits,
+  serviceOptions,
+  timelineOptions,
+} from "@/lib/contact-options";
+import {
   buildConfirmationEmail,
   escapeHtml,
   type ContactPayload,
@@ -41,6 +47,11 @@ function describeSource(input: unknown): string {
 }
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// A real enquiry is well under 10 KB; anything bigger is not from the form.
+const BODY_LIMIT_CHARS = 20_000;
+const allowedBudgets = new Set(Object.values(budgetOptions).flat());
+const asText = (value: unknown) => (typeof value === "string" ? value.trim() : "");
 
 function buildEmail(payload: ContactPayload) {
   const rows: [string, string][] = [
@@ -94,10 +105,19 @@ function buildEmail(payload: ContactPayload) {
 }
 
 export async function POST(request: Request) {
-  let payload: Partial<Omit<ContactPayload, "source">> & { website?: string; source?: unknown };
+  const raw = await request.text();
+  if (raw.length > BODY_LIMIT_CHARS) {
+    return NextResponse.json({ error: "Request too large." }, { status: 413 });
+  }
+
+  let payload: Record<string, unknown>;
 
   try {
-    payload = await request.json();
+    const body: unknown = JSON.parse(raw);
+    if (typeof body !== "object" || body === null || Array.isArray(body)) {
+      throw new Error("Body is not an object");
+    }
+    payload = body as Record<string, unknown>;
   } catch {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
@@ -116,17 +136,23 @@ export async function POST(request: Request) {
     );
   }
 
-  const name = payload.name?.trim() ?? "";
-  const email = payload.email?.trim();
-  const phone = payload.phone?.trim() ?? "";
-  const project = payload.project?.trim() ?? "";
-  const services = Array.isArray(payload.services) ? payload.services : [];
+  const fields = {
+    name: asText(payload.name),
+    company: asText(payload.company),
+    email: asText(payload.email),
+    phone: asText(payload.phone),
+    project: asText(payload.project),
+    message: asText(payload.message),
+  };
+  const budget = asText(payload.budget);
+  const timeline = asText(payload.timeline);
+  const services: unknown[] = Array.isArray(payload.services) ? payload.services : [];
 
   if (
-    !name ||
-    !email ||
-    !EMAIL_PATTERN.test(email) ||
-    phone.replace(/\D/g, "").length < 7 ||
+    !fields.name ||
+    !fields.email ||
+    !EMAIL_PATTERN.test(fields.email) ||
+    fields.phone.replace(/\D/g, "").length < 7 ||
     services.length === 0
   ) {
     return NextResponse.json(
@@ -135,16 +161,27 @@ export async function POST(request: Request) {
     );
   }
 
+  const tooLong = Object.entries(contactLimits).some(
+    ([key, max]) => fields[key as keyof typeof fields].length > max
+  );
+  const badChoice =
+    services.length > serviceOptions.length ||
+    !services.every((item) => typeof item === "string" && serviceOptions.includes(item)) ||
+    (budget !== "" && !allowedBudgets.has(budget)) ||
+    (timeline !== "" && !timelineOptions.includes(timeline));
+
+  if (tooLong || badChoice) {
+    return NextResponse.json(
+      { error: "Some of the details are not valid. Please check the form and try again." },
+      { status: 400 }
+    );
+  }
+
   const full: ContactPayload = {
-    name,
-    company: payload.company?.trim() ?? "",
-    email,
-    phone,
-    project,
-    services,
-    budget: payload.budget ?? "",
-    timeline: payload.timeline ?? "",
-    message: payload.message?.trim() ?? "",
+    ...fields,
+    services: services as string[],
+    budget,
+    timeline,
     source: describeSource(payload.source),
   };
 
