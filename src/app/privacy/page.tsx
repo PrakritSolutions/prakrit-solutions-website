@@ -27,7 +27,7 @@ const whatsapp = (label: string, href: string) => (
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" updated={legalConfig.effectiveDate}>
+    <LegalPage title="Privacy Policy" updated={legalConfig.privacyUpdated}>
       <LegalSection heading="1. Introduction">
         <p>
           Prakrit Solutions (“<Strong>Prakrit Solutions</Strong>,” “<Strong>we</Strong>,” “
@@ -83,11 +83,11 @@ export default function PrivacyPage() {
           <li>Name</li>
           <li>Company name (optional)</li>
           <li>Email address</li>
-          <li>Phone number (optional)</li>
-          <li>A description of the project or problem you want help with</li>
+          <li>Phone number</li>
+          <li>A description of the project or problem you want help with (optional)</li>
           <li>
             The service(s) you’re interested in (for example mobile, web, AI, or
-            automation)
+            automation); at least one is required
           </li>
           <li>Budget range (optional)</li>
           <li>Timeline (optional)</li>
@@ -145,6 +145,10 @@ export default function PrivacyPage() {
           <Strong>Hosting logs.</Strong> Our hosting provider automatically records
           standard technical information — such as IP address, request time, and
           requested URL — for security, reliability, and abuse-prevention purposes.
+          When you submit the contact form, our server also writes the name, email
+          address, company, services, budget, timeline, and campaign source from your
+          enquiry to its runtime logs, for troubleshooting. On our current hosting
+          plan, Vercel keeps these logs for 1 hour and then deletes them.
         </p>
         <p>
           We do not use advertising trackers or sell any data collected through these
@@ -207,8 +211,10 @@ export default function PrivacyPage() {
             <Strong>Service providers.</Strong> We use third-party providers to operate
             the Site and handle enquiries, including website hosting and performance
             measurement (Vercel Inc.), web analytics (Google LLC), meeting
-            scheduling (Calendly), and, where configured, transactional email
-            delivery (such as Resend). These providers
+            scheduling (Calendly), transactional email delivery (Resend), which
+            sends the enquiry notification to us and a confirmation to you, and
+            Google Workspace (Google LLC), which provides our business email and
+            the private spreadsheet where enquiries are recorded. These providers
             process data only to the extent needed to provide their service to us and
             under their own contractual and legal obligations.
           </li>
@@ -228,7 +234,7 @@ export default function PrivacyPage() {
 
       <LegalSection heading="7. Where Your Information Is Stored">
         <p>
-          Our hosting, analytics, scheduling, and email providers may store and process data on
+          Our hosting, analytics, scheduling, email, and spreadsheet providers may store and process data on
           servers outside India, including in the United States. Where personal data
           is transferred outside India, we take reasonable steps to ensure it continues
           to receive appropriate protection, consistent with the DPDP Act and its
@@ -244,6 +250,9 @@ export default function PrivacyPage() {
           obligations. If an enquiry does not proceed to an engagement, we retain it
           for {legalConfig.retentionPeriod} from your last contact with us, after which
           it is deleted or anonymized, unless a longer period is required by law.
+          Copies of the enquiry held in our business email and our private
+          spreadsheet are removed at the same time. Our email provider keeps its own
+          records of sent messages for the period set in its policy.
           Google Analytics data is retained for the period configured in our analytics
           account (currently {legalConfig.analyticsRetention}).
         </p>

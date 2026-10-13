@@ -7,6 +7,8 @@ export const legalConfig = {
   operatorName: "Vaibhav Jhaveri",
   operatorTitle: "Proprietor",
   effectiveDate: "1 October 2026",
+  // Date the Privacy Policy text was last revised; shown on /privacy only.
+  privacyUpdated: "13 October 2026",
   retentionPeriod: "24 months",
   analyticsRetention: "14 months",
   liabilityCap: "INR 5,000",
