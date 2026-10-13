@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { founder, siteConfig } from "@/lib/site-config";
 
 export const metadata = pageMetadata({
-  title: "About",
+  title: "About Our Founder-Led Software Studio",
   description:
     "Prakrit Solutions is a Surat-based software agency built on business-first engineering: technology that feels like a natural extension of your business.",
   path: "/about",
