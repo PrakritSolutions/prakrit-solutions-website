@@ -17,7 +17,7 @@ export function CaseStudyFlow({ flow }: { flow: CaseFlow }) {
             {flow.steps.map((step, i) => (
               <li key={step.label} className="contents">
                 <div className="flex flex-1 flex-col rounded-[var(--radius-lg)] border border-line bg-paper-dim p-5">
-                  <span className="flex items-center justify-between gap-3 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+                  <span className="flex items-center justify-between gap-3 font-mono text-xs uppercase tracking-[0.14em] text-muted">
                     {step.who}
                     <span className="text-accent">{String(i + 1).padStart(2, "0")}</span>
                   </span>

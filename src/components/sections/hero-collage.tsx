@@ -48,7 +48,7 @@ export function HeroCollage() {
       </div>
 
       <div className="absolute bottom-[6%] left-[5%] z-10 max-w-[90%] rounded-xl border border-line bg-paper px-3.5 py-2.5 text-sm leading-snug text-ink shadow-[0_20px_34px_-20px_rgba(9,17,39,0.55)]">
-        <span className="mb-0.5 block font-mono text-[0.65rem] uppercase tracking-[0.12em] text-muted">
+        <span className="mb-0.5 block font-mono text-xs uppercase tracking-[0.12em] text-muted">
           On the App Store
         </span>
         <span className="mr-2 inline-block h-[7px] w-[7px] rounded-full bg-signal" />
