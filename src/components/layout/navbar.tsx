@@ -86,7 +86,7 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`text-[0.9375rem] transition-colors hover:text-accent ${
+                className={`py-2 text-[0.9375rem] transition-colors hover:text-accent ${
                   active ? "text-ink font-medium" : "text-muted"
                 }`}
               >

@@ -53,12 +53,12 @@ export function ServiceDetail({ service, index }: { service: Service; index: num
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
                 See it in practice
               </p>
-              <ul className="mt-3 space-y-2">
+              <ul className="mt-1.5">
                 {service.work.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-[0.9375rem] font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                      className="inline-block py-1.5 text-[0.9375rem] font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
                     >
                       {item.label}
                     </Link>

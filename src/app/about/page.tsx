@@ -122,7 +122,7 @@ export default function AboutPage() {
                     href={founder.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-medium text-ink underline underline-offset-2 hover:text-accent"
+                    className="inline-block py-2 text-sm font-medium text-ink underline underline-offset-2 hover:text-accent"
                   >
                     {founder.name} on LinkedIn
                   </a>
