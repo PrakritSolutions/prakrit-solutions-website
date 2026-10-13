@@ -25,8 +25,6 @@ the primary record and the failure is only logged.
    **Production** at go-live:
    - `SHEETS_WEBHOOK_URL`: the Web app URL
    - `SHEETS_WEBHOOK_SECRET`: the same secret as step 4
-   - `SHEETS_URL` (optional): the normal Sheet link, shown as "Open enquiry
-     tracker" in the notification email
 7. Redeploy so the variables take effect.
 
 ## Upgrading a Sheet that already has enquiries

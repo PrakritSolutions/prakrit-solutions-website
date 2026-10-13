@@ -66,7 +66,7 @@ None of these are checkable from the repo or DNS — they live in the Vercel das
 - [ ] **P1** `NEXT_PUBLIC_SITE_URL` on Preview is the draft URL, so draft stays noindexed.
 - [ ] **P0** `RESEND_API_KEY` is set on Production.
 - [ ] **P1** `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set on Production to the **production** GA4 property (not the draft one).
-- [ ] **P0** `SHEETS_WEBHOOK_URL`, `SHEETS_WEBHOOK_SECRET`, `SHEETS_URL` are set on Production.
+- [ ] **P0** `SHEETS_WEBHOOK_URL`, `SHEETS_WEBHOOK_SECRET` are set on Production.
 - [ ] **P1** The Apps Script property `WEBHOOK_SECRET` matches `SHEETS_WEBHOOK_SECRET`.
 - [x] No secrets committed to git, re-verified 2026-10-01 (`.env.local` ignored; `.env.example` holds names only; `git status` clean of any `.env*` beyond the ignored file).
 - [ ] **P2** The `VERCEL_OIDC_TOKEN` in local `.env.local` is not needed in production and is not committed.
@@ -98,7 +98,7 @@ DNS re-checked 2026-10-01 (`dig`, no account access needed):
 - [ ] **P0** `noreply@prakritsolutions.in` sends successfully (used as the From address; replies go to `hello@`).
 - [ ] **P0** Send a test to Gmail, Outlook and Yahoo; check inbox vs spam and the "Show original" headers for SPF/DKIM/DMARC pass.
 - [ ] **P1** Confirmation email to the visitor renders well on mobile and in dark mode.
-- [ ] **P1** Notification email to `hello@` shows the Source line and the "Open enquiry tracker" link.
+- [ ] **P1** Notification email to `hello@` shows the Source line and contains no Google Sheet link.
 - [ ] **P2** Email signature uses the real name, title, site and phone or WhatsApp.
 
 ## 6. Contact form and lead capture

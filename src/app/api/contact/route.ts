@@ -42,7 +42,7 @@ function describeSource(input: unknown): string {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function buildEmail(payload: ContactPayload, trackerUrl?: string) {
+function buildEmail(payload: ContactPayload) {
   const rows: [string, string][] = [
     ["Name", payload.name || "—"],
     ["Company", payload.company || "—"],
@@ -59,7 +59,6 @@ function buildEmail(payload: ContactPayload, trackerUrl?: string) {
     "",
     ...(payload.project ? ["Project:", payload.project] : []),
     ...(payload.message ? ["", "Additional information:", payload.message] : []),
-    ...(trackerUrl ? ["", `Open enquiry tracker: ${trackerUrl}`] : []),
   ].join("\n");
 
   const html = `
@@ -86,11 +85,6 @@ function buildEmail(payload: ContactPayload, trackerUrl?: string) {
         payload.message
           ? `<p style="color: #5d5f68; margin-bottom: 4px;">Additional information</p>
              <p style="white-space: pre-wrap;">${escapeHtml(payload.message)}</p>`
-          : ""
-      }
-      ${
-        trackerUrl
-          ? `<p style="margin-top: 20px;"><a href="${escapeHtml(trackerUrl)}">Open enquiry tracker</a></p>`
           : ""
       }
     </div>
@@ -168,7 +162,7 @@ export async function POST(request: Request) {
   const sheetLog = logEnquiryToSheet(full);
 
   if (process.env.RESEND_API_KEY) {
-    const { text, html } = buildEmail(full, process.env.SHEETS_URL);
+    const { text, html } = buildEmail(full);
     const subject = `New project enquiry from ${full.name || full.email}${full.company ? ` (${full.company})` : ""}`;
 
     const resendResponse = await fetch("https://api.resend.com/emails", {
