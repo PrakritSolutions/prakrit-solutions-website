@@ -13,15 +13,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, CheckIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
-
-const serviceOptions = [
-  "Mobile Application",
-  "Web Application",
-  "AI Solution",
-  "Automation",
-  "Custom Software",
-  "Backend & APIs",
-];
+import {
+  budgetOptions,
+  contactLimits,
+  serviceOptions,
+  timelineOptions,
+} from "@/lib/contact-options";
 
 type Currency = "INR" | "USD";
 
@@ -36,34 +33,6 @@ function detectCurrency(): Currency {
 }
 
 const noopSubscribe = () => () => {};
-
-const budgetOptions: Record<Currency, string[]> = {
-  INR: [
-    "Under ₹50,000",
-    "₹50,000 – ₹1 lakh",
-    "₹1 – ₹2.5 lakh",
-    "₹2.5 – ₹5 lakh",
-    "₹5 – ₹10 lakh",
-    "₹10 – ₹25 lakh",
-    "₹25 – ₹50 lakh",
-    "₹50 lakh – ₹1 crore",
-    "₹1 crore+",
-    "Not sure yet",
-  ],
-  USD: [
-    "Under $1,000",
-    "$1,000 – $2,500",
-    "$2,500 – $5,000",
-    "$5,000 – $10,000",
-    "$10,000 – $25,000",
-    "$25,000 – $50,000",
-    "$50,000 – $100,000",
-    "$100,000+",
-    "Not sure yet",
-  ],
-};
-
-const timelineOptions = ["ASAP", "1–3 months", "3–6 months", "6+ months", "Flexible"];
 
 import { ATTRIBUTION_KEY } from "@/components/analytics/attribution";
 
@@ -236,6 +205,7 @@ export function ContactForm() {
             name="name"
             type="text"
             autoComplete="name"
+            maxLength={contactLimits.name}
             required
             {...invalidProps(`${formId}-name`, errors.name)}
             className={inputClasses}
@@ -247,6 +217,7 @@ export function ContactForm() {
             name="company"
             type="text"
             autoComplete="organization"
+            maxLength={contactLimits.company}
             className={inputClasses}
           />
         </Field>
@@ -256,6 +227,7 @@ export function ContactForm() {
             name="email"
             type="email"
             autoComplete="email"
+            maxLength={contactLimits.email}
             required
             {...invalidProps(`${formId}-email`, errors.email)}
             className={inputClasses}
@@ -267,6 +239,7 @@ export function ContactForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
+            maxLength={contactLimits.phone}
             required
             {...invalidProps(`${formId}-phone`, errors.phone)}
             className={inputClasses}
@@ -279,6 +252,7 @@ export function ContactForm() {
           id={`${formId}-project`}
           name="project"
           rows={3}
+          maxLength={contactLimits.project}
           placeholder="A short description is enough to start."
           className={`${inputClasses} resize-y`}
         />
