@@ -13,6 +13,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, CheckIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
+import { trackEvent } from "@/lib/analytics";
 import {
   budgetOptions,
   contactLimits,
@@ -86,7 +87,15 @@ export function ContactForm() {
   const [pendingCurrency, setPendingCurrency] = useState<Currency | null>(null);
   const [showExtras, setShowExtras] = useState(false);
   const successRef = useRef<HTMLHeadingElement>(null);
+  const startedRef = useRef(false);
   const formId = useId();
+
+  // Fires once per attempt, when the visitor first touches any field.
+  function trackStart() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent("contact_form_start");
+  }
 
   useEffect(() => {
     if (status === "success") successRef.current?.focus();
@@ -135,6 +144,10 @@ export function ContactForm() {
     setErrors(fieldErrors);
     const firstInvalid = requiredOrder.find((key) => fieldErrors[key]);
     if (firstInvalid) {
+      trackEvent("contact_form_error", {
+        error_source: "validation",
+        error_fields: Object.keys(fieldErrors).join(","),
+      });
       const target =
         firstInvalid === "services" ? "[data-service-chip]" : `[name="${firstInvalid}"]`;
       form.querySelector<HTMLElement>(target)?.focus();
@@ -151,6 +164,7 @@ export function ContactForm() {
       });
 
       if (!res.ok) {
+        trackEvent("contact_form_error", { error_source: "server", status: res.status });
         // 400 and 429 carry a message written for the visitor; show it as-is.
         if (res.status === 400 || res.status === 429) {
           const body = (await res.json().catch(() => null)) as { error?: string } | null;
@@ -159,6 +173,8 @@ export function ContactForm() {
         throw new Error("Request failed");
       }
 
+      trackEvent("generate_lead", { form: "contact" });
+      startedRef.current = false;
       setStatus("success");
       setErrors({});
       form.reset();
@@ -191,7 +207,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-6">
+    <form onSubmit={handleSubmit} onFocus={trackStart} noValidate className="space-y-6">
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>
           Leave this field empty
@@ -233,7 +249,13 @@ export function ContactForm() {
             className={inputClasses}
           />
         </Field>
-        <Field label="Phone" htmlFor={`${formId}-phone`} required error={errors.phone}>
+        <Field
+          label="Phone"
+          htmlFor={`${formId}-phone`}
+          required
+          hint="Only used to discuss your project. WhatsApp number is fine."
+          error={errors.phone}
+        >
           <input
             id={`${formId}-phone`}
             name="phone"
@@ -242,6 +264,7 @@ export function ContactForm() {
             maxLength={contactLimits.phone}
             required
             {...invalidProps(`${formId}-phone`, errors.phone)}
+            aria-describedby={`${formId}-phone-hint${errors.phone ? ` ${formId}-phone-error` : ""}`}
             className={inputClasses}
           />
         </Field>
@@ -433,6 +456,7 @@ function Field({
   htmlFor,
   required,
   optional,
+  hint,
   error,
   aside,
   children,
@@ -441,6 +465,7 @@ function Field({
   htmlFor: string;
   required?: boolean;
   optional?: boolean;
+  hint?: string;
   error?: string;
   aside?: ReactNode;
   children: ReactNode;
@@ -456,6 +481,11 @@ function Field({
         {aside}
       </div>
       {children}
+      {hint ? (
+        <p id={`${htmlFor}-hint`} className="mt-1.5 text-sm text-muted">
+          {hint}
+        </p>
+      ) : null}
       {error ? (
         <p id={`${htmlFor}-error`} className="mt-1.5 text-sm text-red-600">
           {error}

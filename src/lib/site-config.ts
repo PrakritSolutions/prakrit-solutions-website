@@ -24,7 +24,7 @@ export const siteConfig = {
 export const founder = {
   name: "Vaibhav Jhaveri",
   title: "Founder",
-  photo: "",
+  photo: "/brand/founder.jpg",
   linkedin: "https://www.linkedin.com/in/vaibhavjhaveri",
   bio: [
     "Prakrit Solutions is run by Vaibhav Jhaveri. Enquiries are read and answered personally, so the person you talk to first is the person accountable for the work.",
