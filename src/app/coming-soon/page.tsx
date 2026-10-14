@@ -4,6 +4,10 @@ import { SparkIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Coming Soon",
+  // Not indexed, so it should not claim the homepage as its canonical.
+  alternates: { canonical: null },
+  openGraph: null,
+  twitter: null,
   robots: { index: false, follow: false },
 };
 

@@ -5,7 +5,8 @@ import { Eyebrow } from "@/components/ui/badge";
 import { ArrowRightIcon } from "@/components/icons";
 import { PageJumpLinks } from "@/components/sections/page-jump-links";
 
-export const metadata: Metadata = { title: "Page not found" };
+// No canonical: this is a 404, and the layout's canonical points at the homepage.
+export const metadata: Metadata = { title: "Page not found", alternates: { canonical: null }, openGraph: null, twitter: null };
 
 export default function NotFound() {
   return (
