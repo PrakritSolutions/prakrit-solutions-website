@@ -5,15 +5,26 @@ import type { NextConfig } from "next";
 // scripts and styles, and a nonce would force every page to render per request.
 // Switch the header to Content-Security-Policy once nothing is reported.
 const isDev = process.env.NODE_ENV === "development";
+// Vercel's preview toolbar frames vercel.live on preview deployments only.
+const isPreview = process.env.VERCEL_ENV === "preview";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://va.vercel-scripts.com https://challenges.cloudflare.com`,
-  "frame-src https://challenges.cloudflare.com",
+  `frame-src https://challenges.cloudflare.com${isPreview ? " https://vercel.live" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com",
   "font-src 'self' data:",
   "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://vitals.vercel-insights.com",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+].join("; ");
+
+// Enforced already: these four directives have no realistic way to break the site.
+// The full policy above stays report-only until a clean review, then replaces this.
+const baselinePolicy = [
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -25,6 +36,7 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+  { key: "Content-Security-Policy", value: baselinePolicy },
   { key: "Content-Security-Policy-Report-Only", value: contentSecurityPolicy },
 ];
 

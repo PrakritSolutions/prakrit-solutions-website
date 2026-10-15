@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { siteConfig } from "@/lib/site-config";
 import { logEnquiryToSheet } from "@/lib/enquiry-log";
@@ -202,13 +203,22 @@ export async function POST(request: Request) {
   const tooLong = Object.entries(contactLimits).some(
     ([key, max]) => fields[key as keyof typeof fields].length > max
   );
+  // Optional fields must be strings when present. A number, object or array here
+  // is not from the form, so reject it instead of quietly treating it as blank.
+  const wrongType = [
+    payload.company,
+    payload.project,
+    payload.message,
+    payload.budget,
+    payload.timeline,
+  ].some((value) => value !== undefined && value !== null && typeof value !== "string");
   const badChoice =
     services.length > serviceOptions.length ||
     !services.every((item) => typeof item === "string" && serviceOptions.includes(item)) ||
     (budget !== "" && !allowedBudgets.has(budget)) ||
     (timeline !== "" && !timelineOptions.includes(timeline));
 
-  if (tooLong || badChoice) {
+  if (tooLong || badChoice || wrongType) {
     return NextResponse.json(
       { error: "Some of the details are not valid. Please check the form and try again." },
       { status: 400 }
@@ -236,14 +246,12 @@ export async function POST(request: Request) {
     source: describeSource(payload.source),
   };
 
-  console.info("[contact] new enquiry", {
-    name: full.name,
-    email: full.email,
-    company: full.company,
-    services: full.services,
-    budget: full.budget,
-    timeline: full.timeline,
+  // Names, emails and phone numbers stay out of the runtime logs. The notification
+  // email and the Sheet hold the enquiry; the log keeps only a reference and the source.
+  console.info("[contact] enquiry accepted", {
+    id: randomUUID(),
     source: full.source,
+    services: full.services.length,
   });
 
   // Runs alongside the emails; never throws.

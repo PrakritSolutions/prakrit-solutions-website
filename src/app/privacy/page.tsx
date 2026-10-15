@@ -145,10 +145,10 @@ export default function PrivacyPage() {
           <Strong>Hosting logs.</Strong> Our hosting provider automatically records
           standard technical information — such as IP address, request time, and
           requested URL — for security, reliability, and abuse-prevention purposes.
-          When you submit the contact form, our server also writes the name, email
-          address, company, services, budget, timeline, and campaign source from your
-          enquiry to its runtime logs, for troubleshooting. On our current hosting
-          plan, Vercel keeps these logs for 1 hour and then deletes them.
+          When you submit the contact form, our server also writes a random reference
+          number and the campaign source to its runtime logs, for troubleshooting. It
+          does not write your name, email address, or phone number to the logs. On our
+          current hosting plan, Vercel keeps these logs for 1 hour and then deletes them.
         </p>
         <p>
           We do not use advertising trackers or sell any data collected through these
