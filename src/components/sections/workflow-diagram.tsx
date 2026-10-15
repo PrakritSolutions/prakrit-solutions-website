@@ -16,7 +16,7 @@ export function WorkflowDiagram({
               className="col-span-1 flex flex-col rounded-[var(--radius-lg)] border border-line-inverse bg-ink-soft p-4 md:col-span-2 md:rounded-[var(--radius-md)] md:p-5"
             >
               <div className="flex items-baseline gap-3 md:block">
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-accent-2">
+                <span className="font-mono text-xs uppercase tracking-[0.14em] text-accent-2">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-lg font-medium text-paper md:mt-2">

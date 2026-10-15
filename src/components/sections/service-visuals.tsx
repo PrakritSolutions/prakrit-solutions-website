@@ -21,7 +21,7 @@ function Frame({ children }: { children: ReactNode }) {
 
 function Label({ children }: { children: ReactNode }) {
   return (
-    <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+    <span className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
       {children}
     </span>
   );
@@ -38,7 +38,7 @@ function Node({
 }) {
   return (
     <div
-      className={`rounded-[var(--radius-md)] border px-3.5 py-2.5 text-center font-mono text-[0.7rem] uppercase tracking-[0.1em] ${
+      className={`rounded-[var(--radius-md)] border px-3.5 py-2.5 text-center font-mono text-xs uppercase tracking-[0.1em] ${
         accent
           ? "border-accent bg-accent-soft text-accent"
           : "border-line-strong bg-paper text-ink"
@@ -88,7 +88,7 @@ function WebVisual() {
           <span className="h-2 w-2 rounded-full bg-line-strong" />
           <span className="h-2 w-2 rounded-full bg-line-strong" />
           <span className="h-2 w-2 rounded-full bg-line-strong" />
-          <span className="ml-2 flex-1 rounded bg-paper-dim px-2 py-0.5 font-mono text-[0.65rem] text-muted">
+          <span className="ml-2 flex-1 rounded bg-paper-dim px-2 py-0.5 font-mono text-xs text-muted">
             app.yourproduct.com
           </span>
         </div>

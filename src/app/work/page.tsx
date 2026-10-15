@@ -21,6 +21,7 @@ export default function WorkPage() {
       />
       <section className="pt-12 pb-16 md:pt-16 md:pb-24">
         <Container>
+          <h2 className="sr-only">Case studies</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {caseStudies.map((study, i) => (
               <CaseStudyCard key={study.slug} study={study} delay={i * 80} expanded />

@@ -53,7 +53,7 @@ export function PageHeader({
                   <li key={crumb.path} className="flex items-center gap-2">
                     {index < breadcrumbs.length - 1 ? (
                       <>
-                        <Link href={crumb.path} className="hover:text-accent">
+                        <Link href={crumb.path} className="-my-2 inline-block py-2 hover:text-accent">
                           {crumb.name}
                         </Link>
                         <span aria-hidden="true">/</span>

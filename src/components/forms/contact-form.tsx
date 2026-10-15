@@ -281,7 +281,10 @@ export function ContactForm() {
         />
       </Field>
 
-      <fieldset aria-describedby={errors.services ? `${formId}-services-error` : undefined}>
+      <fieldset
+        aria-invalid={errors.services ? true : undefined}
+        aria-describedby={errors.services ? `${formId}-services-error` : undefined}
+      >
         <legend className="mb-3 text-sm font-medium text-ink">
           Services <span className="text-accent">*</span>{" "}
           <span className="font-normal text-muted">(select at least one)</span>
@@ -308,7 +311,7 @@ export function ContactForm() {
           })}
         </div>
         {errors.services ? (
-          <p id={`${formId}-services-error`} className="mt-2 text-sm text-red-600">
+          <p id={`${formId}-services-error`} role="alert" className="mt-2 text-sm text-red-600">
             {errors.services}
           </p>
         ) : null}

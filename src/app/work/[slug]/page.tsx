@@ -72,7 +72,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
                       detail: (
                         <Link
                           href={study.serviceHref}
-                          className="font-medium underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                          className="-my-1.5 inline-block py-1.5 font-medium underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
                         >
                           {study.category === "Mobile Application"
                             ? "Mobile application development"
@@ -235,7 +235,7 @@ export default async function CaseStudyPage(props: PageProps<"/work/[slug]">) {
               </div>
               <Link
                 href="/work"
-                className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+                className="-mb-2 mt-8 inline-flex items-center gap-2 py-2 text-sm font-medium text-ink transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
               >
                 <ArrowRightIcon className="h-4 w-4 rotate-180" />
                 Back to all work

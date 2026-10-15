@@ -9,7 +9,7 @@ import { contactFaq } from "@/lib/content/faq";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
-  title: "Contact",
+  title: "Get a Quote for Your Software Project",
   description:
     "Start a project with Prakrit Solutions — tell us what you want to build and we'll reply personally in up to 2 business days.",
   path: "/contact",
