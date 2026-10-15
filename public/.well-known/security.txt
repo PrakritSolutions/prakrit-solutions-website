@@ -1,0 +1,5 @@
+Contact: mailto:hello@prakritsolutions.in
+Expires: 2027-10-16T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://prakritsolutions.in/.well-known/security.txt
+Policy: https://prakritsolutions.in/privacy
