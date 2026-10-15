@@ -18,6 +18,9 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # Next generates the PageProps and LayoutProps types; a fresh checkout has none yet.
+      - name: Generate route types
+        run: npx next typegen
       - name: Type check
         run: npx tsc --noEmit
       - name: Lint
