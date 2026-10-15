@@ -12,6 +12,8 @@ import {
   escapeHtml,
   type ContactPayload,
 } from "@/lib/contact-email";
+import { checkDurableLimits, hasDurableLimits } from "@/lib/abuse-limits";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
@@ -104,7 +106,27 @@ function buildEmail(payload: ContactPayload) {
   return { text, html };
 }
 
+// A browser form post always comes from our own pages, so a different Origin is a
+// cross-site request. A missing Origin (scripts, curl) is left to the Turnstile check.
+function isForeignOrigin(request: Request): boolean {
+  const origin = request.headers.get("origin");
+  if (!origin) return false;
+  try {
+    return new URL(origin).host !== request.headers.get("host");
+  } catch {
+    return true;
+  }
+}
+
 export async function POST(request: Request) {
+  const contentType = request.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
+  if (contentType !== "application/json") {
+    return NextResponse.json({ error: "Unsupported content type." }, { status: 415 });
+  }
+  if (isForeignOrigin(request)) {
+    return NextResponse.json({ error: "Forbidden." }, { status: 403 });
+  }
+
   const raw = await request.text();
   if (raw.length > BODY_LIMIT_CHARS) {
     return NextResponse.json({ error: "Request too large." }, { status: 413 });
@@ -129,10 +151,26 @@ export async function POST(request: Request) {
   }
 
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  if (isRateLimited(ip)) {
+  // The in-memory limiter is only the fallback for when Upstash is not configured.
+  if (!hasDurableLimits() && isRateLimited(ip)) {
     return NextResponse.json(
       { error: "Too many submissions. Please try again later." },
       { status: 429 }
+    );
+  }
+
+  const human = await verifyTurnstile(payload.turnstileToken, ip);
+  if (human === "failed") {
+    return NextResponse.json(
+      { error: "The security check failed. Please refresh the page and try again." },
+      { status: 403 }
+    );
+  }
+  if (human === "unavailable") {
+    console.error("[contact] Turnstile check unavailable");
+    return NextResponse.json(
+      { error: `The security check is unavailable right now. Please email us at ${siteConfig.email}.` },
+      { status: 503 }
     );
   }
 
@@ -174,6 +212,19 @@ export async function POST(request: Request) {
     return NextResponse.json(
       { error: "Some of the details are not valid. Please check the form and try again." },
       { status: 400 }
+    );
+  }
+
+  const limit = await checkDurableLimits(ip, fields.email);
+  if (limit !== "ok") {
+    return NextResponse.json(
+      {
+        error:
+          limit === "day"
+            ? `We are receiving a lot of enquiries right now. Please email us at ${siteConfig.email}.`
+            : "Too many submissions. Please try again later.",
+      },
+      { status: 429 }
     );
   }
 

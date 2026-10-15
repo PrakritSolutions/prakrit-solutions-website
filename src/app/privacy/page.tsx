@@ -214,7 +214,11 @@ export default function PrivacyPage() {
             scheduling (Calendly), transactional email delivery (Resend), which
             sends the enquiry notification to us and a confirmation to you, and
             Google Workspace (Google LLC), which provides our business email and
-            the private spreadsheet where enquiries are recorded. These providers
+            the private spreadsheet where enquiries are recorded, Cloudflare, Inc.
+            (Turnstile), which checks that a form submission comes from a person,
+            and Upstash, Inc., which keeps short-lived counters, stored as hashes
+            and not as your email address or IP address, that limit how often a form
+            can be submitted. These providers
             process data only to the extent needed to provide their service to us and
             under their own contractual and legal obligations.
           </li>
