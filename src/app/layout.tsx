@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -23,6 +23,14 @@ const mono = Geist_Mono({
   display: "swap",
 });
 
+// Brand paper and ink colours, so mobile browser chrome matches the page.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafaf8" },
+    { media: "(prefers-color-scheme: dark)", color: "#091127" },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -30,17 +38,6 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "software development agency",
-    "mobile app development",
-    "iOS app development",
-    "Android app development",
-    "web application development",
-    "AI application development",
-    "AI solutions",
-    "business automation",
-    "custom software development",
-  ],
   openGraph: {
     type: "website",
     locale: "en_IN",
