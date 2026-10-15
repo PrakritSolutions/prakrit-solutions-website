@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, CheckIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
 import { trackEvent } from "@/lib/analytics";
+import { Turnstile, turnstileSiteKey } from "@/components/forms/turnstile";
 import {
   budgetOptions,
   contactLimits,
@@ -86,6 +87,8 @@ export function ContactForm() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [pendingCurrency, setPendingCurrency] = useState<Currency | null>(null);
   const [showExtras, setShowExtras] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const successRef = useRef<HTMLHeadingElement>(null);
   const startedRef = useRef(false);
   const formId = useId();
@@ -138,6 +141,7 @@ export function ContactForm() {
       timeline: String(data.get("timeline") || ""),
       website: String(data.get("website") || ""),
       source: readAttribution(),
+      turnstileToken,
     };
 
     const fieldErrors = validate(payload);
@@ -154,6 +158,13 @@ export function ContactForm() {
       return;
     }
 
+    // The security check usually finishes before the visitor has filled the form.
+    if (turnstileSiteKey && !turnstileToken) {
+      setServerError("The security check is still running. Please wait a moment and try again.");
+      setStatus("error");
+      return;
+    }
+
     setStatus("submitting");
 
     try {
@@ -165,8 +176,8 @@ export function ContactForm() {
 
       if (!res.ok) {
         trackEvent("contact_form_error", { error_source: "server", status: res.status });
-        // 400 and 429 carry a message written for the visitor; show it as-is.
-        if (res.status === 400 || res.status === 429) {
+        // These statuses carry a message written for the visitor; show it as-is.
+        if ([400, 403, 429, 503].includes(res.status)) {
           const body = (await res.json().catch(() => null)) as { error?: string } | null;
           if (body?.error) setServerError(body.error);
         }
@@ -183,6 +194,10 @@ export function ContactForm() {
       setShowExtras(false);
     } catch {
       setStatus("error");
+    } finally {
+      // A token works once, so every attempt needs a fresh one.
+      setTurnstileToken(null);
+      setTurnstileReset((count) => count + 1);
     }
   }
 
@@ -420,6 +435,8 @@ export function ContactForm() {
           </select>
         </Field>
       </div>
+
+      <Turnstile onToken={setTurnstileToken} resetSignal={turnstileReset} />
 
       {status === "error" ? (
         <p role="alert" className="text-sm text-red-600">
