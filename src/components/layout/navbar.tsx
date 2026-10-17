@@ -153,7 +153,24 @@ export function Navbar() {
               </Link>
             ))}
           </nav>
-          <div className="border-t border-line-soft px-6 py-6">
+          <div className="flex flex-col gap-3 border-t border-line-soft px-6 py-6">
+            <Button
+              href={whatsappHref}
+              variant="whatsapp"
+              size="lg"
+              className="w-full"
+              onClick={() => {
+                trackEvent("whatsapp_click", { location: "mobile_menu" });
+                setOpen(false);
+              }}
+            >
+              <WhatsAppIcon className="h-5 w-5" />
+              Chat on WhatsApp
+              <span className="sr-only"> (opens in a new tab)</span>
+            </Button>
+            <p className="text-center text-xs text-muted">
+              Replies {siteConfig.hours}
+            </p>
             <Button
               href="/contact"
               size="lg"
