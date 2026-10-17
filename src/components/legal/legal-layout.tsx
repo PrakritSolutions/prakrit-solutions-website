@@ -2,6 +2,7 @@ import { Children, isValidElement, type ReactNode } from "react";
 import Link from "next/link";
 import { PageHeader } from "@/components/sections/page-header";
 import { Container } from "@/components/ui/container";
+import { ContentsList } from "./contents-list";
 
 function slugify(heading: string) {
   return heading
@@ -20,23 +21,6 @@ function sectionHeadings(children: ReactNode) {
   });
 }
 
-function ContentsList({ headings }: { headings: string[] }) {
-  return (
-    <ol className="space-y-0.5 text-sm">
-      {headings.map((heading) => (
-        <li key={heading}>
-          <a
-            href={`#${slugify(heading)}`}
-            className="block rounded-[var(--radius-sm)] px-3 py-2 leading-snug text-muted transition-colors hover:bg-paper-dim hover:text-ink"
-          >
-            {heading}
-          </a>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
 export function LegalPage({
   title,
   updated,
@@ -46,7 +30,10 @@ export function LegalPage({
   updated: string;
   children: ReactNode;
 }) {
-  const headings = sectionHeadings(children);
+  const items = sectionHeadings(children).map((heading) => ({
+    heading,
+    id: slugify(heading),
+  }));
 
   return (
     <>
@@ -59,7 +46,7 @@ export function LegalPage({
                 Contents
               </summary>
               <div className="border-t border-line-soft p-2">
-                <ContentsList headings={headings} />
+                <ContentsList items={items} />
               </div>
             </details>
           </nav>
@@ -70,9 +57,9 @@ export function LegalPage({
             <p className="mb-3 px-3 font-mono text-xs uppercase tracking-[0.14em] text-muted">
               Contents
             </p>
-            <ContentsList headings={headings} />
+            <ContentsList items={items} />
           </nav>
-          <div className="max-w-[62rem] space-y-12">{children}</div>
+          <div className="max-w-[62rem] space-y-12 2xl:max-w-[80rem]">{children}</div>
         </Container>
       </section>
     </>
