@@ -115,7 +115,7 @@ A restrained paper-and-navy palette with one saturated accent.
 - **Signal Blue** (#0032ea): links, current-state text, eyebrow labels, check marks and the hover fill of the primary button. It marks action and attention, never decoration. Its pressed shade is **Signal Blue Pressed** (#002a9f); its tint is **Signal Blue Wash** (#e6eaf7), used for selected chips and the highlighted step in diagrams.
 
 ### Secondary
-- **Cyan Spark** (#18fafd): appears only on midnight-ink bands, as the eyebrow dot, flow arrows and the cyan end of the logo gradient. Whether it stays as a second accent is an open design decision.
+- **Cyan Spark** (#18fafd): appears only on midnight-ink bands, as the eyebrow dot, flow arrows and the cyan end of the logo gradient. Decided: it stays as the second accent, for midnight-ink bands only (14.4:1 on navy; the main blue fails there at 2.4:1).
 
 ### Neutral
 - **Midnight Ink** (#091127): body text, headings, the primary button and every dark band. Its softer companion **Midnight Ink Soft** (#111930) lifts cards inside a dark band.
