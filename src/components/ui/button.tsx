@@ -1,7 +1,14 @@
 import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "ghost" | "inverse" | "inverse-outline" | "whatsapp";
+type Variant =
+  | "primary"
+  | "secondary"
+  | "ghost"
+  | "inverse"
+  | "inverse-outline"
+  | "whatsapp"
+  | "whatsapp-outline";
 type Size = "md" | "lg";
 
 const base =
@@ -15,6 +22,12 @@ const variants: Record<Variant, string> = {
   ghost: "bg-transparent text-ink hover:text-accent",
   // WhatsApp green, darkened so white text passes AA (4.9:1).
   whatsapp: "bg-[#0e8068] text-white hover:bg-[#0b6652] hover:-translate-y-0.5",
+  // Header version: neutral outline so "Start a Project" stays the one filled
+  // button. The green lives on the icon only (set where the icon is rendered).
+  // The outline is an inset ring, not a border, so it matches the height of the
+  // filled button beside it.
+  "whatsapp-outline":
+    "bg-transparent text-ink shadow-[inset_0_0_0_1px_var(--color-line-strong)] hover:shadow-[inset_0_0_0_1px_var(--color-ink)] hover:-translate-y-0.5",
   "inverse-outline":
     "bg-transparent text-paper border border-paper/35 hover:border-paper hover:-translate-y-0.5",
   inverse:

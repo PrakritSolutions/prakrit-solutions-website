@@ -104,13 +104,13 @@ export function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <Button
             href={whatsappHref}
-            variant="whatsapp"
+            variant="whatsapp-outline"
             size="md"
             aria-label="Chat on WhatsApp (opens in a new tab)"
             className="px-3 lg:px-5"
             onClick={() => trackEvent("whatsapp_click", { location: "header" })}
           >
-            <WhatsAppIcon className="h-5 w-5" />
+            <WhatsAppIcon className="h-5 w-5 text-[#0e8068]" />
             <span className="sr-only lg:not-sr-only">WhatsApp</span>
           </Button>
           <Button href="/contact" size="md">
@@ -156,7 +156,7 @@ export function Navbar() {
           <div className="flex flex-col gap-3 border-t border-line-soft px-6 py-6">
             <Button
               href={whatsappHref}
-              variant="whatsapp"
+              variant="whatsapp-outline"
               size="lg"
               className="w-full"
               onClick={() => {
@@ -164,7 +164,7 @@ export function Navbar() {
                 setOpen(false);
               }}
             >
-              <WhatsAppIcon className="h-5 w-5" />
+              <WhatsAppIcon className="h-5 w-5 text-[#0e8068]" />
               Chat on WhatsApp
               <span className="sr-only"> (opens in a new tab)</span>
             </Button>
