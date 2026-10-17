@@ -6,8 +6,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { CloseIcon, MenuIcon } from "@/components/icons";
+import { CloseIcon, MenuIcon, WhatsAppIcon } from "@/components/icons";
+import { trackEvent } from "@/lib/analytics";
 import { primaryNav, siteConfig } from "@/lib/site-config";
+
+const whatsappHref = `${siteConfig.whatsappUrl}?text=${encodeURIComponent(
+  "Hi, I found you through prakritsolutions.in and want to discuss a project.",
+)}`;
 
 export function Navbar() {
   const pathname = usePathname();
@@ -78,7 +83,7 @@ export function Navbar() {
           {siteConfig.name}
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 md:flex lg:gap-8" aria-label="Primary">
           {primaryNav.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
@@ -96,7 +101,18 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-2 md:flex">
+          <Button
+            href={whatsappHref}
+            variant="whatsapp"
+            size="md"
+            aria-label="Chat on WhatsApp (opens in a new tab)"
+            className="px-3 lg:px-5"
+            onClick={() => trackEvent("whatsapp_click", { location: "header" })}
+          >
+            <WhatsAppIcon className="h-5 w-5" />
+            <span className="sr-only lg:not-sr-only">WhatsApp</span>
+          </Button>
           <Button href="/contact" size="md">
             Start a Project
           </Button>
@@ -137,7 +153,24 @@ export function Navbar() {
               </Link>
             ))}
           </nav>
-          <div className="border-t border-line-soft px-6 py-6">
+          <div className="flex flex-col gap-3 border-t border-line-soft px-6 py-6">
+            <Button
+              href={whatsappHref}
+              variant="whatsapp"
+              size="lg"
+              className="w-full"
+              onClick={() => {
+                trackEvent("whatsapp_click", { location: "mobile_menu" });
+                setOpen(false);
+              }}
+            >
+              <WhatsAppIcon className="h-5 w-5" />
+              Chat on WhatsApp
+              <span className="sr-only"> (opens in a new tab)</span>
+            </Button>
+            <p className="text-center text-xs text-muted">
+              Replies {siteConfig.hours}
+            </p>
             <Button
               href="/contact"
               size="lg"
